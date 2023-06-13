@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import Colors from './colors'
 
 
@@ -100,29 +100,34 @@ const styles = StyleSheet.create({
     header : {
       flexDirection : "row",
       justifyContent : 'space-between',
+      alignItems : "center",
       padding : 20,
-      alignItems : 'center',
       height : '10%',
     },
     strike : {
       flexDirection : 'row',
       justifyContent : 'space-between',
+      alignItems : 'center'
     },
     strike_svg : {
-      margin : 5,
+      marginRight : 5,
     },
     strike_num : {
-      margin : 5,
+      marginLeft : 5,
+      fontSize : Dimensions.get("window").width * 0.04,
+      color : Colors.Dark.gray
     },
     course : {
       backgroundColor : Colors.Dark.blue,
       borderRadius : 10, 
-      height : 37*1.33,
-      width : 56*1.65,
+      height : Dimensions.get("window").height * 0.05,
+      width : Dimensions.get("window").width * 0.2,
       color: Colors.Dark.gray,
-      fontSize : 15*1.33 ,
+      fontSize : Dimensions.get("window").width * 0.04,
+      textAlign : 'center',
+      textAlignVertical : 'center',
+
       fontWeight : 'bold' ,
-      padding : 10,
       ...Platform.select({
         ios: {
           shadowColor: 'rgba(0, 0, 0, 0.25)',
@@ -150,23 +155,23 @@ const styles = StyleSheet.create({
     welcom : {
       position : 'absolute',
       top : 30,
-      margin : '0 ' , 
+      marginLeft : '15%', 
     },
     welcom1 : {
       color : Colors.Dark.white,
-      fontSize: 40*1.33,
+      fontSize: Dimensions.get("window").width * 0.1,
       fontWeight: 'bold',
     },
     welcom2 : {
       color : Colors.Dark.white,
-      fontSize: 24*1.33,
+      fontSize: Dimensions.get("window").width * 0.055,
       fontWeight: 'bold',
     },
 
     slide: {
       justifyContent : 'center',
       alignItems : 'center',
-
+      marginTop : '60%',
     },
     slide_item:{
       width : '80%',
@@ -177,7 +182,7 @@ const styles = StyleSheet.create({
     slide_item_title : {
       textAlign : 'center',
       color : Colors.Dark.gray,
-      fontSize: 24*1.33,
+      fontSize: Dimensions.get("window").width * 0.06,
       fontWeight: 'bold',
       marginBottom : 30,
 
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
       textAlign : 'center',
 
       color : Colors.Dark.lightGray,
-      fontSize: 15*1.33,
+      fontSize: Dimensions.get("window").width * 0.04,
       fontWeight: 'bold',
       margin : 20,
     }
@@ -194,15 +199,16 @@ const styles = StyleSheet.create({
       textAlign : 'center',
       justifyContent : 'center',
       color : Colors.Dark.lightGray,
-      fontSize: 24*1.33,
+      fontSize: Dimensions.get("window").width * 0.06,
       fontWeight: 'bold',
     },
     slide_item_btn : {
       padding : 15,
       textAlign : 'center',
       backgroundColor : Colors.Dark.gray,
+      color : Colors.Dark.bg ,
       fontWeight : 'bold',
-      fontSize : 15*1.44,
+      fontSize : Dimensions.get("window").width * 0.04,
       margin : 20,
       borderRadius : 10,
     }
@@ -216,6 +222,19 @@ const styles = StyleSheet.create({
       width : '100%',
       justifyContent : 'center',
       alignItems : 'center',
+      backgroundColor : Colors.Dark.blue,
+
+    },
+    footer_title : {
+      color : Colors.Dark.white,
+      backgroundColor : Colors.Dark.bg,
+      height : "70%",
+      textAlignVertical : 'center',
+      width : 130,
+      textAlign : 'center',
+      fontSize : Dimensions.get("window").width * 0.05,
+      fontWeight : 'bold',
+      borderRadius : 10,
     }
   })
 

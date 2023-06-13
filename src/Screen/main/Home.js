@@ -40,7 +40,7 @@ const Home = () => {
                   </View>
                 </View>
                 <View style={styles.nav_btns}>
-
+                      {([1,2,3,4,5,6]).map((item)=>(<Text key={item}>.</Text>))}
                 </View>
       </View>
       <View style={styles.footer} >
