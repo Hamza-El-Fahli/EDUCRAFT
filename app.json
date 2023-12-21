@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48e8f88b-ca9c-4869-8c47-c7abdc80fe0d"
+      }
+    },
+    "owner": "hamzaelfahli"
   }
 }
