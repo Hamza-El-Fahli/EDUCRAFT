@@ -2,6 +2,31 @@ import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-nativ
 import React from 'react'
 
 const Main = () => {
+
+  const Cources = [
+    {
+      name : 'Adobe XD',
+      lectures : 94,
+      logo : 'Image',
+    },
+    {
+      name : 'Illustrator',
+      lectures : 56,
+      logo : 'Image',
+    },
+    {
+      name : 'Lightroom',
+      lectures : 100,
+      logo : 'Image',
+    },
+    {
+      name : 'Photoshop',
+      lectures : 89,
+      logo : 'Image',
+    },
+  ];
+
+
   return (
     <View style={styles.body}>
       <View style={styles.nav}>
@@ -25,6 +50,20 @@ const Main = () => {
         <Pressable>
            <Text> View all</Text>
         </Pressable>
+      </View>
+      <View style={styles.courses} >
+          {Cources.map((elem)=>
+                  <View key={Math.random()}>
+                  <Text>
+                    {elem.name}
+                  </Text>
+                    <Text>
+                      {elem.lectures} Lectures
+                    </Text>
+                    <Text>
+                      {elem.logo}
+                    </Text>
+                  </View>)}
       </View>
     </View>
   )
