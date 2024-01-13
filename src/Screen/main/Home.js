@@ -2,6 +2,12 @@ import { Button, Image, Pressable, StyleSheet, Text, TextInput, View } from 'rea
 import React, { useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons'
 import proPic from '../../images/1b.png'
+import Logo from '../../images/svg/Logo'
+import Flame from '../../images/svg/Flame'
+import Colors from '../../Styles/colors'
+
+
+
 
 const Home = () => {
   const [completed, setCompleted] = useState(true)
@@ -10,8 +16,10 @@ const Home = () => {
     <View style={styles.container}>
       <View style={styles.header} >
                 <Button style={styles.course} title='CCNA 1' />
-                <Image style={styles.logo} />
-                <Image style={styles.strike} />
+                <Logo />
+                <View style={styles.strike} >
+                    <Flame />
+                </View>
       </View>
       <View style={styles.body} >
                 <View style={styles.welcom} >
@@ -41,4 +49,29 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container : {
+    position : 'relative',
+    backgroundColor : Colors.Dark.bg,
+    height : '100%',
+    alignItems : 'stretch',
+  },
+  header : {
+    flexDirection : "row",
+    justifyContent : 'space-between',
+    padding : 20,
+    alignItems : 'center',
+  },
+  body : {
+    borderColor : 'red',
+    borderWidth : 5
+  },
+  footer  : {
+    position : 'absolute',
+    bottom : 0,
+    height : 90,
+    width : '100%',
+    justifyContent : 'center',
+    alignItems : 'center'
+  }
+})
