@@ -1,8 +1,8 @@
-import styles from '../Styles/styles'
+import styles from '../../Styles/styles'
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Pressable, StyleSheet, View, Text,Box, TextInput, Button, Image } from 'react-native'
-import logo from "../images/1b.png"
+import logo from "../../images/1b.png"
 const Register = () => {
   const navigation = useNavigation()
 

@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { FontAwesome } from '@expo/vector-icons'
-import proPic from '../images/1b.png'
+import proPic from '../../images/1b.png'
 
 const Main = () => {
 

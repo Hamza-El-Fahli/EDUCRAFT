@@ -2,8 +2,8 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Pressable, View, Text, TextInput, Image } from 'react-native'
-import logo from "../images/1b.png"
-import styles from '../Styles/styles'
+import logo from "../../images/1b.png"
+import styles from '../../Styles/styles'
 
 const Login = () => {
   const navigation = useNavigation()
