@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from './colors'
 
 
 
@@ -79,6 +80,142 @@ const styles = StyleSheet.create({
           fontSize : 13,
         marginRight : 10,
         fontWeight : 'bold'
+    },
+    container : {
+      position : 'relative',
+      backgroundColor : Colors.Dark.bg,
+      height : '100%',
+      alignItems : 'stretch',
+      
+    },
+  
+  
+    /*                       */
+    /*                       */
+    /*         Header        */
+    /*                       */
+    /*                       */
+  
+  
+    header : {
+      flexDirection : "row",
+      justifyContent : 'space-between',
+      padding : 20,
+      alignItems : 'center',
+      height : '10%',
+    },
+    strike : {
+      flexDirection : 'row',
+      justifyContent : 'space-between',
+    },
+    strike_svg : {
+      margin : 5,
+    },
+    strike_num : {
+      margin : 5,
+    },
+    course : {
+      backgroundColor : Colors.Dark.blue,
+      borderRadius : 10, 
+      height : 37*1.33,
+      width : 56*1.65,
+      color: Colors.Dark.gray,
+      fontSize : 15*1.33 ,
+      fontWeight : 'bold' ,
+      padding : 10,
+      ...Platform.select({
+        ios: {
+          shadowColor: 'rgba(0, 0, 0, 0.25)',
+          shadowOffset: { width: 1, height: 4 },
+          shadowOpacity: 0.6,
+          shadowRadius: 6,
+        },
+        android: {
+          elevation: 6,
+        },
+      }),
+    }
+  
+  
+    /*                        */
+    /*                        */
+    /*          Body          */
+    /*                        */
+    /*                        */
+    ,body : {
+      height : "80%" ,
+      justifyContent : "center",
+      position : 'relative',
+    },
+    welcom : {
+      position : 'absolute',
+      top : 30,
+      margin : '0 ' , 
+    },
+    welcom1 : {
+      color : Colors.Dark.white,
+      fontSize: 40*1.33,
+      fontWeight: 'bold',
+    },
+    welcom2 : {
+      color : Colors.Dark.white,
+      fontSize: 24*1.33,
+      fontWeight: 'bold',
+    },
+
+    slide: {
+      justifyContent : 'center',
+      alignItems : 'center',
+
+    },
+    slide_item:{
+      width : '80%',
+      padding : 20,
+      backgroundColor : Colors.Dark.blue,
+      borderRadius : 20,
+    },
+    slide_item_title : {
+      textAlign : 'center',
+      color : Colors.Dark.gray,
+      fontSize: 24*1.33,
+      fontWeight: 'bold',
+      marginBottom : 30,
+
+    }
+    ,slide_item_details:{
+      textAlign : 'center',
+
+      color : Colors.Dark.lightGray,
+      fontSize: 15*1.33,
+      fontWeight: 'bold',
+      margin : 20,
+    }
+    ,slide_item_progression : {
+      textAlign : 'center',
+      justifyContent : 'center',
+      color : Colors.Dark.lightGray,
+      fontSize: 24*1.33,
+      fontWeight: 'bold',
+    },
+    slide_item_btn : {
+      padding : 15,
+      textAlign : 'center',
+      backgroundColor : Colors.Dark.gray,
+      fontWeight : 'bold',
+      fontSize : 15*1.44,
+      margin : 20,
+      borderRadius : 10,
+    }
+    /*                        */
+    /*                        */
+    /*         Footer         */
+    /*                        */
+    /*                        */
+    ,footer  : {
+      height : '10%',
+      width : '100%',
+      justifyContent : 'center',
+      alignItems : 'center',
     }
   })
 

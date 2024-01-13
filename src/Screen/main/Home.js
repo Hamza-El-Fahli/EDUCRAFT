@@ -1,24 +1,25 @@
-import { Button, Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Pressable,  Text , View } from 'react-native'
 import React, { useState } from 'react'
-import { FontAwesome } from '@expo/vector-icons'
-import proPic from '../../images/1b.png'
 import Logo from '../../images/svg/Logo'
 import Flame from '../../images/svg/Flame'
-import Colors from '../../Styles/colors'
-
-
-
+import styles from '../../Styles/styles'
 
 const Home = () => {
+
+ 
   const [completed, setCompleted] = useState(true)
   const [pageTitle, setPageTitle] = useState('Home')
+  
   return (
     <View style={styles.container}>
       <View style={styles.header} >
-                <Button style={styles.course} title='CCNA 1' />
+                <Pressable>
+                    <Text  style={styles.course}>CCNA 1</Text>
+                  </Pressable>  
                 <Logo />
                 <View style={styles.strike} >
-                    <Flame />
+                    <Flame style={styles.strike_svg}/>
+                    <Text style={styles.strike_num}>0</Text>
                 </View>
       </View>
       <View style={styles.body} >
@@ -28,12 +29,14 @@ const Home = () => {
                 </View>
                 <View style={styles.slide} >
                   <View style={styles.slide_item} >
-                    <Text style={styles.slide_item_title} ></Text>
+                    <Text style={styles.slide_item_title} >Section 1 : Modèle OSI</Text>
                     <Pressable ><Text style={styles.slide_item_details}>VOIR DETAILS</Text></Pressable>
-                    <View style={styles.slide_item_progression}>
-                          {completed ? <Text>✔Completed!</Text> : <View></View>}
+                    <View >
+                          {completed ? <Text style={styles.slide_item_progression}>✔Completed!</Text> : <View style={styles.slide_item_progression} ></View>}
                     </View>
-                    <Button title='REVIEW' />
+                      <Pressable>
+                        <Text style={styles.slide_item_btn}>REVIEW</Text>
+                      </Pressable>
                   </View>
                 </View>
                 <View style={styles.nav_btns}>
@@ -48,30 +51,3 @@ const Home = () => {
 }
 
 export default Home
-
-const styles = StyleSheet.create({
-  container : {
-    position : 'relative',
-    backgroundColor : Colors.Dark.bg,
-    height : '100%',
-    alignItems : 'stretch',
-  },
-  header : {
-    flexDirection : "row",
-    justifyContent : 'space-between',
-    padding : 20,
-    alignItems : 'center',
-  },
-  body : {
-    borderColor : 'red',
-    borderWidth : 5
-  },
-  footer  : {
-    position : 'absolute',
-    bottom : 0,
-    height : 90,
-    width : '100%',
-    justifyContent : 'center',
-    alignItems : 'center'
-  }
-})
