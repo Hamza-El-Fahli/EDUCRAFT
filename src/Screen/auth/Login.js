@@ -33,7 +33,7 @@ const Login = () => {
               <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
       </View>
       <Pressable 
-        onPress={()=> navigation.navigate("Main")}
+        onPress={()=> navigation.navigate("Home")}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
