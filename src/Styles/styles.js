@@ -111,6 +111,11 @@ const styles = StyleSheet.create({
     },
     strike_svg : {
       marginRight : 5,
+      width : 18,
+      height : 18,
+      objectFit : 'cover',
+      borderWidth : 5,
+      borderColor : 'white'
     },
     strike_num : {
       marginLeft : 5,
@@ -169,31 +174,37 @@ const styles = StyleSheet.create({
     },
 
     slide: {
-      justifyContent : 'center',
       alignItems : 'center',
       marginTop : '60%',
+      overflow : 'scroll',
+      flexDirection : 'row',
     },
     slide_item:{
       width : '80%',
       padding : 20,
       backgroundColor : Colors.Dark.blue,
       borderRadius : 20,
+      height : .35 *Dimensions.get("window").height,
+      marginLeft : .1 *Dimensions.get("window").width,
+      marginRight : .1 *Dimensions.get("window").width,
+      justifyContent : 'center',
+      alignItems : 'center',
+      position : 'relative',
     },
     slide_item_title : {
       textAlign : 'center',
       color : Colors.Dark.gray,
       fontSize: Dimensions.get("window").width * 0.06,
       fontWeight: 'bold',
-      marginBottom : 30,
-
+      position : 'absolute',
+      top : 20,
     }
     ,slide_item_details:{
       textAlign : 'center',
-
+      marginBottom : 10,
       color : Colors.Dark.lightGray,
       fontSize: Dimensions.get("window").width * 0.04,
       fontWeight: 'bold',
-      margin : 20,
     }
     ,slide_item_progression : {
       textAlign : 'center',
@@ -202,15 +213,63 @@ const styles = StyleSheet.create({
       fontSize: Dimensions.get("window").width * 0.06,
       fontWeight: 'bold',
     },
+
+
+
+
+
+    slide_item_btn_grp : {
+      width : '100%',
+      position : 'absolute',
+      bottom : 20,
+    },
     slide_item_btn : {
-      padding : 15,
+      padding : 10,
       textAlign : 'center',
       backgroundColor : Colors.Dark.gray,
       color : Colors.Dark.bg ,
       fontWeight : 'bold',
       fontSize : Dimensions.get("window").width * 0.04,
-      margin : 20,
       borderRadius : 10,
+    },
+    progression_bar_bg:{
+      backgroundColor : Colors.Dark.gray,
+      opacity : .5 ,
+      height: 20,
+      width :  Dimensions.get("window").width * 0.6 ,
+      alignSelf : 'center',
+      borderRadius : 20,
+      display : 'flex',
+      position : 'relative',
+    },
+    progression_bar:{
+      backgroundColor : Colors.Dark.gray,
+      height: 20,
+      width : '0%' ,
+      alignSelf : 'center',
+      borderRadius : 20,
+      position : 'absolute',
+      left : 0,
+    },
+    nav_btns : {
+      margin : 15 ,
+      flexDirection : 'row',
+      justifyContent : 'space-evenly',
+    },
+    nav_btn : {
+      borderWidth : 3 ,
+      height : 15 ,
+      width : 15 ,
+      borderColor : 'gray',
+      borderRadius : 20,
+      backgroundColor : 'gray',
+      
+    }
+    ,nav_btn_selected:{
+      
+      borderColor : '#fff',
+      borderRadius : 20,
+      backgroundColor : '#fff'
     }
     /*                        */
     /*                        */

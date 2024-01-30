@@ -1,4 +1,4 @@
-import { Button, Pressable,  Text , View } from 'react-native'
+import { Dimensions, Pressable,  Text , View } from 'react-native'
 import React, { useState } from 'react'
 import Logo from '../../images/svg/Logo'
 import Flame from '../../images/svg/Flame'
@@ -9,7 +9,8 @@ const Home = () => {
  
   const [completed, setCompleted] = useState(true)
   const [pageTitle, setPageTitle] = useState('Home')
-  
+  const [pageNumber, setPageNumber] = useState(3)
+  const [progression, setprogression] = useState(50)  
   return (
     <View style={styles.container}>
       <View style={styles.header} >
@@ -28,19 +29,37 @@ const Home = () => {
                   <Text style={styles.welcom2}>Welcome back to your course</Text>
                 </View>
                 <View style={styles.slide} >
-                  <View style={styles.slide_item} >
+                  {pageNumber == 0 && <View style={styles.slide_item} >
                     <Text style={styles.slide_item_title} >Section 1 : Modèle OSI</Text>
                     <Pressable ><Text style={styles.slide_item_details}>VOIR DETAILS</Text></Pressable>
                     <View >
-                          {completed ? <Text style={styles.slide_item_progression}>✔Completed!</Text> : <View style={styles.slide_item_progression} ></View>}
+                         <Text style={styles.slide_item_progression}>✔Completed!</Text>
                     </View>
-                      <Pressable>
+                      <Pressable style={styles.slide_item_btn_grp}>
                         <Text style={styles.slide_item_btn}>REVIEW</Text>
                       </Pressable>
-                  </View>
+                  </View>}
+                  {pageNumber != 0 &&<View style={styles.slide_item} >
+                    <Text style={styles.slide_item_title} >Section 2 : Modèle     TCP/IP</Text>
+                    <Pressable ><Text style={styles.slide_item_details}>VOIR DETAILS</Text></Pressable>
+                    <View 
+                      style={styles.progression_bar_bg} 
+                      key='progression_bar'
+                      >
+                      <View 
+                        style={{...styles.progression_bar,width : progression+'%'}}
+                        />
+                      </View>
+                      <Pressable style={styles.slide_item_btn_grp}>
+                        <Text style={styles.slide_item_btn}>REVIEW</Text>
+                      </Pressable>
+                  </View>}
                 </View>
                 <View style={styles.nav_btns}>
-                      {([1,2,3,4,5,6]).map((item)=>(<Text key={item}>.</Text>))}
+                      {([0,1,2,3,4,5,6]).map((item)=>{
+                        if(item == pageNumber) return (<Text style={{...styles.nav_btn,...styles.nav_btn_selected}} onPress={()=>{setPageNumber(item)}} key={item}>.</Text>)
+                        return (<Text style={styles.nav_btn} onPress={()=>{setPageNumber(item)}} key={item}>.</Text>)
+                      })}
                 </View>
       </View>
       <View style={styles.footer} >
