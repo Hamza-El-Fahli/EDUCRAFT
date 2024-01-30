@@ -51,7 +51,7 @@ function Logo(props) {
         </Defs>
       </Svg>*/
 
-    <Image source={logoIcon} />
+    <Image source={logoIcon}/>
       )
 }
 

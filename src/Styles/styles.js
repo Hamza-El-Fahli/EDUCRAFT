@@ -284,21 +284,23 @@ const styles = StyleSheet.create({
       backgroundColor : Colors.Dark.blue,
 
     },
-    footer_title : {
-      color : Colors.Dark.white,
+    footer_icon : {
       backgroundColor : Colors.Dark.bg,
-      height : "70%",
-      textAlignVertical : 'center',
-      width : 130,
-      textAlign : 'center',
-      fontSize : Dimensions.get("window").width * 0.05,
-      fontWeight : 'bold',
+      width : 60,
+      height : 60,
       borderRadius : 10,
+      justifyContent : 'center',
+      alignItems : 'center',
     }
   })
 
 
   export default styles
+
+
+
+  /* Rectangle 21 */
+
 
 
 
