@@ -277,13 +277,23 @@ const styles = StyleSheet.create({
     ,footer  : {
       height : '10%',
       width : '100%',
-      justifyContent : 'center',
+      flexDirection : 'row',
+      justifyContent : 'space-evenly',
       alignItems : 'center',
       backgroundColor : Colors.Dark.blue,
-
+      position : 'absolute',
+      bottom : 0
     },
     footer_icon : {
       backgroundColor : Colors.Dark.bg,
+      width : 60,
+      height : 60,
+      borderRadius : 10,
+      justifyContent : 'center',
+      alignItems : 'center',
+    },
+    footer_selected_icon :{
+      backgroundColor : Colors.Dark.lightGray,
       width : 60,
       height : 60,
       borderRadius : 10,
@@ -349,7 +359,7 @@ const styles = StyleSheet.create({
 
 
   ChartLeft_data_year:{
-    fontSize :  Dimensions.get("window").width * 0.03,
+    fontSize :  Dimensions.get("window").width * 0.04,
     color : Colors.Dark.lightGray,
     fontWeight : 'bold',
     marginTop : '3%',
@@ -357,7 +367,7 @@ const styles = StyleSheet.create({
 
 
   ChartLeft_data_specialite:{
-    fontSize :  Dimensions.get("window").width * 0.03,
+    fontSize :  Dimensions.get("window").width * 0.04,
     color : Colors.Dark.lightGray,
     fontWeight : 'bold',
     marginTop : '3%',

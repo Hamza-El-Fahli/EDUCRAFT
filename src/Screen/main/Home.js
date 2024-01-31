@@ -4,7 +4,6 @@ import styles from '../../Styles/styles'
 import Footer from '../../component/Footer'
 import Header from '../../component/Header'
 import Body from '../../component/Body'
-const Icon = require('../../images/svg/homeIcon.png')
 
 const Home = () => {
 
@@ -19,7 +18,7 @@ const Home = () => {
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       progression={progression}
       />
-      <Footer styles={styles} icon={Icon} />
+      <Footer styles={styles} currentPage='home'  />
     </View>
   )
 }

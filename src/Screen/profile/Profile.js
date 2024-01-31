@@ -4,6 +4,7 @@ import Header from '../../component/Header'
 import styles from '../../Styles/styles'
 import Chart from '../../component/Chart'
 import Statistics from '../../component/Statistics'
+import Footer from '../../component/Footer'
 
 const Profile = () => {
   return (
@@ -12,6 +13,7 @@ const Profile = () => {
         <Chart  styles={styles}/>
         <View style={styles.hr} />
         <Statistics styles={styles} />
+        <Footer styles={styles} currentPage='profile' />
     </View>
   )
 }
