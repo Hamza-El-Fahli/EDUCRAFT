@@ -233,8 +233,7 @@ const styles = StyleSheet.create({
       borderRadius : 10,
     },
     progression_bar_bg:{
-      backgroundColor : Colors.Dark.gray,
-      opacity : .5 ,
+      backgroundColor : Colors.Dark.lightGray,
       height: 20,
       width :  Dimensions.get("window").width * 0.6 ,
       alignSelf : 'center',
@@ -291,8 +290,50 @@ const styles = StyleSheet.create({
       borderRadius : 10,
       justifyContent : 'center',
       alignItems : 'center',
-    }
-  })
+    },
+    /*                        */
+    /*                        */
+    /*         Chart          */
+    /*                        */
+    /*                        */
+
+    Chart : {
+      height : '20%',
+      position : 'relative'
+    },
+    ChartLeft : {
+      position : 'absolute',
+      height : '100%',
+      width : '60%',
+      left: 0,
+      borderWidth : 5,
+    },
+  ChartRight : {
+    position : 'absolute',
+    height : '100%',
+    width : '40%',
+    right: 0,
+    borderWidth : 5,
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  ChartRight_logo : {
+    backgroundColor : Colors.Dark.gray,
+    color : Colors.Dark.bg,
+    height : '80%',
+    aspectRatio : '1',
+    borderRadius : 100,
+    textAlign : 'center',
+    textAlignVertical : 'center',
+    fontSize :  Dimensions.get("window").width * 0.18,
+    fontWeight : 'bold'
+  },
+  ChartRight_logo_edit : {
+    position : 'absolute',
+    top : 20,
+    right : 20
+  }
+})
 
 
   export default styles
