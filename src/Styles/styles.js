@@ -398,23 +398,23 @@ const styles = StyleSheet.create({
     borderWidth : 2,
     borderColor : Colors.Dark.lightGray,
     padding : '3%',
+    paddingLeft : '1%',
     marginBottom : '5%',
     borderRadius : 20
 
   },
   statistics_graphs_graph_logo:{
-    marginTop : '5%',
+    margin : '5%',
   },
   statistics_graphs_graph_banner:{
-    paddingLeft : '5%',
   },
   statistics_graphs_graph_banner_num:{
-    fontSize :  Dimensions.get("window").width * 0.06,
+    fontSize :  Dimensions.get("window").width * 0.05,
     color : Colors.Dark.lightGray,
-    fontWeight : 'bold',
+    fontWeight : '800',
   },
   statistics_graphs_graph_banner_text:{
-    fontSize :  Dimensions.get("window").width * 0.03,
+    fontSize :  Dimensions.get("window").width * 0.035,
     color : Colors.Dark.lightGray,
     fontWeight : 'bold',
   },
