@@ -383,10 +383,41 @@ const styles = StyleSheet.create({
     color : Colors.Dark.white,
     fontWeight : 'bold',
     padding : '5%',
-  }
+  },
 
 
+  statistics_graphs:{
+    flexDirection : 'row',
+    flexWrap : 'wrap',
+    justifyContent : 'space-evenly',
 
+  },
+  statistics_graphs_graph :{
+    width : '40%',
+    flexDirection : 'row',
+    borderWidth : 2,
+    borderColor : Colors.Dark.lightGray,
+    padding : '3%',
+    marginBottom : '5%',
+    borderRadius : 20
+
+  },
+  statistics_graphs_graph_logo:{
+    marginTop : '5%',
+  },
+  statistics_graphs_graph_banner:{
+    paddingLeft : '5%',
+  },
+  statistics_graphs_graph_banner_num:{
+    fontSize :  Dimensions.get("window").width * 0.06,
+    color : Colors.Dark.lightGray,
+    fontWeight : 'bold',
+  },
+  statistics_graphs_graph_banner_text:{
+    fontSize :  Dimensions.get("window").width * 0.03,
+    color : Colors.Dark.lightGray,
+    fontWeight : 'bold',
+  },
 
 
 
