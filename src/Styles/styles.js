@@ -331,8 +331,8 @@ const styles = StyleSheet.create({
   },
   ChartRight_logo_edit : {
     position : 'absolute',
-    top : 20,
-    right : 20
+    top : '20%',
+    right : '20%',
   },
 
 
