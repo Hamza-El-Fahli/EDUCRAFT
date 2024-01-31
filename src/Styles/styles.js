@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
       backgroundColor : Colors.Dark.bg,
       height : '100%',
       alignItems : 'stretch',
-      
     },
   
   
@@ -379,7 +378,12 @@ const styles = StyleSheet.create({
     borderRadius : 10,
   },
 
-
+  statistics:{
+    fontSize :  Dimensions.get("window").width * 0.06,
+    color : Colors.Dark.white,
+    fontWeight : 'bold',
+    padding : '5%',
+  }
 
 
 

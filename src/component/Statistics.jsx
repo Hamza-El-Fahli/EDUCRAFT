@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import {  Text, View } from 'react-native'
 import React from 'react'
 
-const Statistics = () => {
+const Statistics = ({styles}) => {
   return (
     <View>
-      <Text>Statistics</Text>
+      <Text style={styles.statistics}>Statistics</Text>
     </View>
   )
 }
