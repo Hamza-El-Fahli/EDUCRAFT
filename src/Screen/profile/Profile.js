@@ -13,7 +13,7 @@ const Profile = () => {
         <Chart  styles={styles}/>
         <View style={styles.hr} />
         <Statistics styles={styles} />
-        <Footer styles={styles} currentPage='profile' />
+        <Footer styles={styles} currentPage='Profile' />
     </View>
   )
 }

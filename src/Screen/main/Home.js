@@ -18,7 +18,7 @@ const Home = () => {
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       progression={progression}
       />
-      <Footer styles={styles} currentPage='home'  />
+      <Footer styles={styles} currentPage='Home'  />
     </View>
   )
 }
