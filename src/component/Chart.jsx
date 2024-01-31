@@ -7,10 +7,14 @@ const Chart = ({styles}) => {
   return (
     <View style={styles.Chart}>
       <View style={styles.ChartLeft}>
-        <Text>Hamza El Fahli</Text>
+        <Text style={styles.ChartLeft_title}>Hamza El Fahli</Text>
+        <View style={styles.ChartLeft_data}>
+        <Text style={styles.ChartLeft_data_year}>2eme Annee</Text>
+        <Text style={styles.ChartLeft_data_specialite}>TSSRI</Text>
+        </View>
         </View>
       <View style={styles.ChartRight}>
-        <Text style={styles.ChartRight_logo}>G</Text>
+        <Text style={styles.ChartRight_logo}>H</Text>
         <Image style={styles.ChartRight_logo_edit} source={editProfile} />
         </View>
     </View>

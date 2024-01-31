@@ -299,40 +299,97 @@ const styles = StyleSheet.create({
 
     Chart : {
       height : '20%',
-      position : 'relative'
+      position : 'relative',
+      marginTop : '5%',
     },
     ChartLeft : {
       position : 'absolute',
       height : '100%',
       width : '60%',
       left: 0,
-      borderWidth : 5,
+      padding : 20,
+      paddingTop: '15%'
     },
   ChartRight : {
     position : 'absolute',
     height : '100%',
     width : '40%',
     right: 0,
-    borderWidth : 5,
     justifyContent : 'center',
     alignItems : 'center',
   },
   ChartRight_logo : {
     backgroundColor : Colors.Dark.gray,
     color : Colors.Dark.bg,
-    height : '80%',
+    height : '60%',
     aspectRatio : '1',
     borderRadius : 100,
     textAlign : 'center',
     textAlignVertical : 'center',
-    fontSize :  Dimensions.get("window").width * 0.18,
+    fontSize :  Dimensions.get("window").width * 0.14,
     fontWeight : 'bold'
   },
   ChartRight_logo_edit : {
     position : 'absolute',
     top : 20,
     right : 20
-  }
+  },
+
+
+
+
+  ChartLeft_title:{
+    fontSize :  Dimensions.get("window").width * 0.06,
+    color : Colors.Dark.white,
+    fontWeight : 'bold',
+  },
+
+  ChartLeft_data:{
+    marginLeft : '10%',
+  },
+
+
+  ChartLeft_data_year:{
+    fontSize :  Dimensions.get("window").width * 0.03,
+    color : Colors.Dark.lightGray,
+    fontWeight : 'bold',
+    marginTop : '3%',
+  },
+
+
+  ChartLeft_data_specialite:{
+    fontSize :  Dimensions.get("window").width * 0.03,
+    color : Colors.Dark.lightGray,
+    fontWeight : 'bold',
+    marginTop : '3%',
+
+  },
+
+
+
+
+
+  hr:{
+    position : 'fixed',
+    bottom : 0,
+    borderBottomWidth : 3,
+    borderBottomColor : Colors.Dark.lightGray,
+    width : '90%',
+    alignSelf : 'center',
+    borderRadius : 10,
+  },
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 
