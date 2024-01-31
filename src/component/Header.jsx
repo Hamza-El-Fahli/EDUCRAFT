@@ -19,7 +19,7 @@ const Header = ({ styles, screen }) => {
                 <Text style={styles.strike_num}>0</Text>
             </View> :
             <View style={styles.strike} >
-                <Image source={configIcon} />
+                <Image style={{height : 30 , width : 30}} source={configIcon} />
             </View>
       }
     </View>

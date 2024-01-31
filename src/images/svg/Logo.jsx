@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Image } from "react-native"
+import { Image, View } from "react-native"
 import Svg, { Path, Defs, Pattern, Use,  } from "react-native-svg"
 const logoIcon = require('./logoIcon.png')
 function Logo(props) {
@@ -50,8 +50,10 @@ function Logo(props) {
           />
         </Defs>
       </Svg>*/
+    <View style={{marginTop: 20}}>
 
     <Image source={logoIcon}/>
+    </View>
       )
 }
 
