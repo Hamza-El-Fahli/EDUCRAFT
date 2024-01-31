@@ -37,7 +37,7 @@ const Register = () => {
                 />
       </View>
       <Pressable 
-        onPress={()=> navigation.navigate("Main")}
+        onPress={()=> navigation.navigate("Home")}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>CREATE AN ACCOUNT</Text>
