@@ -1,6 +1,5 @@
 import {   View , Image , Pressable } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native'
 
 const Icons = [
                 [require('../images/svg/profileIcon.png'),'Profile'],
@@ -12,7 +11,6 @@ const Icons = [
 
 
 const Footer = ({styles , currentPage }) => {
-  const navigation = useNavigation()
 
   return (
     <View style={styles.footer} >
@@ -22,8 +20,7 @@ const Footer = ({styles , currentPage }) => {
             
             if(icon[1] !== currentPage)
             return (
-              <Pressable  key={index}
-              onPress={()=> navigation.navigate(icon[1])} >
+              <Pressable  key={index} >
             <View style={styles.footer_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>
@@ -31,8 +28,7 @@ const Footer = ({styles , currentPage }) => {
             )
             else
             return (
-              <Pressable  key={index}
-              onPress={()=> navigation.navigate(icon[1])} >
+              <Pressable  key={index}>
             <View key={index} style={styles.footer_selected_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>

@@ -1,35 +1,68 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# macOS
+.DS_Store
 
-# dependencies
+# Node.js
 node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# React Native
+android/
+ios/
+*.log
+*.d.ts
+
+# Gradle files
+*.log
+gradle-wrapper.properties
+.gradle/
+
+# IntelliJ-based IDEs
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# npm
+*.pid
+*.seed
+*.pid.lock
+
+# TypeScript
+*.tsbuildinfo
 
 # Expo
 .expo/
-dist/
-web-build/
+__generated__/
+.web/
 
-# Native
-*.orig.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
+# Android
+build/
+local.properties
 
-# Metro
-.metro-health-check*
+# iOS
+build/
+Pods/
+*.xcworkspace/
+*.xcodeproj/
+*.xcuserdata/
 
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+Thumbs.db
+ehthumbs.db
 .DS_Store
-*.pem
+Desktop.ini
 
-# local env files
-.env*.local
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
 
-# typescript
-*.tsbuildinfo
+# Windows shortcuts
+*.lnk

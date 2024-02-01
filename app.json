@@ -1,42 +1,4 @@
 {
-  "expo": {
-    "name": "educraft",
-    "slug": "educraft",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/logo.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "48e8f88b-ca9c-4869-8c47-c7abdc80fe0d"
-      }
-    },
-    "owner": "hamzaelfahli",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/48e8f88b-ca9c-4869-8c47-c7abdc80fe0d"
-    }
-  }
+  "name": "EDUCRAFT",
+  "displayName": "EDUCRAFT"
 }
