@@ -11,13 +11,13 @@ const App = () => {
   const [Screen, setScreen] = useState(1)
   switch (Screen) {
     case 1:
-      return <Login />;
+      return <Login setScreen={setScreen} />;
     case 2:
-      return <Register />;
+      return <Register setScreen={setScreen} />;
     case 3:
-      return <Home />;
+      return <Home setScreen={setScreen} />;
     case 4:
-      return <Profile />;
+      return <Profile setScreen={setScreen} />;
     default:
       return null;
   }

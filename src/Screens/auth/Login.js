@@ -3,7 +3,7 @@ import { Pressable, View, Text, TextInput, Image } from 'react-native'
 import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
 
-const Login = () => {
+const Login = ({setScreen}) => {
 
   return (
     <View>
@@ -30,12 +30,15 @@ const Login = () => {
               <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
       </View>
       <Pressable 
+      onPress={()=>{setScreen(3)}}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
       </Pressable>
 
-          <Pressable>
+          <Pressable
+                onPress={()=>{setScreen(2)}}
+                >
               <Text style={styles.loginGoToRegister}>
                   Don't have an account ? Register
               </Text>
