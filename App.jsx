@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Home from './src/Screens/main/Home'
 import Login from './src/Screens/auth/Login'
 import Register from './src/Screens/auth/Register'
+import Profile from './src/Screens/profile/Profile'
 
 
 const App = () => {
@@ -11,7 +12,7 @@ const App = () => {
   return (
     <View >
 
-      <Home />
+      <Profile />
     </View>
   )
 }

@@ -1,10 +1,10 @@
 import {   View  } from 'react-native'
 import React from 'react'
-import Header from '../../component/Header'
-import styles from '../../Styles/styles'
-import Chart from '../../component/Chart'
-import Statistics from '../../component/Statistics'
-import Footer from '../../component/Footer'
+import Header from '../../components/Header'
+import styles from '../../styles/styles'
+import Chart from '../../components/Chart'
+import Statistics from '../../components/Statistics'
+import Footer from '../../components/Footer'
 
 const Profile = () => {
   return (
