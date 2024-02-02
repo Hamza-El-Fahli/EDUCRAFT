@@ -2,15 +2,15 @@ import {   View , Image , Pressable } from 'react-native'
 import React from 'react'
 
 const Icons = [
-                [require('../images/svg/profileIcon.png'),'Profile'],
-                [require('../images/svg/homeIcon.png'),'Home'],
+                [require('../images/svg/profileIcon.png'),'Profile',4],
+                [require('../images/svg/homeIcon.png'),'Home',3],
 ]
 
 
 
 
 
-const Footer = ({styles , currentPage }) => {
+const Footer = ({setScreen, styles , currentPage }) => {
 
   return (
     <View style={styles.footer} >
@@ -20,7 +20,9 @@ const Footer = ({styles , currentPage }) => {
             
             if(icon[1] !== currentPage)
             return (
-              <Pressable  key={index} >
+              <Pressable  key={index} 
+              onPress={()=>{setScreen(icon[2])}}
+              >
             <View style={styles.footer_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>
@@ -28,7 +30,9 @@ const Footer = ({styles , currentPage }) => {
             )
             else
             return (
-              <Pressable  key={index}>
+              <Pressable  key={index}
+              onPress={()=>{setScreen(icon[2])}}
+              >
             <View key={index} style={styles.footer_selected_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>

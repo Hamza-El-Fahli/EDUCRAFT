@@ -6,14 +6,14 @@ import Chart from '../../components/Chart'
 import Statistics from '../../components/Statistics'
 import Footer from '../../components/Footer'
 
-const Profile = () => {
+const Profile = ({setScreen}) => {
   return (
     <View style={styles.container}>
         <Header styles={styles} screen='Profile' />
         <Chart  styles={styles}/>
         <View style={styles.hr} />
         <Statistics styles={styles} />
-        <Footer styles={styles} currentPage='Profile' />
+        <Footer setScreen={setScreen} styles={styles} currentPage='Profile' />
     </View>
   )
 }

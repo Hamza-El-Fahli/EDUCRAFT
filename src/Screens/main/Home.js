@@ -5,7 +5,7 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Body from '../../components/Body'
 
-const Home = () => {
+const Home = ({setScreen}) => {
 
  
   const [completed, setCompleted] = useState(true)
@@ -18,7 +18,7 @@ const Home = () => {
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       progression={progression}
       />
-      <Footer styles={styles} currentPage='Home'  />
+      <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
     </View>
   )
 }
