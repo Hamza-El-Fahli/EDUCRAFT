@@ -7,7 +7,7 @@ const Login = ({setScreen}) => {
 
   return (
     <View>
-      <View >
+      <View style={styles.auth_container}>
       <Image 
               source={logo}
               style={styles.logo}/>

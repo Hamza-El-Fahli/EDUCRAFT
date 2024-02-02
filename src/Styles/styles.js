@@ -8,6 +8,10 @@ import Colors from './colors'
 
 
 const styles = StyleSheet.create({
+  auth_container:{
+    paddingLeft : 30,
+    paddingRight : 30,
+  },
     logo : {
       marginTop :10,
       marginLeft : 'auto',
@@ -22,28 +26,25 @@ const styles = StyleSheet.create({
       fontSize : 32,
       fontWeight : 'bold',
       marginTop : 10,
-      marginBottom : 60
+      marginBottom : 60,
     },
     inputEmail : {
-      marginLeft : 30,
       width : '80%',
-      marginTop : 15,
-      // paddingTop : 5,
-      height : 25,
+      marginBottom : 10,
+      height : 45,
+      fontSize : 20,
       borderBottomWidth : 1,
       borderBottomColor : '#1F233A'
     },
     inputPassword : {
-      marginLeft : 30,
       width : '80%',
-      marginTop : 10,
-      // paddingTop : 5,
-      height : 25,
+      marginBottom : 10,
+      height : 45,
+      fontSize : 20,
       borderBottomWidth : 1,
       borderBottomColor : '#1F233A'
     },
     loginLabel : {
-      marginLeft : 30,
       fontSize : 24,
       marginTop : 10,
       fontWeight : 'bold'
@@ -442,7 +443,7 @@ const styles = StyleSheet.create({
 
 
 
-  /* Rectangle 21 */
+  /* Rectangle 21  */
 
 
 
