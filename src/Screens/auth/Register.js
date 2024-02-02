@@ -2,7 +2,7 @@ import styles from '../../styles/styles'
 import React from 'react'
 import { Pressable, StyleSheet, View, Text,Box, TextInput, Button, Image } from 'react-native'
 import logo from "../../images/1b.png"
-const Register = () => {
+const Register = ({setScreen}) => {
 
   return (
     <View>
@@ -35,12 +35,15 @@ const Register = () => {
                 />
       </View>
       <Pressable 
-        style={styles.loginButton}
+      onPress={()=>{setScreen(3)}}
+      style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>CREATE AN ACCOUNT</Text>
       </Pressable>
 
-          <Pressable>
+          <Pressable
+                onPress={()=>{setScreen(1)}}
+                >
               <Text style={styles.loginGoToRegister}>
                   Already have an account ? Login
               </Text>
