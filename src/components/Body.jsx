@@ -1,4 +1,4 @@
-import { Pressable , Text, View } from 'react-native'
+import { Animated, Pressable , Text, View } from 'react-native'
 import React from 'react'
 import styles from '../styles/styles'
 
@@ -63,10 +63,19 @@ const Body =  ({ pageNumber , setPageNumber, progression}) => {
 }
 
 const Slides = ({ pageNumber  , data })=>{
+  const fading = new Animated.Value(0)
+  Animated.timing(fading,
+    {
+      toValue:1,
+      useNativeDriver: true,
+      duration: 200,
+    }).start()
 return (
   
   <View style={styles.slide} >
-   <View style={styles.slide_item} >
+   <Animated.View style={{...styles.slide_item,
+    opacity:fading
+  }} >
     <Text style={styles.slide_item_title} >{data[pageNumber].title}</Text>
     <Pressable ><Text style={styles.slide_item_details}>VOIR DETAILS</Text></Pressable>
     
@@ -85,15 +94,15 @@ return (
         key='progression_bar'
         >
         <View 
-          style={{...styles.progression_bar,width : data[1].progression+'%'}}
+          style={{...styles.progression_bar,width : data[pageNumber].progression+'%'}}
           />
         </View>
       }
 
       <Pressable style={styles.slide_item_btn_grp}>
-        <Text style={styles.slide_item_btn}>REVIEW</Text>
+        <Text style={styles.slide_item_btn}>{data[pageNumber].progression < 100 ? 'CONTINUE' : 'REVIEW'}</Text>
       </Pressable>
-  </View>
+  </Animated.View>
   
 </View>
 

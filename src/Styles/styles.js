@@ -175,7 +175,8 @@ const styles = StyleSheet.create({
 
     slide: {
       alignItems : 'center',
-      marginTop : '60%',
+      marginTop : '50%',
+      marginBottom : '5%',
       overflow : 'scroll',
       flexDirection : 'row',
     },
@@ -292,6 +293,7 @@ const styles = StyleSheet.create({
       borderRadius : 10,
       justifyContent : 'center',
       alignItems : 'center',
+      
     },
     footer_selected_icon :{
       backgroundColor : Colors.Dark.lightGray,
