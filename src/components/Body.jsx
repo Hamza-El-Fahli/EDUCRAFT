@@ -3,7 +3,7 @@ import React from 'react'
 import styles from '../styles/styles'
 
 
-const Body =  ({ pageNumber , setPageNumber}) => {
+const  Body =  ({ pageNumber , setPageNumber , setShowQuiz}) => {
   return (
     
     <View style={styles.body} >
@@ -16,7 +16,7 @@ const Body =  ({ pageNumber , setPageNumber}) => {
 
 
 
-    <Slides pageNumber={pageNumber}  data={data}  />
+    <Slides pageNumber={pageNumber} setShowQuiz={setShowQuiz}  data={data}  />
 
 
 
@@ -31,7 +31,7 @@ const Body =  ({ pageNumber , setPageNumber}) => {
   )
 }
 
-const Slides = ({ pageNumber  , data })=>{
+const Slides = ({ pageNumber  , data,setShowQuiz })=>{
   const fading = new Animated.Value(0)
   Animated.timing(fading,
     {
@@ -71,7 +71,7 @@ return (
         </View>
       }
 
-      <Pressable style={styles.slide_item_btn_grp}>
+      <Pressable onPress={()=>{setShowQuiz(true)}} style={styles.slide_item_btn_grp}>
         <Text style={styles.slide_item_btn}>{data[pageNumber].progression < 100 ? 'CONTINUE' : 'REVIEW'}</Text>
       </Pressable>
       

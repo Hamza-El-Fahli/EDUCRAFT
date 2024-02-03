@@ -10,17 +10,18 @@ import Quiz from '../../components/Quiz'
 const Home = ({setScreen}) => {
 
  
-  const [showQuiz, setShowQuiz] = useState(false)
+  const [showQuiz, setShowQuiz] = useState(true)
   const [pageNumber, setPageNumber] = useState(0)
   return (
     <View style={styles.container}>
       <Header styles={styles} />
       {
-        showQuiz ? 
+        !showQuiz ? 
         <Body styles={styles} 
       pageNumber={pageNumber} setPageNumber={setPageNumber}
+      setShowQuiz={setShowQuiz}
       /> :
-      <Quiz />
+      <Quiz setShowQuiz={setShowQuiz} />
       }
       <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
     </View>

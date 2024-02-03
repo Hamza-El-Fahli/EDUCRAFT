@@ -10,13 +10,13 @@ const validIcoin = require('./../images/svg/valid.png')
 const invalidIcoin = require('./../images/svg/invalid.png')
 
 
-const Quiz = () => {
+const Quiz = ({setShowQuiz}) => {
     return (
 <View style={styles.container}>
         <View>
             <View style={styles.section_item} >
                 <Text style={styles.section_item_title} >{data[0].title}</Text>
-                <Pressable style={styles.section_item_btn}>
+                <Pressable onPress={()=>{setShowQuiz(false)}} style={styles.section_item_btn}>
                     <Image source={upArrowIcon} />
                 </Pressable>
             </View>
@@ -26,7 +26,7 @@ const Quiz = () => {
         <Text style={styles.unite_details} >
             Understand what is OSI module , and why we use it
             </Text>
-        <Pressable style={styles.unite_icon} ><Image source={bookIcon} /></Pressable>
+        <Pressable  style={styles.unite_icon} ><Image source={bookIcon} /></Pressable>
     </View>
 
 
