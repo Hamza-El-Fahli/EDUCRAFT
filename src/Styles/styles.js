@@ -270,7 +270,74 @@ const styles = StyleSheet.create({
       borderColor : '#fff',
       borderRadius : 20,
       backgroundColor : '#fff'
+    },
+
+
+
+
+
+    section_item:{
+      width : '100%',
+      padding : 20,
+      backgroundColor : Colors.Dark.blue,
+      height : '35%',
+      justifyContent : 'center',
+      alignItems : 'center',
+      position : 'relative',
+    },
+    section_item_title : {
+      textAlign : 'center',
+      color : Colors.Dark.gray,
+      fontSize: Dimensions.get("window").width * 0.065,
+      fontWeight: 'bold',
+      position : 'absolute',
+      top : 20,
+    },
+
+    section_item_btn : {
+      position : 'absolute',
+      left : 0,
+      padding : 15,
+      height : '100%',
+    },
+    unite:{
+      width : '98%',
+      height : '20%',
+      marginLeft : '1%',
+      padding : 20,
+      backgroundColor : Colors.Dark.blue,
+      position : 'absolute',
+      top : '13%',
+      justifyContent : 'center',
+      borderRadius : 20
+    },
+    unite_title : {
+      textAlign : 'left',
+      color : Colors.Dark.gray,
+      fontSize: Dimensions.get("window").width * 0.065,
+      fontWeight: 'bold',
     }
+    ,
+    unite_details : {
+      textAlign : 'left',
+      color : Colors.Dark.gray,
+      fontSize: Dimensions.get("window").width * 0.05,
+      paddingTop : 10,
+      width : '70%',
+    }
+
+    
+    ,
+    unite_icon : {
+      position : 'absolute',
+      right : 20
+    }
+
+    
+
+
+
+
     /*                        */
     /*                        */
     /*         Footer         */
