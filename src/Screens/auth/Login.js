@@ -1,12 +1,18 @@
 import React from 'react'
-import { Pressable, View, Text, TextInput, Image } from 'react-native'
+import { Animated,Pressable, View, Text, TextInput, Image } from 'react-native'
 import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
 
 const Login = ({setScreen}) => {
-
+  const fading = new Animated.Value(0)
+  Animated.timing(fading,
+    {
+      toValue:1,
+      useNativeDriver: true,
+      duration: 100,
+    }).start()
   return (
-    <View>
+    <Animated.View style={{opacity : fading}}>
       <View style={styles.auth_container}>
       <Image 
               source={logo}
@@ -62,7 +68,7 @@ const Login = ({setScreen}) => {
                 Navigate to Main
             </Text>
       </Pressable> */}
-    </View>
+    </Animated.View>
   )
 }
 export default Login

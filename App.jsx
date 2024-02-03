@@ -8,7 +8,7 @@ import Profile from './src/Screens/profile/Profile'
 
 const App = () => {
 
-  const [Screen, setScreen] = useState(3)
+  const [Screen, setScreen] = useState(1)
   switch (Screen) {
     case 1:
       return <Login setScreen={setScreen} />;

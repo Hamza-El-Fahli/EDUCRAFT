@@ -1,4 +1,4 @@
-import {  Text, View } from 'react-native'
+import { Animated, Text, View } from 'react-native'
 import React from 'react'
 import Graph from './Graph'
 
@@ -10,13 +10,19 @@ const Statistics = ({styles}) => {
     {logo : '🥇', num : '3' , banner : 'Top 3 finishers'},
   ];
 
-
+  const fading = new Animated.Value(0)
+  Animated.timing(fading,
+    {
+      toValue:1,
+      useNativeDriver: true,
+      duration: 200,
+    }).start()
 
   return (
-    <View>
+    <Animated.View style={{opacity: fading}}>
       <Text style={styles.statistics}>Statistics</Text>
       <Graph styles={styles} data={data} />
-    </View>
+    </Animated.View>
   )
 }
 
