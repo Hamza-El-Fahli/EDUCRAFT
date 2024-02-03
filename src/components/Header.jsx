@@ -15,30 +15,10 @@ const Header = ({ screen }) => {
       </Pressable>
       
       <View
-        style={{
-          position: 'absolute',
-          borderWidth: 3,
-          borderColor: Colors.Dark.lightBlue,
-          height: 110,
-          width: '100%',
-          top: '200%',
-          right: '5%',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          flexDirection: 'row',
-          backgroundColor: Colors.Dark.blue,
-          borderRadius: 10,
-        }}>
+        style={styles.dropDown}>
           
         <Pressable>
-          <Text style={{
-            ...styles.course,
-            height: '70%',
-            width: 110,
-            borderWidth: 2,
-            fontSize: 20
-          }}>CCNA 1</Text>
+          <Text style={styles.dropDown_item}>CCNA 1</Text>
         </Pressable>
 
         <Pressable>

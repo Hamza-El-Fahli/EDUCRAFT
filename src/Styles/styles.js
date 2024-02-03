@@ -103,6 +103,8 @@ const styles = StyleSheet.create({
       alignItems : "center",
       padding : 20,
       height : '10%',
+      position : 'relative',
+      zIndex : 1,
     },
     strike : {
       flexDirection : 'row',
@@ -144,8 +146,39 @@ const styles = StyleSheet.create({
           elevation: 6,
         },
       }),
+    },
+    dropDown:{
+      position: 'absolute',
+      borderWidth: 3,
+      borderColor: Colors.Dark.lightBlue,
+      height: 110,
+      width: '100%',
+      top: '200%',
+      right: '5%',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      flexDirection: 'row',
+      backgroundColor: Colors.Dark.blue,
+      borderRadius: 10,
     }
-  
+    ,
+    dropDown_item:{
+      
+      backgroundColor : Colors.Dark.blue,
+      borderRadius : 10, 
+      height : Dimensions.get("window").height * 0.05,
+      width : Dimensions.get("window").width * 0.2,
+      color: Colors.Dark.gray,
+      fontSize : Dimensions.get("window").width * 0.04,
+      textAlign : 'center',
+      textAlignVertical : 'center',
+
+      height: '70%',
+      width: 110,
+      borderWidth: 2,
+      fontSize: 20
+    }
   
     /*                        */
     /*                        */

@@ -80,7 +80,7 @@ const data = [
 
 const QuizUnit = ({data,length})=>{
     return (
-        <View style={{paddingLeft : '20%',margin : '1%'}}>
+        <View key={data.id} style={{paddingLeft : '20%',margin : '1%'}}>
             
         <View style={{flexDirection : 'row',alignItems : 'center'}}>
             <Image style={{marginRight : '5%' }} source={data.completed === data.task ? validIcoin : invalidIcoin} />
