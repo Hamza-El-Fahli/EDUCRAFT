@@ -54,8 +54,8 @@ const Body =  ({ pageNumber , setPageNumber}) => {
 
     <View style={styles.nav_btns}>
           {data.map((item)=>{
-            if(item.id == pageNumber) return (<Pressable  onPress={()=>{setPageNumber(item.id)}} key={item.id}><Text style={{...styles.nav_btn,...styles.nav_btn_selected}}>.</Text></Pressable>)
-            return (<Text style={styles.nav_btn} onPress={()=>{setPageNumber(item.id)}} key={item.id}>.</Text>)
+            if(item.id == pageNumber) return (<Pressable style={{padding : 10}}  onPress={()=>{setPageNumber(item.id)}} key={item.id}><Text style={{...styles.nav_btn,...styles.nav_btn_selected}}>.</Text></Pressable>)
+            return (<Pressable style={{padding : 10}}  onPress={()=>{setPageNumber(item.id)}} key={item.id}><Text style={styles.nav_btn}>.</Text></Pressable>)
           })}
     </View>
 </View>

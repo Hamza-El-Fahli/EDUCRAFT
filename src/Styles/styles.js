@@ -252,9 +252,9 @@ const styles = StyleSheet.create({
       left : 0,
     },
     nav_btns : {
-      margin : 15 ,
+      margin : 10 ,
       flexDirection : 'row',
-      justifyContent : 'space-evenly',
+      justifyContent : 'center'
     },
     nav_btn : {
       borderWidth : 3 ,

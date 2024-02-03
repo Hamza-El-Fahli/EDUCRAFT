@@ -23,7 +23,7 @@ const Footer = ({setScreen, styles , currentPage }) => {
               <Pressable  key={index} 
               onPress={()=>{setScreen(icon[2])}}
               >
-            <View style={styles.footer_icon} >
+            <View style={styles.footer_selected_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>
             </Pressable>
@@ -33,7 +33,7 @@ const Footer = ({setScreen, styles , currentPage }) => {
               <Pressable  key={index}
               onPress={()=>{setScreen(icon[2])}}
               >
-            <View key={index} style={styles.footer_selected_icon} >
+            <View key={index} style={styles.footer_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
             </View>
             </Pressable>
