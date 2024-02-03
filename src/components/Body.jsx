@@ -3,7 +3,7 @@ import React from 'react'
 import styles from '../styles/styles'
 
 
-const Body =  ({ pageNumber , setPageNumber, progression}) => {
+const Body =  ({ pageNumber , setPageNumber}) => {
   const data = [
     { id:0,
       title : 'Section 1 : Modèle OSI',
@@ -47,7 +47,7 @@ const Body =  ({ pageNumber , setPageNumber, progression}) => {
 
 
 
-    <Slides pageNumber={pageNumber} progression={progression} data={data} />
+    <Slides pageNumber={pageNumber}  data={data} />
 
 
 

@@ -9,14 +9,12 @@ const Home = ({setScreen}) => {
 
  
   const [completed, setCompleted] = useState(true)
-  const [pageNumber, setPageNumber] = useState(3)
-  const [progression, setprogression] = useState(50)  
+  const [pageNumber, setPageNumber] = useState(0)
   return (
     <View style={styles.container}>
       <Header styles={styles} />
       <Body styles={styles} 
       pageNumber={pageNumber} setPageNumber={setPageNumber}
-      progression={progression}
       />
       <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
     </View>
