@@ -30,16 +30,16 @@ const Quiz = () => {
 
 
     <ScrollView>
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
-    <Circle />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
+    <QuizUnit />
     </ScrollView>
 </View>
     )
@@ -78,7 +78,7 @@ const data = [
 ]
 
 
-const Circle = ()=>{
+const QuizUnit = ()=>{
     return (
         <View style={{paddingLeft : '20%',margin : '1%'}}>
             
