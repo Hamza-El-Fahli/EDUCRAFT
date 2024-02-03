@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Body from '../../components/Body'
 import Quiz from '../../components/Quiz'
+import Data from '../..//Data/Data'
 
 
 const Home = ({setScreen}) => {
@@ -20,9 +21,9 @@ const Home = ({setScreen}) => {
         !showQuiz ? 
         <Body styles={styles} 
       pageNumber={pageNumber} setPageNumber={setPageNumber}
-      setShowQuiz={setShowQuiz} 
+      setShowQuiz={setShowQuiz}  CCNA={CCNA} Data={Data}
       /> :
-      <Quiz setShowQuiz={setShowQuiz} />
+      <Quiz pageNumber={pageNumber} setShowQuiz={setShowQuiz} CCNA={CCNA} Data={Data} />
       }
       <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
     </View>

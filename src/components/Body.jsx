@@ -2,8 +2,9 @@ import { Animated, useState, Pressable , Text, View } from 'react-native'
 import React from 'react'
 import styles from '../styles/styles'
 
+const  Body =  ({ pageNumber , setPageNumber , setShowQuiz, CCNA, Data}) => {
+  const data = Data[CCNA]
 
-const  Body =  ({ pageNumber , setPageNumber , setShowQuiz}) => {
   return (
     
     <View style={styles.body} >
@@ -83,37 +84,6 @@ return (
 }
 
 
-const data = [
-  { id:0,
-    title : 'Section 1 : Modèle OSI',
-    progression : 100
-},
-{ id:1,
-  title : 'Section 2 : Modèle    TCP/IP',
-  progression : '30'
-},
-{ id:2,
-title : 'Section 3 : LAN Switching Technologies',
-progression : 80
-},
-{ id:3,
-title : 'Section 4 : Routing Technologies',
-progression : 0
-},
-{ id:4,
-title : 'Section 5 : WAN Technologies',
-progression : 20
-},
-{ id:5,
-title : 'Section 6 : Infrastructure Services',
-progression : 100
-},
-{ id:6,
-title : 'Section 7 : Infrastructure Security',
-progression : 50
-},
-
-]
 
 
 

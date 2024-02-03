@@ -10,7 +10,8 @@ const validIcoin = require('./../images/svg/valid.png')
 const invalidIcoin = require('./../images/svg/invalid.png')
 
 
-const Quiz = ({setShowQuiz}) => {
+const Quiz = ({setShowQuiz ,pageNumber, Data,CCNA}) => {
+    const data = Data[CCNA]
     return (
 <View style={styles.container}>
         <View>
@@ -35,8 +36,8 @@ const Quiz = ({setShowQuiz}) => {
   }} >
 
     <ScrollView>
-        {quizUnits.map((unit)=>{
-            return (    <QuizUnit data={unit} length={quizUnits.length}/>
+        {data[pageNumber].quizUnits.map((unit)=>{
+            return (    <QuizUnit data={unit} length={data[pageNumber].quizUnits.length}/>
             )
         })}
     </ScrollView>
@@ -45,37 +46,6 @@ const Quiz = ({setShowQuiz}) => {
     )
 }
 
-
-const data = [
-    {
-        id: 0,
-        title: 'Section 1 : Modèle OSI',
-    },
-    {
-        id: 1,
-        title: 'Section 2 : Modèle    TCP/IP',
-    },
-    {
-        id: 2,
-        title: 'Section 3 : LAN Switching Technologies',
-    },
-    {
-        id: 3,
-        title: 'Section 4 : Routing Technologies',
-    },
-    {
-        id: 4,
-        title: 'Section 5 : WAN Technologies',
-    },
-    {
-        id: 5,
-        title: 'Section 6 : Infrastructure Services',
-    },
-    {
-        id: 6,
-        title: 'Section 7 : Infrastructure Security',
-    },
-]
 
 
 const QuizUnit = ({data,length})=>{
@@ -90,16 +60,6 @@ const QuizUnit = ({data,length})=>{
         </View>
     )
 }
-
-
-const quizUnits = [
-    {id : 0 , title : 'Quiz 1' , task : 5 , completed : 5},
-    {id : 1 , title : 'Quiz 2' , task : 5 , completed : 2},
-    {id : 2 , title : 'Quiz 3' , task : 5 , completed : 0},
-    {id : 3 , title : 'Quiz 4' , task : 5 , completed : 0},
-    {id : 4 , title : 'Quiz 5' , task : 5 , completed : 0},
-]
-
 
 
 
