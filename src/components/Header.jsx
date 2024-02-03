@@ -1,45 +1,57 @@
 import { Pressable, Text, View, Image } from 'react-native'
-import React from 'react'
+import React , {useState} from 'react'
 import Logo from './../images/svg/Logo'
 import Flame from './../images/svg/Flame'
 import styles from '../styles/styles'
 import Colors from '../styles/colors'
 const configIcon = require('./../images/svg/configIcon.png')
 
-
-const Header = ({ screen }) => {
+let data = [
+  {id : 1 , title : 'CCNA 1' },
+  {id : 2 , title : 'CCNA 2' },
+  {id : 3 , title : 'CCNA 3' },
+  {id : 4 , title : 'CCNA 4' },
+]
+const Header = ({ screen , setCCNA , CCNA }) => {
+  const [drop, setdrop] = useState(false)
   return (
     <View style={styles.header} >
-      <Pressable>
-        <Text style={styles.course}>CCNA 1</Text>
+      <Pressable onPress={()=>{setdrop(!drop)}}>
+        <Text style={styles.course}>CCNA {CCNA}</Text>
       </Pressable>
       
       <View
-        style={styles.dropDown}>
-          
-        <Pressable>
-          <Text style={styles.dropDown_item}>CCNA 1</Text>
-        </Pressable>
+        style={{...styles.dropDown,
+        display :  drop ? 'flex' : 'none'
+        
+        }}>
+          <View style={{
+            width : 0,
+            height : 0,
+            borderLeftWidth : 50,
+            borderLeftColor : 'transparent',
+            borderRightWidth : 50,
+            borderRightColor : 'transparent',
+            borderBottomColor : Colors.Dark.blue,
+            borderBottomWidth : 100,
+            position : 'absolute',
+            top : -25,
+            left : 0,
 
-        <Pressable>
-          <Text style={{
-            ...styles.course,
-            height: '70%',
-            width: 110,
-            borderWidth: 2,
-            fontSize: 20
-          }}>CCNA 1</Text>
-        </Pressable>
+          }} />
 
-        <Pressable>
-          <Text style={{
-            ...styles.course,
-            height: '70%',
-            width: 110,
-            borderWidth: 2,
-            fontSize: 20
-          }}>CCNA 1</Text>
-        </Pressable>
+          {data.map((item)=>{
+            if(item.id === CCNA) return
+
+            return (
+          <Pressable onPress={()=>{setCCNA(item.id) ; setdrop(!drop)}}>
+            <Text style={styles.dropDown_item}>CCNA {item.id}</Text>
+          </Pressable>
+
+            )
+          })}
+
+  
 
       </View>
 
