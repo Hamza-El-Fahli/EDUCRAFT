@@ -1,6 +1,8 @@
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
+import { Image, Pressable,SafeAreaView , ScrollView, Text, View } from 'react-native'
 import React from 'react'
 import styles from '../styles/styles'
+import Colors from '../styles/colors'
+
 
 const upArrowIcon = require('./../images/svg/arrow.png')
 const bookIcon = require('./../images/svg/book.png')
@@ -28,19 +30,17 @@ const Quiz = () => {
     </View>
 
 
+        <SafeAreaView style={{
+    height : '50%'
+  }} >
 
     <ScrollView>
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
-    <QuizUnit />
+        {quizUnits.map((unit)=>{
+            return (    <QuizUnit data={unit} length={quizUnits.length}/>
+            )
+        })}
     </ScrollView>
+        </SafeAreaView >
 </View>
     )
 }
@@ -78,21 +78,27 @@ const data = [
 ]
 
 
-const QuizUnit = ()=>{
+const QuizUnit = ({data,length})=>{
     return (
         <View style={{paddingLeft : '20%',margin : '1%'}}>
             
         <View style={{flexDirection : 'row',alignItems : 'center'}}>
-            <Image style={{marginRight : '5%' }} source={validIcoin} />
-            <Text style={{fontSize : 32 , color : 'white',fontWeight : 'bold'}}> Quiz 1 : 5/5</Text>
+            <Image style={{marginRight : '5%' }} source={data.completed === data.task ? validIcoin : invalidIcoin} />
+            <Text style={{fontSize : 32 , color : Colors.Dark.gray ,fontWeight : 'bold'}}>{data.id}.....{data.title}: {data.completed}/{data.task}</Text>
         </View>
-        <View style={{borderColor : 'white' , borderWidth : 2,width : 0,height : 60,marginLeft : '8%' ,marginTop : '3%' }} />
+        <View style={{borderColor :  data.id < length-1 ?data.completed === data.task ? Colors.Dark.gray : Colors.Dark.lightGray : 'transparent' , borderWidth : 2,width : 0,height : 60,marginLeft : '8%' ,marginTop : '3%' }} />
         </View>
     )
 }
 
 
-
+const quizUnits = [
+    {id : 0 , title : 'Quiz 1' , task : 5 , completed : 5},
+    {id : 1 , title : 'Quiz 2' , task : 5 , completed : 2},
+    {id : 2 , title : 'Quiz 3' , task : 5 , completed : 0},
+    {id : 3 , title : 'Quiz 4' , task : 5 , completed : 0},
+    {id : 4 , title : 'Quiz 5' , task : 5 , completed : 0},
+]
 
 
 
