@@ -16,7 +16,7 @@ const Header = ({ screen , setCCNA , CCNA }) => {
   const [drop, setdrop] = useState(false)
   return (
     <View style={styles.header} >
-      <Pressable onPress={()=>{setdrop(!drop)}}>
+      <Pressable style={{display :  screen === 'Profile' ? 'none' : 'flex' }} onPress={()=>{setdrop(!drop)}}>
         <Text style={styles.course}>CCNA {CCNA}</Text>
       </Pressable>
       
