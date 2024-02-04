@@ -1,8 +1,40 @@
 import styles from '../../styles/styles'
-import React from 'react'
+import React , {useState} from 'react'
 import { Pressable, Animated, View, Text,Box, TextInput, Button, Image } from 'react-native'
 import logo from "../../images/1b.png"
-const Register = ({setScreen}) => {
+const Register = ({setScreen,setUserName}) => {
+
+  const [Email, setemail] = useState('')
+  const [Password, setpassword] = useState('')
+const [UserName, setLocalUserName] = useState('')
+
+  const addUser = async ()=>{
+    try {
+      const response = await fetch(`http://192.168.1.9:3000/adduser/${Email}/${Password}/${UserName}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+
+      console.log('new User added  ', data);
+      if(data){
+        setUserName(data)
+        setScreen(3)
+        }
+
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+    }
+
+
+
+
+
+
+
   const fading = new Animated.Value(0)
   Animated.timing(fading,
     {
@@ -23,6 +55,8 @@ const Register = ({setScreen}) => {
                 <TextInput
                   style={styles.inputEmail}
                   placeholder='username'
+                  value={UserName}
+                  onChangeText={text=>setLocalUserName(text)}
                 />
                 <Text style={styles.loginLabel}>
                   Email :
@@ -30,6 +64,8 @@ const Register = ({setScreen}) => {
                 <TextInput
                   style={styles.inputEmail}
                   placeholder='email@email.com'
+                  value={Email}
+                  onChangeText={text=>setemail(text)}
                 />
                 <Text style={styles.loginLabel}>
                   Password :
@@ -38,10 +74,12 @@ const Register = ({setScreen}) => {
                   style={styles.inputPassword}
                   placeholder='Password'
                   secureTextEntry={true}
+                  value={Password}
+                  onChangeText={text=>setpassword(text)}
                 />
       </View>
       <Pressable 
-      onPress={()=>{setScreen(3)}}
+      onPress={()=>{addUser()}}
       style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>CREATE AN ACCOUNT</Text>

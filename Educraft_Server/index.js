@@ -8,6 +8,10 @@ const users=new myJSON()
 app.get('/',async (req,res)=>{
     res.send('Hiiii')
 })
+app.get('/allusers',async (req,res)=>{
+    res.json(await users.data)
+})
+
 app.get('/adduser/:email/:password/:name',async (req,res)=>{
     const newUser = {
         name : req.params.name,
@@ -15,7 +19,7 @@ app.get('/adduser/:email/:password/:name',async (req,res)=>{
         password : req.params.password,
     }
     await users.write(newUser)
-    res.json(await users.data)
+    res.json(newUser.name)
 })
 
 app.get('/isuser/:email/:password/',async (req,res)=>{

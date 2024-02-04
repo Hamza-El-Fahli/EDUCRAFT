@@ -8,7 +8,7 @@ import Quiz from '../../components/Quiz'
 import Data from '../..//Data/Data'
 
 
-const Home = ({setScreen}) => {
+const Home = ({setScreen,UserName}) => {
 
  
   const [showQuiz, setShowQuiz] = useState(false)
@@ -19,7 +19,7 @@ const Home = ({setScreen}) => {
       <Header styles={styles} setCCNA={setCCNA} CCNA={CCNA} />
       {
         !showQuiz ? 
-        <Body styles={styles} 
+        <Body styles={styles} UserName={UserName}
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       setShowQuiz={setShowQuiz}  CCNA={CCNA} Data={Data}
       /> :

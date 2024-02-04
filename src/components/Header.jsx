@@ -44,7 +44,7 @@ const Header = ({ screen , setCCNA , CCNA }) => {
             if(item.id === CCNA) return
 
             return (
-          <Pressable onPress={()=>{setCCNA(item.id) ; setdrop(!drop)}}>
+          <Pressable key={item.id} onPress={()=>{setCCNA(item.id) ; setdrop(!drop)}}>
             <Text style={styles.dropDown_item}>CCNA {item.id}</Text>
           </Pressable>
 

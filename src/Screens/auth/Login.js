@@ -1,9 +1,36 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { Animated,Pressable, View, Text, TextInput, Image } from 'react-native'
 import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
 
-const Login = ({setScreen}) => {
+const Login = ({setScreen , setUserName}) => {
+
+  const [Email, setemail] = useState('')
+  const [Password, setpassword] = useState('')
+
+
+  const checkUser = async ()=>{
+    try {
+      const response = await fetch(`http://192.168.1.9:3000/isuser/${Email}/${Password}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+
+      console.log('welcome ', data);
+      if(data){
+        setUserName(data)
+        setScreen(3)
+        }
+
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+    }
+
+
   const fading = new Animated.Value(0)
   Animated.timing(fading,
     {
@@ -24,6 +51,9 @@ const Login = ({setScreen}) => {
                 <TextInput
                   style={styles.inputEmail}
                   placeholder='email@email.com'
+                  value={Email}
+                  onChangeText={(text) => { setemail(text) }}
+
                 />
                 <Text style={styles.loginLabel}>
                   Password :
@@ -32,11 +62,13 @@ const Login = ({setScreen}) => {
                   style={styles.inputPassword}
                   placeholder='Password'
                   secureTextEntry={true}
-                />
+                  value={Password}
+                  onChangeText={(text) => { setpassword(text) }}
+                                  />
               <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
       </View>
       <Pressable 
-      onPress={()=>{setScreen(3)}}
+          onPress={checkUser}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
@@ -71,4 +103,13 @@ const Login = ({setScreen}) => {
     </Animated.View>
   )
 }
+
+
+
+
+
+
+
+
+
 export default Login

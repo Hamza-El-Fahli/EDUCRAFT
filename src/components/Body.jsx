@@ -2,14 +2,14 @@ import { Animated, useState, Pressable , Text, View } from 'react-native'
 import React from 'react'
 import styles from '../styles/styles'
 
-const  Body =  ({ pageNumber , setPageNumber , setShowQuiz, CCNA, Data}) => {
+const  Body =  ({ pageNumber , setPageNumber , setShowQuiz,UserName, CCNA, Data}) => {
   const data = Data[CCNA]
 
   return (
     
     <View style={styles.body} >
     <View style={styles.welcom} >
-      <Text style={styles.welcom1}>Hello, Hamza</Text>
+      <Text style={styles.welcom1}>Hello, {UserName}</Text>
       <Text style={styles.welcom2}>Welcome back to your course</Text>
     </View>
 
