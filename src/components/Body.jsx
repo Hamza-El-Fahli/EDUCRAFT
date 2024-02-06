@@ -56,7 +56,7 @@ return (
     { 
     data[pageNumber].progression === 100 &&
      <View >
-         <Text style={styles.slide_item_progression}>✔Completed!</Text>
+         <Text style={styles.slide_item_progression}>You Completed this Section!</Text>
     </View>
     }
 
