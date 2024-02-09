@@ -1,8 +1,10 @@
 import { Image, Pressable, SafeAreaView, ActivityIndicator, ScrollView, Text, View } from 'react-native'
-import React , { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/styles'
 import Colors from '../styles/colors'
-import { getChapters } from '../Data/functions'
+import { getChapters, getQuizes } from '../Data/functions'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const upArrowIcon = require('./../images/svg/arrow.png')
@@ -11,40 +13,53 @@ const validIcoin = require('./../images/svg/valid.png')
 const invalidIcoin = require('./../images/svg/invalid.png')
 
 
-const Quiz = ({ setShowQuiz, pageNumber, Data, CCNA , ModuleId , Chapters , setChapters }) => {
+const Quiz = ({ setShowQuiz, pageNumber, Data, CCNA, ModuleId, Chapters, setChapters }) => {
     const data = Data[CCNA]
     const [loading, setLoading] = useState(true);
-
+    const [Quiz, setQuiz] = useState([])
 
 
 
     useEffect(() => {
-        // Simulate an API call (replace this with your actual getModules API call)
         const fakeApiCall = async () => {
-            // Set loading to true when the API call starts
             setLoading(true);
-
-            // Call getModules API function
             try {
-                const Chapters = await getChapters(ModuleId);
-                setChapters(Chapters);
+                // const storedData = await AsyncStorage.getItem('chapters');
+                // if (storedData) {
+                //     setChapters(JSON.parse(storedData));
+                // }
+                // const chapters = await getChapters(ModuleId);
+                // setChapters(chapters);
+                // console.log(chapters)
+                // await AsyncStorage.setItem('chapters', JSON.stringify(chapters));
+                
+                //  I have ptoblem with get chapters 
+                // but quizes are fine for now
+                const storedQuiz = await AsyncStorage.getItem('quizes');
 
-                // Set loading to false when the API call completes
+                if (storedQuiz) {
+                    setQuiz(JSON.parse(storedQuiz));
+                    setLoading(false);
+                }
+                const quizes = await getQuizes(1);
+                setQuiz(quizes);
+                
+                await AsyncStorage.setItem('quizes', JSON.stringify(quizes));
+
+
                 setLoading(false);
-                console.log(Chapters)
+
+
+
+
+
             } catch (error) {
                 console.error('Error fetching modules:', error);
-                // Handle error
                 setLoading(false);
             }
         };
-
-        // Call the API function
         fakeApiCall();
-    }, [CCNA]); // Run effect when CCNA prop changes
-
-
-
+    }, [CCNA]);
 
     return (
 
@@ -63,13 +78,13 @@ const Quiz = ({ setShowQuiz, pageNumber, Data, CCNA , ModuleId , Chapters , setC
                 <ActivityIndicator size="large" color="#0000ff" />
             ) : (
                 <>
-            <View style={styles.unite}>
-                <Text style={styles.unite_title} >Unite 1 :</Text>
-                <Text style={styles.unite_details} >
-                    Understand what is OSI module , and why we use it
-                </Text>
-                <Pressable style={styles.unite_icon} ><Image source={bookIcon} /></Pressable>
-            </View>
+                    <View style={styles.unite}>
+                        <Text style={styles.unite_title} >Unite 1 :</Text>
+                        <Text style={styles.unite_details} >
+                            Understand what is OSI module , and why we use it
+                        </Text>
+                        <Pressable style={styles.unite_icon} ><Image source={bookIcon} /></Pressable>
+                    </View>
 
 
 

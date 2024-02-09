@@ -21,6 +21,8 @@ const Body = ({ pageNumber: slideNum, setPageNumber : setslideNum, setShowQuiz, 
         if (storedData) {
           // If data exists, parse it and set it in state
           setModules(JSON.parse(storedData));
+          setLoading(false);
+
         }
 
         const modules = await getModules(CCNA);
@@ -29,14 +31,12 @@ const Body = ({ pageNumber: slideNum, setPageNumber : setslideNum, setShowQuiz, 
         // Set loading to false when the API call completes
         setLoading(false);
         await AsyncStorage.setItem('modules', JSON.stringify(modules));
-        
       } catch (error) {
         console.error('Error fetching modules:', error);
         // Handle error
         setLoading(false);
       }
     };
-
     // Call the API function
     fakeApiCall();
   }, [CCNA]); // Run effect when CCNA prop changes
