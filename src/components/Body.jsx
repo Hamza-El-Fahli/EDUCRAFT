@@ -87,7 +87,7 @@ return (
     }} >
    <View style={{...styles.slide_item,
   }} >
-    <Text style={styles.slide_item_title} >{(slideNum)+' : '+Modules[slideNum].title}</Text>
+    <Text style={styles.slide_item_title} >{(slideNum)+' : '+Modules[slideNum-1 || 0].title}</Text>
     <Pressable ><Text style={styles.slide_item_details}>VOIR DETAILS</Text></Pressable>
     
     

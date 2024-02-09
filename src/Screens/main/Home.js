@@ -12,7 +12,7 @@ const Home = ({setScreen,UserName}) => {
 
  
   const [showQuiz, setShowQuiz] = useState(false)
-  const [pageNumber, setPageNumber] = useState(0)
+  const [pageNumber, setPageNumber] = useState(1)
   const [CCNA, setCCNA] = useState(1)
   return (
     <View style={styles.container}>
