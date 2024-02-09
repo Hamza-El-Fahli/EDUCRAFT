@@ -9,7 +9,7 @@ import Footer from '../../components/Footer'
 const Profile = ({setScreen}) => {
   return (
     <View style={styles.container}>
-        <Header styles={styles} screen='Profile' />
+        <Header styles={styles} screen='Profile' setScreen={setScreen} />
         <Chart  styles={styles}/>
         <View style={styles.hr} />
         <Statistics styles={styles} />

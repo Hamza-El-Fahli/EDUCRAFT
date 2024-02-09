@@ -2,33 +2,12 @@ import React , {useState} from 'react'
 import { Animated,Pressable, View, Text, TextInput, Image } from 'react-native'
 import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
+import { checkUser } from '../../Data/functions'
 
 const Login = ({setScreen , setUserName}) => {
 
   const [Email, setemail] = useState('')
   const [Password, setpassword] = useState('')
-
-
-  const checkUser = async ()=>{
-    try {
-      const response = await fetch(`http://192.168.1.9:3000/isuser/${Email}/${Password}`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-
-      console.log('welcome ', data);
-      if(data){
-        setUserName(data)
-        setScreen(3)
-        }
-
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
-    }
 
 
   const fading = new Animated.Value(0)
@@ -68,7 +47,7 @@ const Login = ({setScreen , setUserName}) => {
               <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
       </View>
       <Pressable 
-          onPress={checkUser}
+          onPress={()=>checkUser(Email,Password,setUserName,setScreen)}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
