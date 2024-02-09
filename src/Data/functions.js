@@ -47,4 +47,22 @@ export const checkUser = async (Email,Password,setUserName,setScreen)=>{
     }
     }
 
+    export const getChapters = async (moduleId)=>{
+      try {
+        const response = await fetch(`http://192.168.6.1:7676/mobile/chapters/${moduleId}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        // data =[{"id":2,"title":"Types de réseaux","module_id":1}]
+        if(data){
+            return data
+          }else{
+            console.log('no Chapters')
+          }
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+      }
+  
   

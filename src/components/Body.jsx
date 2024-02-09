@@ -1,14 +1,14 @@
-import { Animated,  Pressable , Text, View } from 'react-native'
-import React , { useState , useEffect } from 'react'
+import { Animated,  Pressable , Text, View , ActivityIndicator } from 'react-native'
+import React , { useState , useEffect  } from 'react'
 import styles from '../styles/styles'
 import { getModules } from '../Data/functions'
 
-import {   ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const Body = ({ pageNumber: slideNum, setPageNumber : setslideNum, setShowQuiz, UserName, CCNA, Data }) => {
+
+const Body = ({ pageNumber: slideNum, setPageNumber : setslideNum, setShowQuiz, UserName, CCNA, Data , Modules , setModules }) => {
   const data = Data[CCNA];
   const [loading, setLoading] = useState(true); // State to track loading status
-  const [Modules, setModules] = useState([])
   useEffect(() => {
     // Simulate an API call (replace this with your actual getModules API call)
     const fakeApiCall = async () => {
@@ -17,11 +17,19 @@ const Body = ({ pageNumber: slideNum, setPageNumber : setslideNum, setShowQuiz, 
 
       // Call getModules API function
       try {
+        const storedData = await AsyncStorage.getItem('modules');
+        if (storedData) {
+          // If data exists, parse it and set it in state
+          setModules(JSON.parse(storedData));
+        }
+
         const modules = await getModules(CCNA);
         setModules(modules);
 
         // Set loading to false when the API call completes
         setLoading(false);
+        await AsyncStorage.setItem('modules', JSON.stringify(modules));
+        
       } catch (error) {
         console.error('Error fetching modules:', error);
         // Handle error

@@ -13,6 +13,9 @@ const Home = ({setScreen,UserName}) => {
  
   const [showQuiz, setShowQuiz] = useState(false)
   const [pageNumber, setPageNumber] = useState(1)
+  const [Modules, setModules] = useState([])
+  const [Chapters, setChapters] = useState([])
+
   const [CCNA, setCCNA] = useState(1)
   return (
     <View style={styles.container}>
@@ -22,8 +25,13 @@ const Home = ({setScreen,UserName}) => {
         <Body styles={styles} UserName={UserName}
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       setShowQuiz={setShowQuiz}  CCNA={CCNA} Data={Data}
+      Modules={Modules} setModules={setModules}
       /> :
-      <Quiz pageNumber={pageNumber} setShowQuiz={setShowQuiz} CCNA={CCNA} Data={Data} />
+      <Quiz 
+      ModuleId={Modules.id} pageNumber={pageNumber} 
+      setShowQuiz={setShowQuiz} CCNA={CCNA} Data={Data}
+      Chapters={Chapters} setChapters={setChapters}
+      />
       }
       <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
     </View>
