@@ -2,7 +2,8 @@ import styles from '../../styles/styles'
 import React , {useState} from 'react'
 import { Pressable, Animated, View, Text,Box, TextInput, Button, Image } from 'react-native'
 import logo from "../../images/1b.png"
-const Register = ({navigation,setUserName}) => {
+const Register = ({navigation,route}) => {
+  const { setUserName } = route.params; 
 
   const [Email, setemail] = useState('')
   const [Password, setpassword] = useState('')

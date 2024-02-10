@@ -4,7 +4,8 @@ import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
 import { checkUser } from '../../Data/functions'
 
-const Login = ({setScreen , navigation , setUserName}) => {
+const Login = ({route , navigation }) => {
+  const { setUserName } = route.params; 
 
   const [Email, setemail] = useState('')
   const [Password, setpassword] = useState('')

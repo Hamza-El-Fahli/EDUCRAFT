@@ -12,7 +12,7 @@ let data = [
   {id : 3 , title : 'CCNA 3' },
   {id : 4 , title : 'CCNA 4' },
 ]
-const Header = ({ screen , setCCNA , CCNA ,setScreen }) => {
+const Header = ({ screen , setCCNA , CCNA ,navigation }) => {
   const [drop, setdrop] = useState(false)
   return (
     <View style={styles.header} >
@@ -61,7 +61,7 @@ const Header = ({ screen , setCCNA , CCNA ,setScreen }) => {
           <Flame style={styles.strike_svg} />
           <Text style={styles.strike_num}>0</Text>
         </View> :
-        <Pressable style={styles.strike} onPress={()=>setScreen(1)} >
+        <Pressable style={styles.strike} onPress={()=>navigation.navigate('Login')} >
           <Image style={{ height: 30, width: 30 }} source={configIcon} />
         </Pressable>
       }

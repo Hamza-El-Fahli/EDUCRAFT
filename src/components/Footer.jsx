@@ -10,7 +10,7 @@ const Icons = [
 
 
 
-const Footer = ({setScreen, styles , currentPage }) => {
+const Footer = ({navigation, styles , currentPage }) => {
 
   return (
     <View style={styles.footer} >
@@ -21,7 +21,7 @@ const Footer = ({setScreen, styles , currentPage }) => {
             if(icon[1] !== currentPage)
             return (
               <Pressable  key={index} 
-              onPress={()=>{setScreen(icon[2])}}
+              onPress={()=>{navigation.navigate(icon[1])}}
               >
             <View style={styles.footer_selected_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 
@@ -31,7 +31,7 @@ const Footer = ({setScreen, styles , currentPage }) => {
             else
             return (
               <Pressable  key={index}
-              onPress={()=>{setScreen(icon[2])}}
+              onPress={()=>{navigation.navigate(icon[1])}}
               >
             <View key={index} style={styles.footer_icon} >
                <Image style={{width : 35 , height : 35}} source={icon[0]} /> 

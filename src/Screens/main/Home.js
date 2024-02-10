@@ -22,7 +22,7 @@ const removeItemFromStorage = async (key) => {
 // Example usage: Remove an item with key 'modules' from AsyncStorage
 
 
-const Home = ({setScreen,UserName}) => {
+const Home = ({navigation,UserName}) => {
  
  
   const [showQuiz, setShowQuiz] = useState(false)
@@ -47,7 +47,7 @@ const Home = ({setScreen,UserName}) => {
       Chapters={Chapters} setChapters={setChapters}
       />
       }
-      <Footer setScreen={setScreen} styles={styles} currentPage='Home'  />
+      <Footer navigation={navigation} styles={styles} currentPage='Home'  />
     </View>
   )
 }
