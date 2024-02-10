@@ -4,7 +4,7 @@ import logo from "../../images/1b.png"
 import styles from '../../styles/styles'
 import { checkUser } from '../../Data/functions'
 
-const Login = ({setScreen , setUserName}) => {
+const Login = ({setScreen , navigation , setUserName}) => {
 
   const [Email, setemail] = useState('')
   const [Password, setpassword] = useState('')
@@ -47,14 +47,14 @@ const Login = ({setScreen , setUserName}) => {
               <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
       </View>
       <Pressable 
-          onPress={()=>checkUser(Email,Password,setUserName,setScreen)}
+          onPress={()=>checkUser(Email,Password,setUserName,navigation)}
         style={styles.loginButton}
       >
         <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
       </Pressable>
 
           <Pressable
-                onPress={()=>{setScreen(2)}}
+                onPress={()=>{navigation.navigate('Register')}}
                 >
               <Text style={styles.loginGoToRegister}>
                   Don't have an account ? Register

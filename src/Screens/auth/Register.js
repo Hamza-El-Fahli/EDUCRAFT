@@ -2,7 +2,7 @@ import styles from '../../styles/styles'
 import React , {useState} from 'react'
 import { Pressable, Animated, View, Text,Box, TextInput, Button, Image } from 'react-native'
 import logo from "../../images/1b.png"
-const Register = ({setScreen,setUserName}) => {
+const Register = ({navigation,setUserName}) => {
 
   const [Email, setemail] = useState('')
   const [Password, setpassword] = useState('')
@@ -21,7 +21,7 @@ const [UserName, setLocalUserName] = useState('')
       console.log('new User added  ', data);
       if(data){
         setUserName(data)
-        setScreen(3)
+        navigation.navigate('Home')
         }
 
     } catch (error) {
@@ -86,7 +86,7 @@ const [UserName, setLocalUserName] = useState('')
       </Pressable>
 
           <Pressable
-                onPress={()=>{setScreen(1)}}
+                onPress={()=>{navigation.navigate('Login')}}
                 >
               <Text style={styles.loginGoToRegister}>
                   Already have an account ? Login

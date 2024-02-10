@@ -1,7 +1,10 @@
+const ip = '192.168.6.1'
+const port = '7676'
 
-export const checkUser = async (Email,Password,setUserName,setScreen)=>{
+
+export const checkUser = async (Email,Password,setUserName,navigation)=>{
   try {
-    const response = await fetch(`http://192.168.6.1:7676/mobile/isuser/${Email}/${Password}`);
+    const response = await fetch(`http://${ip}:${port}/mobile/isuser/${Email}/${Password}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -10,7 +13,7 @@ export const checkUser = async (Email,Password,setUserName,setScreen)=>{
     console.log('welcome ', data.name);
     if(data){
       setUserName(data.name)
-      setScreen(3)
+      navigation.navigate('Home')
       }
   } catch (error) {
     console.error('Error:', error.message);
@@ -29,7 +32,7 @@ export const checkUser = async (Email,Password,setUserName,setScreen)=>{
 
   export const getModules = async (course)=>{
     try {
-      const response = await fetch(`http://192.168.6.1:7676/mobile/modules/${course}`);
+      const response = await fetch(`http://${ip}:${port}/mobile/modules/${course}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -53,7 +56,7 @@ export const checkUser = async (Email,Password,setUserName,setScreen)=>{
     
     export const getChapters = async (moduleId)=>{
       try {
-        const response = await fetch(`http://192.168.6.1:7676/mobile/chapters/${moduleId}`);
+        const response = await fetch(`http://${ip}:${port}/mobile/chapters/${moduleId}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -73,7 +76,7 @@ export const checkUser = async (Email,Password,setUserName,setScreen)=>{
 
       export const getQuizes = async (chapterId = 1)=>{
         try {
-          const response = await fetch(`http://192.168.6.1:7676/mobile/tests/${chapterId}`);
+          const response = await fetch(`http://${ip}:${port}/mobile/tests/${chapterId}`);
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
