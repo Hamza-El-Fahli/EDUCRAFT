@@ -6,8 +6,6 @@ import {setModulesWithApi, setModules} from '../store/courseSlice';
 
 import {useSelector, useDispatch} from 'react-redux';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 const Body = ({
   pageNumber: slideNum,
   setPageNumber: setslideNum,
@@ -23,22 +21,20 @@ const Body = ({
   const [loading, setLoading] = useState(true);
 
   async function mymodule() {
-    // try {
-    const storageModule = await AsyncStorage.getItem('modules');
-
-    if (storageModule && JSON.parse(storageModule)[0].course === course) {
-      dispatch(setModules(JSON.parse(storageModule)));
-
-      setLoading(false);
-    } else {
-      await AsyncStorage.removeItem('modules');
-      await dispatch(setModulesWithApi(course));
-      await AsyncStorage.setItem('modules', JSON.stringify(currentModule));
-      setLoading(false);
+    try {
+      if (
+        currentModule != undefined &&
+        currentModule.length > 5 &&
+        currentModule[0].course === course
+      )
+        setLoading(false);
+      else {
+        await dispatch(setModulesWithApi(course));
+        setLoading(false);
+      }
+    } catch (e) {
+      console.log('api problem ', e);
     }
-    // } catch (e) {
-    //   console.log('api problem');
-    // }
   }
   useEffect(() => {
     mymodule();
@@ -86,11 +82,12 @@ const Body = ({
 
           <View style={styles.nav_btns}>
             {currentModule.map(Module => {
-              if (Module.id == slideNum)
+              let moduleOrder = Module.id % 10;
+              if (moduleOrder == slideNum)
                 return (
                   <Pressable
                     style={{padding: 10}}
-                    onPress={() => setslideNum(Module.id)}
+                    onPress={() => setslideNum(moduleOrder)}
                     key={Module.id}>
                     <Text
                       style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
@@ -101,7 +98,7 @@ const Body = ({
               return (
                 <Pressable
                   style={{padding: 10}}
-                  onPress={() => setslideNum(Module.id)}
+                  onPress={() => setslideNum(moduleOrder)}
                   key={Module.id}>
                   <Text style={styles.nav_btn}>.</Text>
                 </Pressable>
@@ -129,7 +126,9 @@ const Slides = ({slideNum, currentModule, data, setShowQuiz}) => {
     <Animated.View style={{...styles.slide, opacity: fading}}>
       <View style={{...styles.slide_item}}>
         <Text style={styles.slide_item_title}>
-          {slideNum + ' : ' + currentModule[slideNum - 1 || 0].title}
+          {slideNum +
+            ' : ' +
+            currentModule[slideNum - 1 >= 0 ? slideNum - 1 : 0]?.title}
         </Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>

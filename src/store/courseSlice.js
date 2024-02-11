@@ -40,7 +40,7 @@ export const setModulesWithApi = createAsyncThunk(
     const result = await fetch(
       `http://${ip}:${port}/mobile/modules/${course_id}`,
     );
-    
+
     const data = await result.json();
     return data;
   },
