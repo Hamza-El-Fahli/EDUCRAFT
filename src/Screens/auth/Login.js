@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Pressable, View, Text, TextInput, Image} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
@@ -10,11 +10,10 @@ const Login = ({navigation}) => {
   const [Password, setpassword] = useState('');
   const dispacth = useDispatch();
 
-  
+  let username = useSelector(state => state.user.username);
   const checkUserAPI = async (email, password) => {
     try {
       await dispacth(isUser({email, password}));
-
       navigation.navigate('Home');
     } catch (e) {
       console.log('problem with api');

@@ -22,7 +22,7 @@ const removeItemFromStorage = async (key) => {
 // Example usage: Remove an item with key 'modules' from AsyncStorage
 
 
-const Home = ({navigation,UserName}) => {
+const Home = ({navigation}) => {
  
  
   const [showQuiz, setShowQuiz] = useState(false)
@@ -31,12 +31,15 @@ const Home = ({navigation,UserName}) => {
   const [Chapters, setChapters] = useState([])
 
   const [CCNA, setCCNA] = useState(1)
+
+
+
   return (
     <View style={styles.container}>
       <Header styles={styles} setCCNA={setCCNA} CCNA={CCNA} />
       {
         !showQuiz ? 
-        <Body styles={styles} UserName={UserName}
+        <Body styles={styles}
       pageNumber={pageNumber} setPageNumber={setPageNumber}
       setShowQuiz={setShowQuiz}  CCNA={CCNA} Data={Data}
       Modules={Modules} setModules={setModules}

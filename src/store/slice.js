@@ -4,8 +4,9 @@ const ip = '192.168.6.1';
 const port = '7676';
 
 const initialState = {
-  userName: '',
+  username: '',
   userToken: '',
+  couse: 1,
 };
 
 const appSlice = createSlice({
@@ -13,8 +14,7 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setUserName: (state, action) => {
-      state.userName = action.payload;
-      console.log(action);
+      state.username = action.payload;
     },
   },
   extraReducers: builder => {
@@ -23,7 +23,7 @@ const appSlice = createSlice({
     });
     builder.addCase(isUser.fulfilled, (state, action) => {
       console.log('fulfilled');
-      state.userName = action.payload.name;
+      state.username = action.payload.name;
     });
     builder.addCase(isUser.rejected, () => {
       console.log('rejected');
@@ -37,9 +37,10 @@ export const isUser = createAsyncThunk(
     const result = await fetch(
       `http://${ip}:${port}/mobile/isuser/${email}/${password}`,
     );
-    return result.json();
+    const data = await result.json();
+    return data;
   },
 );
 
-export const {setUserName } = appSlice.actions;
+export const {setUserName} = appSlice.actions;
 export default appSlice.reducer;
