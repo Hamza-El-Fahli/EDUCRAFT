@@ -7,6 +7,7 @@ import Body from '../../components/Body';
 import Quiz from '../../components/Quiz';
 import Data from '../..//Data/Data';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector} from 'react-redux';
 
 // Function to remove an item from AsyncStorage
 const removeItemFromStorage = async key => {
@@ -26,32 +27,18 @@ const removeItemFromStorage = async key => {
 
 const Home = ({navigation}) => {
   const [showQuiz, setShowQuiz] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [Modules, setModules] = useState([]);
   const [Chapters, setChapters] = useState([]);
 
-  const [CCNA, setCCNA] = useState(1);
-
+  const modules = useSelector(state => state.course.module);
   return (
     <View style={styles.container}>
-      <Header styles={styles} setCCNA={setCCNA} CCNA={CCNA} />
+      <Header styles={styles} />
       {!showQuiz ? (
-        <Body
-          styles={styles}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          setShowQuiz={setShowQuiz}
-          CCNA={CCNA}
-          Data={Data}
-          Modules={Modules}
-          setModules={setModules}
-        />
+        <Body styles={styles} setShowQuiz={setShowQuiz} Data={Data} />
       ) : (
         <Quiz
-          ModuleId={Modules.id}
-          pageNumber={pageNumber}
+          ModuleId={modules.order}
           setShowQuiz={setShowQuiz}
-          CCNA={CCNA}
           Data={Data}
           Chapters={Chapters}
           setChapters={setChapters}

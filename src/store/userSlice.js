@@ -4,7 +4,7 @@ const ip = '192.168.6.1';
 const port = '7676';
 
 const initialState = {
-  username: '',
+  username: 'Hamza',
   userToken: '',
 };
 
