@@ -6,7 +6,6 @@ const port = '7676';
 const initialState = {
   username: '',
   userToken: '',
-  couse: 1,
 };
 
 const appSlice = createSlice({
@@ -41,6 +40,8 @@ export const isUser = createAsyncThunk(
     return data;
   },
 );
+
+
 
 export const {setUserName} = appSlice.actions;
 export default appSlice.reducer;

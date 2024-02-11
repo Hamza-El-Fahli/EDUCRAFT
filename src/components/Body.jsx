@@ -11,12 +11,12 @@ const Body = ({
   pageNumber: slideNum,
   setPageNumber: setslideNum,
   setShowQuiz,
-  CCNA,
   Data,
   Modules,
   setModules,
 }) => {
   const username = useSelector(state => state.user.username);
+  const CCNA = useSelector(state => state.course.course)
   const data = Data[CCNA];
   const [loading, setLoading] = useState(true);
   useEffect(() => {

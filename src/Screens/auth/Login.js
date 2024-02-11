@@ -3,7 +3,7 @@ import {Pressable, View, Text, TextInput, Image} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {isUser} from '../../store/slice';
+import {isUser} from '../../store/userSlice';
 
 const Login = ({navigation}) => {
   const [Email, setemail] = useState('');
