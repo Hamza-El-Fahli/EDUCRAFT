@@ -82,7 +82,7 @@ const Body = ({
 
           <View style={styles.nav_btns}>
             {currentModule.map(Module => {
-              let moduleOrder = Module.id % 10;
+              let moduleOrder = Module.order;
               if (moduleOrder == slideNum)
                 return (
                   <Pressable
