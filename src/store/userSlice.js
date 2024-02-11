@@ -17,11 +17,8 @@ const appSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(isUser.pending, () => {
-      console.log('pandng');
-    });
+    builder.addCase(isUser.pending, () => {});
     builder.addCase(isUser.fulfilled, (state, action) => {
-      console.log('fulfilled');
       state.username = action.payload.name;
     });
     builder.addCase(isUser.rejected, () => {
@@ -40,8 +37,6 @@ export const isUser = createAsyncThunk(
     return data;
   },
 );
-
-
 
 export const {setUserName} = appSlice.actions;
 export default appSlice.reducer;
