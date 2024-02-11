@@ -66,7 +66,7 @@ const Body = ({
                 return (
                   <Pressable
                     style={{padding: 10}}
-                    onPress={() => dispatch(setSelectedModule(moduleOrder))}
+                    onPress={() => {dispatch(setSelectedModule(moduleOrder))}}
                     key={Module.id}>
                     <Text
                       style={{...styles.nav_btn, ...styles.nav_btn_selected}}>

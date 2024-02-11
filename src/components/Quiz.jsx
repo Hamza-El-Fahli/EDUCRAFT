@@ -35,12 +35,12 @@ const Quiz = ({
 
   const course = useSelector(state => state.course.course);
   const modules = useSelector(state => state.course.module);
-
+  const selectedModule = useSelector(state => state.course.selectedModule);
   const data = modules;
 
   async function localFunc() {
     try {
-      console.log(modules);
+      console.log(modules[selectedModule - 1]);
       //   await setChaptersWithApi(modules[0].id);
     } catch (e) {
       console.log('api problem ', e);
@@ -91,7 +91,7 @@ const Quiz = ({
     <View style={styles.container}>
       <View>
         <View style={styles.section_item}>
-          <Text style={styles.section_item_title}>{data[0].title}</Text>
+          <Text style={styles.section_item_title}>{modules[selectedModule - 1].title}</Text>
           <Pressable
             onPress={() => {
               setShowQuiz(false);
@@ -121,7 +121,7 @@ const Quiz = ({
               height: '50%',
             }}>
             <ScrollView>
-              {data[pageNumber].quizUnits.map(unit => {
+              {/* {data[pageNumber].quizUnits.map(unit => {
                 return (
                   <QuizUnit
                     key={unit.id}
@@ -129,7 +129,7 @@ const Quiz = ({
                     length={data[pageNumber].quizUnits.length}
                   />
                 );
-              })}
+              })} */}
             </ScrollView>
           </SafeAreaView>
         </>
@@ -138,36 +138,36 @@ const Quiz = ({
   );
 };
 
-const QuizUnit = ({data, length}) => {
-  return (
-    <View key={data.id} style={{paddingLeft: '20%', margin: '1%'}}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image
-          style={{marginRight: '5%'}}
-          source={data.completed === data.task ? validIcoin : invalidIcoin}
-        />
-        <Text
-          style={{fontSize: 32, color: Colors.Dark.gray, fontWeight: 'bold'}}>
-          {data.id}.....{data.title}: {data.completed}/{data.task}
-        </Text>
-      </View>
-      <View
-        style={{
-          borderColor:
-            data.id < length - 1
-              ? data.completed === data.task
-                ? Colors.Dark.gray
-                : Colors.Dark.lightGray
-              : 'transparent',
-          borderWidth: 2,
-          width: 0,
-          height: 60,
-          marginLeft: '8%',
-          marginTop: '3%',
-        }}
-      />
-    </View>
-  );
-};
+// const QuizUnit = ({data, length}) => {
+//   return (
+//     <View key={data.id} style={{paddingLeft: '20%', margin: '1%'}}>
+//       <View style={{flexDirection: 'row', alignItems: 'center'}}>
+//         <Image
+//           style={{marginRight: '5%'}}
+//           source={data.completed === data.task ? validIcoin : invalidIcoin}
+//         />
+//         <Text
+//           style={{fontSize: 32, color: Colors.Dark.gray, fontWeight: 'bold'}}>
+//           {data.id}.....{data.title}: {data.completed}/{data.task}
+//         </Text>
+//       </View>
+//       <View
+//         style={{
+//           borderColor:
+//             data.id < length - 1
+//               ? data.completed === data.task
+//                 ? Colors.Dark.gray
+//                 : Colors.Dark.lightGray
+//               : 'transparent',
+//           borderWidth: 2,
+//           width: 0,
+//           height: 60,
+//           marginLeft: '8%',
+//           marginTop: '3%',
+//         }}
+//       />
+//     </View>
+//   );
+// };
 
 export default Quiz;
