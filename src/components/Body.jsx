@@ -1,47 +1,37 @@
 import {Animated, Pressable, Text, View} from 'react-native';
 import React from 'react';
 import styles from '../styles/styles';
-
-const Body = ({setShowQuiz  }) => {
+import { useDispatch, useSelector} from 'react-redux';
+import { setSelectedModule } from '../store/courseSlice';
+import { UseDispatch } from 'react-redux';
+const Body = ({setShowQuiz}) => {
+  const dispatch = useDispatch()
+  const username = useSelector(state => state.user.username);
+  const userModules= useSelector(state=> state.course.module)
+  const selectedModule = useSelector(state => state.course.selectedModule)
   
-  const data = {
-    id: 0,
-    title: 'Section 1 : Network Fundamentals',
-    progression: 100,
-    quizUnits: [
-      {id: 0, title: 'Quiz 1', task: 5, completed: 5},
-      {id: 1, title: 'Quiz 2', task: 5, completed: 2},
-      {id: 2, title: 'Quiz 3', task: 5, completed: 0},
-      {id: 3, title: 'Quiz 4', task: 5, completed: 0},
-      {id: 4, title: 'Quiz 5', task: 5, completed: 0},
-    ],
-  };
-
   return (
     <View style={styles.body}>
       <View style={styles.welcom}>
-        <Text style={styles.welcom1}>Hello, {'username'}</Text>
+        <Text style={styles.welcom1}>Hello, {username}</Text>
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      <Slides setShowQuiz={setShowQuiz} data={data} />
+      <Slides setShowQuiz={setShowQuiz} />
 
       <View style={styles.nav_btns}>
-        {[{id: 1, id: 2, id: 3}].map(Module => {
-          let moduleOrder = Module.id;
-          if (moduleOrder == 1)
+        {userModules.map(oneChapter => {
+          let moduleOrder = oneChapter.order;
+          if (moduleOrder == selectedModule+1)
             return (
-              <Pressable
-                style={{padding: 10}}
-                
-                key={Module.id}>
+              <Pressable style={{padding: 10}} key={oneChapter.id}>
                 <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
                   .
                 </Text>
               </Pressable>
             );
           return (
-            <Pressable style={{padding: 10}} onPress={() => {}} key={Module.id}>
+            <Pressable style={{padding: 10}} onPress={() => {dispatch(setSelectedModule(oneChapter.order-1))}} key={oneChapter.id}>
               <Text style={styles.nav_btn}>.</Text>
             </Pressable>
           );
@@ -52,20 +42,17 @@ const Body = ({setShowQuiz  }) => {
 };
 
 const Slides = ({setShowQuiz}) => {
-  const fading = new Animated.Value(0);
-  Animated.timing(fading, {
-    toValue: 1,
-    useNativeDriver: true,
-    duration: 200,
-  }).start();
+
+  const userModules= useSelector(state=> state.course.module)
+  const selectedModule = useSelector(state => state.course.selectedModule)
 
   ////////////////////////////////
   const progression = 100;
   ////////////////////////////
   return (
-    <Animated.View style={{...styles.slide, opacity: fading}}>
+    <View style={{...styles.slide}}>
       <View style={{...styles.slide_item}}>
-        <Text style={styles.slide_item_title}>{'1' + ' : '}</Text>
+        <Text style={styles.slide_item_title}>{selectedModule+1 + ' : '+userModules[selectedModule]?.title}</Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>
         </Pressable>
@@ -107,8 +94,21 @@ const Slides = ({setShowQuiz}) => {
           </Text>
         </Pressable>
       </View>
-    </Animated.View>
+    </View>
   );
+};
+
+const data = {
+  id: 0,
+  title: 'Section 1 : Network Fundamentals',
+  progression: 100,
+  quizUnits: [
+    {id: 0, title: 'Quiz 1', task: 5, completed: 5},
+    {id: 1, title: 'Quiz 2', task: 5, completed: 2},
+    {id: 2, title: 'Quiz 3', task: 5, completed: 0},
+    {id: 3, title: 'Quiz 4', task: 5, completed: 0},
+    {id: 4, title: 'Quiz 5', task: 5, completed: 0},
+  ],
 };
 
 export default Body;

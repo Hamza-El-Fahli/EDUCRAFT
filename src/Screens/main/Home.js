@@ -15,18 +15,43 @@ import Data from '../..//Data/Data';
 
 import {useSelector, useDispatch} from 'react-redux';
 
-import {setModulesWithApi, setSelectedModule} from '../../store/courseSlice';
+import {
+  setModulesWithApi,
+  setSelectedModule,
+  setChapter,
+} from '../../store/courseSlice';
 
 const Home = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const [showQuiz, setShowQuiz] = useState(false);
   const [Chapters, setChapters] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
+  const course = useSelector(state => state.course.course);
+  const selectedModule = useSelector(state => state.course.selectedModule);
+  const userModules= useSelector(state=> state.course.module)
+
+  async function GetThoseModules() {
+    await dispatch(setModulesWithApi(course));
+    setLoading(false);
+  }
+  async function GetThoseChapters() {
+    await dispatch(setChapter(userModules[selectedModule].id));
+    console.log(userModules[selectedModule])
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    GetThoseModules();
+  }, [course]);
+
+  useEffect(() => {
+    GetThoseChapters();
+  }, [userModules]);
 
   // const course = useSelector(state => state.course.course);
 
-  // const username = useSelector(state => state.user.username);
   // const currentModule = useSelector(state => state.course.module);
   // const selectedModule = useSelector(state => state.course.selectedModule);
 
@@ -71,20 +96,20 @@ const Home = ({navigation}) => {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <> */}
-          {!showQuiz ? (
-            <Body
-              styles={styles}
-              setShowQuiz={setShowQuiz}
-              setSelectedModule={setSelectedModule}
-            />
-          ) : (
-            <Quiz
-              setShowQuiz={setShowQuiz}
-              Chapters={Chapters}
-              setChapters={setChapters}
-            />
-          )}
-        {/* </>
+      {!showQuiz ? (
+        <Body
+          styles={styles}
+          setShowQuiz={setShowQuiz}
+          setSelectedModule={setSelectedModule}
+        />
+      ) : (
+        <Quiz
+          setShowQuiz={setShowQuiz}
+          Chapters={Chapters}
+          setChapters={setChapters}
+        />
+      )}
+      {/* </>
       )} */}
       <Footer navigation={navigation} styles={styles} currentPage="Home" />
     </View>

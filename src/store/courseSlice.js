@@ -25,6 +25,7 @@ const courseReducer = createSlice({
   extraReducers: builder => {
     builder.addCase(setModulesWithApi.fulfilled, (state, action) => {
       state.module = action.payload;
+      // console.log(action.payload)
     });
     builder.addCase(setModulesWithApi.pending, () => {});
     builder.addCase(setModulesWithApi.rejected, () => {
@@ -32,7 +33,7 @@ const courseReducer = createSlice({
     });
 
     builder.addCase(setChapter.fulfilled, (state, action) => {
-      console.log(action.payload);
+      state.chapter = (action.payload);
     });
 
     builder.addCase(setChapter.pending, () => {
@@ -50,6 +51,8 @@ export const setModulesWithApi = createAsyncThunk(
   async course_id => {
     const result = await fetch(`http://${ip}:${port}/web/modules/${course_id}`);
     const data = await result.json();
+    console.log('executed');
+
     return data;
   },
 );
@@ -57,11 +60,10 @@ export const setModulesWithApi = createAsyncThunk(
 export const setChapter = createAsyncThunk(
   'course/setChapter',
   async moduleId => {
-    // const response = await fetch(
-    //   `http://${ip}:${port}/web/chapters/${module_id}`,
-    // );
-    console.log('executed');
-    const data = ['data']; //await response.json();
+    const response = await fetch(
+      `http://${ip}:${port}/web/chapters/${moduleId}`,
+    );
+    const data = await response.json();
     // data =[{"id":2,"title":"Types de réseaux","module_id":1}]
     return data;
   },
