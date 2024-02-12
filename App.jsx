@@ -17,6 +17,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Quiz" component={Quiz} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="Login"
@@ -28,7 +29,6 @@ const App = () => {
             component={Register}
           /> */}
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Quiz" component={Quiz} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
