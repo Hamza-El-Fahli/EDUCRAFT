@@ -4,7 +4,7 @@ const ip = '192.168.6.1';
 const port = '7676';
 
 const initialState = {
-  username: 'Hamza',
+  username: '',
   userToken: '',
 };
 
@@ -22,7 +22,7 @@ const appSlice = createSlice({
       state.username = action.payload.name;
     });
     builder.addCase(isUser.rejected, () => {
-      console.log('rejected');
+      console.log('Uthentification rejected');
     });
   },
 });

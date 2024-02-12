@@ -8,7 +8,7 @@ const initialState = {
   module: [],
   chapter: TempChapters,
   quiz:[],
-  selectedModule: 1,
+  selectedModule: 0,
 };
 
 const courseReducer = createSlice({
@@ -28,9 +28,12 @@ const courseReducer = createSlice({
       state.module = action.payload;
       // console.log(action.payload)
     });
-    builder.addCase(setModulesWithApi.pending, () => {});
+    builder.addCase(setModulesWithApi.pending, () => {
+      // console.log(' setModulesWithApi pending');
+
+    });
     builder.addCase(setModulesWithApi.rejected, () => {
-      console.log('rejected');
+      console.log(' setModulesWithApi rejected');
     });
 
     builder.addCase(setChapter.fulfilled, (state, action) => {
@@ -38,11 +41,11 @@ const courseReducer = createSlice({
     });
 
     builder.addCase(setChapter.pending, () => {
-      console.log('chapters is pending');
+      // console.log('chapters is pending');
     });
 
     builder.addCase(setChapter.rejected, () => {
-      console.log('chapters rejected');
+      console.log('setChapter rejected');
     });
   },
 });
@@ -52,7 +55,7 @@ export const setModulesWithApi = createAsyncThunk(
   async course_id => {
     const result = await fetch(`http://${ip}:${port}/web/modules/${course_id}`);
     const data = await result.json();
-    console.log('executed');
+    // console.log('executed');
 
     return data;
   },

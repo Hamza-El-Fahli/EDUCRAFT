@@ -43,9 +43,17 @@ const Quiz = ({navigation}) => {
 
           <ScrollView style={styles.scroll}>
 
-            {chapters.map((oneChapter,index)=>(
-                        
-            <View style={styles.chapter}>
+            {chapters.map((oneChapter,index)=>{
+              const isLastElement = (chapters.length-1) === index
+              return (
+            <View style={{...styles.chapter ,
+            
+              borderBottomWidth: isLastElement ? 2 : 0,
+              borderBottomLeftRadius: isLastElement ? 0 : 20 , 
+              borderBottomRightRadius: isLastElement ? 0 : 20,
+            
+            
+            }} key={index}>
             <View style={styles.chapter_title}>
               {/*/////////////// Chapter Title////////////////// */}
 
@@ -103,7 +111,7 @@ const Quiz = ({navigation}) => {
             </View>
             {/*///////////////  Chapter Quiz END ////////////////// */}
           </View>
-                    ))}
+                    )})}
 
           </ScrollView>
         </>

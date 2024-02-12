@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pressable, View, Text, TextInput, Image} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
@@ -14,12 +14,14 @@ const Login = ({navigation}) => {
   const checkUserAPI = async (email, password) => {
     try {
       await dispacth(isUser({email, password}));
-      navigation.navigate('Home');
     } catch (e) {
       console.log('problem with api');
     }
   };
+useEffect(()=>{
+if(username != '')  navigation.navigate('Home');
 
+},[username])
   return (
     <View>
       <View style={styles.auth_container}>
@@ -61,14 +63,14 @@ const Login = ({navigation}) => {
         </Text>
       </Pressable>
 
-      {/* 
+      
       <Pressable onPress={()=>{
           
         }}>
             <Text >
                 Navigate to Main
             </Text>
-      </Pressable> */}
+      </Pressable>
     </View>
   );
 };

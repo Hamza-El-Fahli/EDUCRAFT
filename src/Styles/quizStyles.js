@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 20,
     borderLeftWidth: 2,
-    borderLeftColor: Colors.Dark.lightBlue,
+    borderColor: Colors.Dark.lightBlue,
     borderRightWidth: 2,
-    borderRightColor: Colors.Dark.lightBlue,
+    
   },
   chapter_title: {
     height: Dimensions.get('window').height * 0.2,

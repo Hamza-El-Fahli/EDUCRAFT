@@ -33,8 +33,8 @@ const Home = ({navigation}) => {
     setLoading(false);
   }
   async function GetThoseChapters() {
-    await dispatch(setChapter(userModules[selectedModule].id));
-    console.log(userModules[selectedModule])
+    await dispatch(setChapter(userModules[selectedModule]?.id));
+    // console.log(userModules[selectedModule])
     setLoading(false);
   }
 
