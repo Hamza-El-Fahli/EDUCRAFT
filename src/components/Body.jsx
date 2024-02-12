@@ -3,8 +3,7 @@ import React from 'react';
 import styles from '../styles/styles';
 import { useDispatch, useSelector} from 'react-redux';
 import { setSelectedModule } from '../store/courseSlice';
-import { UseDispatch } from 'react-redux';
-const Body = ({setShowQuiz}) => {
+const Body = ({navigation}) => {
   const dispatch = useDispatch()
   const username = useSelector(state => state.user.username);
   const userModules= useSelector(state=> state.course.module)
@@ -17,7 +16,7 @@ const Body = ({setShowQuiz}) => {
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      <Slides setShowQuiz={setShowQuiz} />
+      <Slides navigation={navigation} />
 
       <View style={styles.nav_btns}>
         {userModules.map(oneChapter => {
@@ -41,7 +40,7 @@ const Body = ({setShowQuiz}) => {
   );
 };
 
-const Slides = ({setShowQuiz}) => {
+const Slides = ({ navigation}) => {
 
   const userModules= useSelector(state=> state.course.module)
   const selectedModule = useSelector(state => state.course.selectedModule)
@@ -82,7 +81,7 @@ const Slides = ({setShowQuiz}) => {
 
         <Pressable
           onPress={() => {
-            setShowQuiz(true);
+            navigation.navigate('Quiz')
           }}
           style={styles.slide_item_btn_grp}>
           <Text style={styles.slide_item_btn}>

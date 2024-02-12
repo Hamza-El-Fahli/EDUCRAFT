@@ -3,6 +3,7 @@ import Home from './src/Screens/main/Home';
 import Login from './src/Screens/auth/Login';
 // import Register from './src/Screens/auth/Register';
 import Profile from './src/Screens/profile/Profile';
+import Quiz from './src/Screens/quizes/Quiz';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -27,6 +28,7 @@ const App = () => {
             component={Register}
           /> */}
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Quiz" component={Quiz} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
