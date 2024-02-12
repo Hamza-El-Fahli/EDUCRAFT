@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-
+import { _WEB_URL } from '../GlobalConfig';
 const ip = '192.168.6.1';
 const port = '7676';
 
@@ -31,7 +31,7 @@ export const isUser = createAsyncThunk(
   'user/isuser',
   async ({email, password}) => {
     // const result = await fetch( `http://${ip}:${port}/mobile/isuser/${email}/${password}`);
-    const result = await fetch( `http://${ip}:${port}/web/isuser/${email}/${password}`);
+    const result = await fetch( `${_WEB_URL}/isuser/${email}/${password}`);
     const data = await result.json();
     return data;
   },

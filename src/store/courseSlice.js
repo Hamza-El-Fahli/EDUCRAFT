@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {TempChapters} from './tmpChapters'
-const ip = '192.168.6.1';
-const port = '7676';
+
+import { _WEB_URL,_MOBILE_URL } from '../GlobalConfig';
 
 const initialState = {
   course: 1,
@@ -53,7 +53,7 @@ const courseReducer = createSlice({
 export const setModulesWithApi = createAsyncThunk(
   'course/setModules',
   async course_id => {
-    const result = await fetch(`http://${ip}:${port}/web/modules/${course_id}`);
+    const result = await fetch(`${_WEB_URL}/modules/${course_id}`);
     const data = await result.json();
     // console.log('executed');
 
@@ -65,7 +65,7 @@ export const setChapter = createAsyncThunk(
   'course/setChapter',
   async moduleId => {
     const response = await fetch(
-      `http://${ip}:${port}/web/chapters/${moduleId}`,
+      `${_WEB_URL}/chapters/${moduleId}`,
     );
     const data = await response.json();
     // data =[{"id":2,"title":"Types de réseaux","module_id":1}]
