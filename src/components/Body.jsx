@@ -1,96 +1,57 @@
-import {Animated, Pressable, Text, View, ActivityIndicator} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {Animated, Pressable, Text, View} from 'react-native';
+import React from 'react';
 import styles from '../styles/styles';
 
-import {setModulesWithApi , setSelectedModule} from '../store/courseSlice';
-
-import {useSelector, useDispatch} from 'react-redux';
-
-const Body = ({
-  setShowQuiz,
-  Data,
-}) => {
-  const dispatch = useDispatch();
-
-  const username = useSelector(state => state.user.username);
-  const course = useSelector(state => state.course.course);
-  const currentModule = useSelector(state => state.course.module);
-  const selectedModule = useSelector(state => state.course.selectedModule)
-
-  const data = Data[course];
-  const [loading, setLoading] = useState(true);
-
-  async function mymodule() {
-    try {
-      if (
-        currentModule != undefined &&
-        currentModule.length > 5 &&
-        currentModule[0].course === course
-      )
-        setLoading(false);
-      else {
-        await dispatch(setModulesWithApi(course));
-        setLoading(false);
-      }
-    } catch (e) {
-      console.log('api problem ', e);
-    }
-  }
-  useEffect(() => {
-    mymodule();
-  }, [course]);
-
+const Body = ({setShowQuiz  }) => {
+  
+  const data = {
+    id: 0,
+    title: 'Section 1 : Network Fundamentals',
+    progression: 100,
+    quizUnits: [
+      {id: 0, title: 'Quiz 1', task: 5, completed: 5},
+      {id: 1, title: 'Quiz 2', task: 5, completed: 2},
+      {id: 2, title: 'Quiz 3', task: 5, completed: 0},
+      {id: 3, title: 'Quiz 4', task: 5, completed: 0},
+      {id: 4, title: 'Quiz 5', task: 5, completed: 0},
+    ],
+  };
 
   return (
     <View style={styles.body}>
       <View style={styles.welcom}>
-        <Text style={styles.welcom1}>Hello, {username}</Text>
+        <Text style={styles.welcom1}>Hello, {'username'}</Text>
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : (
-        <>
-          <Slides
-            selectedModule={selectedModule}
-            setShowQuiz={setShowQuiz}
-            data={data}
-            currentModule={currentModule}
-          />
+      <Slides setShowQuiz={setShowQuiz} data={data} />
 
-          <View style={styles.nav_btns}>
-            {currentModule.map(Module => {
-              let moduleOrder = Module.order;
-              if (moduleOrder == selectedModule)
-                return (
-                  <Pressable
-                    style={{padding: 10}}
-                    onPress={() => {dispatch(setSelectedModule(moduleOrder))}}
-                    key={Module.id}>
-                    <Text
-                      style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
-                      .
-                    </Text>
-                  </Pressable>
-                );
-              return (
-                <Pressable
-                  style={{padding: 10}}
-                  onPress={() => dispatch(setSelectedModule(moduleOrder))}
-                  key={Module.id}>
-                  <Text style={styles.nav_btn}>.</Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        </>
-      )}
+      <View style={styles.nav_btns}>
+        {[{id: 1, id: 2, id: 3}].map(Module => {
+          let moduleOrder = Module.id;
+          if (moduleOrder == 1)
+            return (
+              <Pressable
+                style={{padding: 10}}
+                
+                key={Module.id}>
+                <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
+                  .
+                </Text>
+              </Pressable>
+            );
+          return (
+            <Pressable style={{padding: 10}} onPress={() => {}} key={Module.id}>
+              <Text style={styles.nav_btn}>.</Text>
+            </Pressable>
+          );
+        })}
+      </View>
     </View>
   );
 };
 
-const Slides = ({selectedModule, currentModule, data, setShowQuiz}) => {
+const Slides = ({setShowQuiz}) => {
   const fading = new Animated.Value(0);
   Animated.timing(fading, {
     toValue: 1,
@@ -104,11 +65,7 @@ const Slides = ({selectedModule, currentModule, data, setShowQuiz}) => {
   return (
     <Animated.View style={{...styles.slide, opacity: fading}}>
       <View style={{...styles.slide_item}}>
-        <Text style={styles.slide_item_title}>
-          {selectedModule +
-            ' : ' +
-            currentModule[selectedModule - 1 >= 0 ? selectedModule - 1 : 0]?.title}
-        </Text>
+        <Text style={styles.slide_item_title}>{'1' + ' : '}</Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>
         </Pressable>

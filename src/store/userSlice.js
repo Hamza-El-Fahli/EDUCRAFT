@@ -30,9 +30,8 @@ const appSlice = createSlice({
 export const isUser = createAsyncThunk(
   'user/isuser',
   async ({email, password}) => {
-    const result = await fetch(
-      `http://${ip}:${port}/mobile/isuser/${email}/${password}`,
-    );
+    // const result = await fetch( `http://${ip}:${port}/mobile/isuser/${email}/${password}`);
+    const result = await fetch( `http://${ip}:${port}/web/isuser/${email}/${password}`);
     const data = await result.json();
     return data;
   },

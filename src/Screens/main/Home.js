@@ -1,49 +1,91 @@
-import {Dimensions, Pressable, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import {
+  Dimensions,
+  Pressable,
+  Text,
+  View,
+  ActivityIndicator,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import styles from '../../styles/styles';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Body from '../../components/Body';
 import Quiz from '../../components/Quiz';
 import Data from '../..//Data/Data';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useSelector} from 'react-redux';
 
-// Function to remove an item from AsyncStorage
-const removeItemFromStorage = async key => {
-  try {
-    // Remove item from AsyncStorage based on the provided key
-    await AsyncStorage.removeItem(key);
-    console.log(`Item with key '${key}' removed from AsyncStorage.`);
-  } catch (error) {
-    console.error(
-      `Error removing item with key '${key}' from AsyncStorage:`,
-      error,
-    );
-  }
-};
+import {useSelector, useDispatch} from 'react-redux';
 
-// Example usage: Remove an item with key 'modules' from AsyncStorage
+import {setModulesWithApi, setSelectedModule} from '../../store/courseSlice';
 
 const Home = ({navigation}) => {
+  const dispatch = useDispatch();
+
   const [showQuiz, setShowQuiz] = useState(false);
   const [Chapters, setChapters] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const modules = useSelector(state => state.course.module);
+  // const course = useSelector(state => state.course.course);
+
+  // const username = useSelector(state => state.user.username);
+  // const currentModule = useSelector(state => state.course.module);
+  // const selectedModule = useSelector(state => state.course.selectedModule);
+
+  // async function localFunc() {
+  //   try {
+  //     await setChapter(modules[0].id);
+  //     console.log(chapters);
+  //   } catch (e) {
+  //     console.log('api problem ', e);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   localFunc();
+  // }, [course]);
+
+  // async function mymodule() {
+  //   try {
+  //     if (
+  //       currentModule != undefined &&
+  //       currentModule.length > 5 &&
+  //       currentModule[0].course === course
+  //     )
+  //       setLoading(false);
+  //     else {
+  //       await dispatch(setModulesWithApi(course));
+  //       setLoading(false);
+  //     }
+  //   } catch (e) {
+  //     console.log('api problem ', e);
+  //   }
+  // }
+  // useEffect(() => {
+  //   mymodule();
+  // }, [course]);
+
+  // const modules = useSelector(state => state.course.module);
   return (
     <View style={styles.container}>
       <Header styles={styles} />
-      {!showQuiz ? (
-        <Body styles={styles} setShowQuiz={setShowQuiz} Data={Data} />
+      {/* {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <Quiz
-          ModuleId={modules.order}
-          setShowQuiz={setShowQuiz}
-          Data={Data}
-          Chapters={Chapters}
-          setChapters={setChapters}
-        />
-      )}
+        <> */}
+          {!showQuiz ? (
+            <Body
+              styles={styles}
+              setShowQuiz={setShowQuiz}
+              setSelectedModule={setSelectedModule}
+            />
+          ) : (
+            <Quiz
+              setShowQuiz={setShowQuiz}
+              Chapters={Chapters}
+              setChapters={setChapters}
+            />
+          )}
+        {/* </>
+      )} */}
       <Footer navigation={navigation} styles={styles} currentPage="Home" />
     </View>
   );

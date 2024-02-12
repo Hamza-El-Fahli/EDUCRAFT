@@ -7,7 +7,7 @@ const initialState = {
   course: 1,
   module: [],
   chapter: [],
-  selectedModule : 1
+  selectedModule: 1,
 };
 
 const courseReducer = createSlice({
@@ -17,12 +17,9 @@ const courseReducer = createSlice({
     setCourse: (state, action) => {
       state.course = action.payload;
     },
-    setModules: (state, action) => {
-      state.module = action.payload;
+    setSelectedModule: (state, action) => {
+      state.selectedModule = action.payload;
     },
-    setSelectedModule : (state,action)=>{
-      state.selectedModule = action.payload
-    }
   },
 
   extraReducers: builder => {
@@ -34,15 +31,15 @@ const courseReducer = createSlice({
       console.log('rejected');
     });
 
-    builder.addCase(setChaptersWithApi.fulfilled, (state, action) => {
+    builder.addCase(setChapter.fulfilled, (state, action) => {
       console.log(action.payload);
     });
 
-    builder.addCase(setChaptersWithApi.pending, () => {
+    builder.addCase(setChapter.pending, () => {
       console.log('chapters is pending');
     });
 
-    builder.addCase(setChaptersWithApi.rejected, () => {
+    builder.addCase(setChapter.rejected, () => {
       console.log('chapters rejected');
     });
   },
@@ -51,27 +48,24 @@ const courseReducer = createSlice({
 export const setModulesWithApi = createAsyncThunk(
   'course/setModules',
   async course_id => {
-    const result = await fetch(
-      `http://${ip}:${port}/mobile/modules/${course_id}`,
-    );
-
+    const result = await fetch(`http://${ip}:${port}/web/modules/${course_id}`);
     const data = await result.json();
     return data;
   },
 );
 
-export const setChaptersWithApi = createAsyncThunk(
-  'course/setChapters',
-  async module_id => {
-    const response = await fetch(
-      `http://${ip}:${port}/mobile/chapters/${module_id}`,
-    );
-
-    const data = await response.json();
+export const setChapter = createAsyncThunk(
+  'course/setChapter',
+  async moduleId => {
+    // const response = await fetch(
+    //   `http://${ip}:${port}/web/chapters/${module_id}`,
+    // );
+    console.log('executed');
+    const data = ['data']; //await response.json();
     // data =[{"id":2,"title":"Types de réseaux","module_id":1}]
     return data;
   },
 );
 
-export const {setCourse, setModules , setSelectedModule} = courseReducer.actions;
+export const {setCourse, setModules, setSelectedModule} = courseReducer.actions;
 export default courseReducer.reducer;
