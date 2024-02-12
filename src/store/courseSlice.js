@@ -1,12 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-
+import {TempChapters} from './tmpChapters'
 const ip = '192.168.6.1';
 const port = '7676';
 
 const initialState = {
   course: 1,
   module: [],
-  chapter: [],
+  chapter: TempChapters,
+  quiz:[],
   selectedModule: 1,
 };
 
@@ -69,5 +70,19 @@ export const setChapter = createAsyncThunk(
   },
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const {setCourse, setModules, setSelectedModule} = courseReducer.actions;
+
 export default courseReducer.reducer;
