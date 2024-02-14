@@ -11,26 +11,30 @@ const Body = ({navigation}) => {
   const username = useSelector(state => state.user.username);
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
-
   const [btnLoader, setbtnLoader] = useState(false);
 
   function getChapters() {
+    const cancelTokenSource = axios.CancelToken.source();
     setbtnLoader(true);
     axios
-      .get(`${_API_URL}/chapters/${selectedModule + 1}`) // because stored with -1
+      .get(`${_API_URL}/chapters/${userModules[selectedModule].id}`, {
+        cancelToken: cancelTokenSource.token,
+      }) // because stored with -1
       .then(async result => {
         const loadedChapters = await result.data;
-        console.log(loadedChapters);
         dispatch(setChapters(loadedChapters));
         setbtnLoader(false);
-        navigation.navigate('Quiz')
+        navigation.navigate('Quiz');
       })
       .catch(e => {
         console.log(
-          `error in chapters ,${_API_URL}/chapters/${selectedModule}    ${e}`,
+          `error in chapters ,${_API_URL}/chapters/${userModules[selectedModule].id}    ${e}`,
         );
         setbtnLoader(false);
       });
+    setTimeout(() => {
+      cancelTokenSource.cancel('Request cancelled after 2 seconds');
+    }, 2000);
   }
 
   return (
@@ -128,19 +132,6 @@ const Slides = ({getChapters, btnLoader}) => {
       </View>
     </View>
   );
-};
-
-const data = {
-  id: 0,
-  title: 'Section 1 : Network Fundamentals',
-  progression: 100,
-  quizUnits: [
-    {id: 0, title: 'Quiz 1', task: 5, completed: 5},
-    {id: 1, title: 'Quiz 2', task: 5, completed: 2},
-    {id: 2, title: 'Quiz 3', task: 5, completed: 0},
-    {id: 3, title: 'Quiz 4', task: 5, completed: 0},
-    {id: 4, title: 'Quiz 5', task: 5, completed: 0},
-  ],
 };
 
 export default Body;

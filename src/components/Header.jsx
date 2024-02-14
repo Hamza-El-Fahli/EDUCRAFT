@@ -8,6 +8,7 @@ const configIcon = require('./../images/svg/configIcon.png');
 
 import {setCourse} from '../store/courseSlice';
 import {useDispatch, useSelector} from 'react-redux';
+import { useRoute } from '@react-navigation/native';
 
 let data = [
   {id: 1, title: 'CCNA 1'},
@@ -17,6 +18,7 @@ let data = [
 ];
 const Header = ({screen,   navigation}) => {
   const dispatch = useDispatch();
+  const currrentPage = useRoute()
   const course = useSelector(state => state.course.course);
   const [drop, setdrop] = useState(false);
   return (
@@ -24,7 +26,11 @@ const Header = ({screen,   navigation}) => {
       <Pressable
         style={{display: screen === 'Profile' ? 'none' : 'flex'}}
         onPress={() => {
-          setdrop(!drop);
+          if(currrentPage.name !== 'Quiz'){
+          setdrop(!drop);}
+          else {
+            navigation.goBack()
+          }
         }}>
         <Text style={styles.course}>CCNA {course}</Text>
       </Pressable>
