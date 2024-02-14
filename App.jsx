@@ -3,8 +3,8 @@ import Home from './src/Screens/main/Home';
 import Login from './src/Screens/auth/Login';
 // import Register from './src/Screens/auth/Register';
 import Profile from './src/Screens/profile/Profile';
-import Quiz from './src/Screens/quizes/Quiz';
-
+import ChaptersPage from './src/Screens/quizes/ChaptersPage';
+import Quizes from './src/Screens/quizes/Quizes';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
@@ -20,14 +20,28 @@ const App = () => {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{headerShown: false}}          />
+            options={{headerShown: false}}
+          />
           {/* <Stack.Screen
             name="Register"
             component={Register}
           /> */}
-          <Stack.Screen name="Quiz" component={Quiz} options={{headerShown: false}}/>
-          <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
-          <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}} />
+          <Stack.Screen
+            name="ChaptersPage"
+            component={ChaptersPage}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="Quizes" component={Quizes} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

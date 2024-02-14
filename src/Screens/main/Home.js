@@ -44,7 +44,7 @@ const Home = ({navigation}) => {
             dispatch(setModules(loadedModules));
           setLoading(false);
         })
-        .catch(e => console.log(`error in modules , ${e}`));
+        .catch(e =>         Alert.alert('Email/Password incorrect', `try 0 and 0`)        );
     })();
   }, [course]);
 

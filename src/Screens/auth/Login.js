@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, View, Text, TextInput, Image, Alert , ActivityIndicator} from 'react-native';
+import {
+  Pressable,
+  View,
+  Text,
+  TextInput,
+  Image,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
@@ -26,7 +34,7 @@ const Login = ({navigation}) => {
       .then(response => {
         let userData = response.data;
         if (userData.name) {
-          console.log(userData.name)
+          console.log(userData.name);
           dispacth(setUserName(userData.name));
           setbtnLoader(false);
           navigation.navigate('Home');
@@ -34,11 +42,11 @@ const Login = ({navigation}) => {
       })
       .catch(error => {
         setbtnLoader(false);
-        Alert.alert('api error','Verify your wifi connection');
+        Alert.alert('Email/Password incorrect', `try 0 and 0`);
       });
-      setTimeout(() => {
-        cancelTokenSource.cancel('Request cancelled after 2 seconds');
-      }, 2000);
+    setTimeout(() => {
+      cancelTokenSource.cancel('Request cancelled after 2 seconds');
+    }, 2000);
   };
   return (
     <View>
@@ -70,12 +78,12 @@ const Login = ({navigation}) => {
         onPress={() => checkUserAPI(Email, Password, navigation)}
         style={styles.loginButton}>
         {btnLoader ? (
-              <ActivityIndicator size="large" color="#0000ff" />
-            ) : (
-              <>
-              <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
-              </>
-            )}
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <>
+            <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
+          </>
+        )}
       </Pressable>
 
       <Pressable
@@ -86,7 +94,6 @@ const Login = ({navigation}) => {
           Don't have an account ? Register
         </Text>
       </Pressable>
-
     </View>
   );
 };

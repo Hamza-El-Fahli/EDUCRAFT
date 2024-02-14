@@ -24,7 +24,7 @@ const Body = ({navigation}) => {
         const loadedChapters = await result.data;
         dispatch(setChapters(loadedChapters));
         setbtnLoader(false);
-        navigation.navigate('Quiz');
+        navigation.navigate('ChaptersPage');
       })
       .catch(e => {
         console.log(

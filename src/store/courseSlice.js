@@ -8,6 +8,7 @@ const initialState = {
   chapter: null,
   quiz: [],
   selectedModule: 0,
+  selectedChapter: 1,
 };
 
 const courseReducer = createSlice({
@@ -25,6 +26,9 @@ const courseReducer = createSlice({
     },
     setChapters: (state, action) => {
       state.chapter = action.payload;
+    },
+    setSelecteChapter: (state, action) => {
+      state.selectedChapter = action.payload;
     },
   },
 });
