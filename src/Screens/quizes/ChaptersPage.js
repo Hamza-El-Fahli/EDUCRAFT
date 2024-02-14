@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import styles from '../../styles/quizStyles';
+import styles from '../../styles/ChaptesStyle';
 import Header from '../../components/Header';
 import {useSelector} from 'react-redux';
 

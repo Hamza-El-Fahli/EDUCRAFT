@@ -9,6 +9,7 @@ const initialState = {
   quiz: [],
   selectedModule: 0,
   selectedChapter: 1,
+  GivenAnswers : []
 };
 
 const courseReducer = createSlice({
@@ -30,10 +31,13 @@ const courseReducer = createSlice({
     setSelecteChapter: (state, action) => {
       state.selectedChapter = action.payload;
     },
+    setGivenAnswers:(state,action)=>{
+      state.GivenAnswers = action.payload
+    }
   },
 });
 
-export const {setCourse, setModules, setChapters, setSelectedModule} =
+export const {setCourse, setModules, setChapters, setSelectedModule,setGivenAnswers} =
   courseReducer.actions;
 
 export default courseReducer.reducer;

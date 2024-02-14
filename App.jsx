@@ -5,6 +5,7 @@ import Login from './src/Screens/auth/Login';
 import Profile from './src/Screens/profile/Profile';
 import ChaptersPage from './src/Screens/quizes/ChaptersPage';
 import Quizes from './src/Screens/quizes/Quizes';
+import ShowResults from './src/Screens/quizes/ShowResults';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
@@ -41,6 +42,11 @@ const App = () => {
             name="Profile"
             component={Profile}
             options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ShowResults"
+            component={ShowResults}
+            options={{headerShown: true}}
           />
         </Stack.Navigator>
       </NavigationContainer>

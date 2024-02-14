@@ -1,23 +1,21 @@
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View, Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {setGivenAnswers} from '../../store/courseSlice';
 import RadioBox from '../../components/RadioBox';
 import axios from 'axios';
 import {_API_URL} from '../../GlobalConfig';
-
+import {useNavigation} from '@react-navigation/native';
+import styles from '../../styles/styles';
 const Quizes = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [loader, setloader] = useState(false);
   const [MyQuizes, setMyQuizes] = useState([]);
   const [quizIndex, setquizIndex] = useState(0);
   const [selected, setSelected] = useState(null);
-  const [GivenAnswers, setGivenAnswers] = useState([])
+
+  const GivenAnswers = useSelector(state => state.course.GivenAnswers);
 
   const selectedChapter = useSelector(state => state.course.selectedChapter);
   const options = [
@@ -28,28 +26,51 @@ const Quizes = () => {
   ];
   useEffect(() => {
     (async function () {
+        const thisQuizIsTheFirstQuiz = 1
       axios
-        .get(`${_API_URL}/tests/${selectedChapter}`)
+        .get(`${_API_URL}/tests/${selectedChapter}/${thisQuizIsTheFirstQuiz}`)
         .then(async result => {
           const quizes = await result.data;
-          const firstQuiz = quizes.filter(item => item.quiz == 1);
-          setMyQuizes(firstQuiz);
+          const firstQuiz = quizes.filter(item => item.quiz == thisQuizIsTheFirstQuiz);
+        //   console.log(firstQuiz.length);
+            setMyQuizes(firstQuiz);
         })
         .catch(e => console.log(e));
     })();
   }, []);
 
   function nextQuizPlease() {
-    if(selected == null){ console.log("Ohoooooo") ; return}
-    if (quizIndex < 3 ) {
+    if (selected == null) {
+      console.log('Ohoooooo');
+      return;
+    }
+    if (quizIndex < 3) {
       setquizIndex(quizIndex + 1);
-      setGivenAnswers([...GivenAnswers , {duserAnswer : options[selected].value , correctAnswer : MyQuizes[quizIndex]?.correctAnswer , qustion : MyQuizes[quizIndex]?.question }])
+      dispatch(
+        setGivenAnswers([
+          ...GivenAnswers,
+          {
+            userAnswer: options[selected].value,
+            correctAnswer: MyQuizes[quizIndex]?.correctAnswer,
+            question: MyQuizes[quizIndex]?.question,
+          },
+        ]),
+      );
       setSelected(null);
-      console.log(options)
     } else {
-        GivenAnswers.forEach((answer)=>console.log(answer))
-        setloader(true)
+      setloader(true);
+      dispatch(
+        setGivenAnswers([
+          ...GivenAnswers,
+          {
+            userAnswer: options[selected].value,
+            correctAnswer: MyQuizes[quizIndex]?.correctAnswer,
+            question: MyQuizes[quizIndex]?.question,
+          },
+        ]),
+      );
 
+      navigation.navigate('ShowResults');
     }
   }
 
@@ -76,7 +97,7 @@ const Quizes = () => {
             <RadioBox
               options={options}
               //selectedValue={5} // Initially selected value
-            //   onSelect={value => console.log('Selected value:', value)}
+              //   onSelect={value => console.log('Selected value:', value)}
               selected={selected}
               setSelected={setSelected}
             />
@@ -93,4 +114,3 @@ const Quizes = () => {
 
 export default Quizes;
 
-const styles = StyleSheet.create({});
