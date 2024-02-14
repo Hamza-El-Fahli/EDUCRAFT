@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native';
 
-const RadioBox = ({options, selectedValue, onSelect}) => {
-  const [selected, setSelected] = useState(selectedValue || null);
+const RadioBox = ({options, selectedValue, onSelect,selected, setSelected}) => {
 
   const handlePress = value => {
     setSelected(value);

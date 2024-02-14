@@ -17,6 +17,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Quizes" component={Quizes} />
           <Stack.Screen
             name="Login"
             component={Login}
@@ -41,7 +42,6 @@ const App = () => {
             component={Profile}
             options={{headerShown: false}}
           />
-          <Stack.Screen name="Quizes" component={Quizes} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

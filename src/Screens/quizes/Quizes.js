@@ -1,7 +1,4 @@
 import {
-  Image,
-  Pressable,
-  SafeAreaView,
   ActivityIndicator,
   StyleSheet,
   Text,
@@ -18,15 +15,17 @@ import {_API_URL} from '../../GlobalConfig';
 const Quizes = () => {
   const [loader, setloader] = useState(false);
   const [MyQuizes, setMyQuizes] = useState([]);
+  const [quizIndex, setquizIndex] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [GivenAnswers, setGivenAnswers] = useState([])
 
-  const chapters = useSelector(state => state.course.chapter);
   const selectedChapter = useSelector(state => state.course.selectedChapter);
   const options = [
-    {value: 0, label: MyQuizes ? MyQuizes[0]?.answers[0] : null},
-    {value: 1, label: MyQuizes ? MyQuizes[0]?.answers[1] : null},
-    {value: 2, label: MyQuizes ? MyQuizes[0]?.answers[2] : null},
-    {value: 3, label: MyQuizes ? MyQuizes[0]?.answers[3] : null},
-  ].sort(() => Math.random() - 0.5);
+    {value: 0, label: MyQuizes ? MyQuizes[quizIndex]?.answers[0] : null},
+    {value: 1, label: MyQuizes ? MyQuizes[quizIndex]?.answers[1] : null},
+    {value: 2, label: MyQuizes ? MyQuizes[quizIndex]?.answers[2] : null},
+    {value: 3, label: MyQuizes ? MyQuizes[quizIndex]?.answers[3] : null},
+  ];
   useEffect(() => {
     (async function () {
       axios
@@ -34,12 +33,26 @@ const Quizes = () => {
         .then(async result => {
           const quizes = await result.data;
           const firstQuiz = quizes.filter(item => item.quiz == 1);
-          console.log(firstQuiz[0]);
           setMyQuizes(firstQuiz);
         })
         .catch(e => console.log(e));
     })();
   }, []);
+
+  function nextQuizPlease() {
+    if(selected == null){ console.log("Ohoooooo") ; return}
+    if (quizIndex < 3 ) {
+      setquizIndex(quizIndex + 1);
+      setGivenAnswers([...GivenAnswers , {duserAnswer : options[selected].value , correctAnswer : MyQuizes[quizIndex]?.correctAnswer , qustion : MyQuizes[quizIndex]?.question }])
+      setSelected(null);
+      console.log(options)
+    } else {
+        GivenAnswers.forEach((answer)=>console.log(answer))
+        setloader(true)
+
+    }
+  }
+
   return (
     <View style={styles.container}>
       {loader ? (
@@ -56,19 +69,21 @@ const Quizes = () => {
 
           <View style={styles.Qestion}>
             <Text>Question</Text>
-            <Text>{MyQuizes[0]?.question}</Text>
+            <Text>{MyQuizes[quizIndex]?.question}</Text>
           </View>
 
           <View style={styles.answers}>
             <RadioBox
               options={options}
-              //   selectedValue={2} // Initially selected value
-              onSelect={value => console.log('Selected value:', value)}
+              //selectedValue={5} // Initially selected value
+            //   onSelect={value => console.log('Selected value:', value)}
+              selected={selected}
+              setSelected={setSelected}
             />
           </View>
 
           <View style={styles.btn}>
-            <Button title="Continue" />
+            <Button title="Continue" onPress={() => nextQuizPlease()} />
           </View>
         </>
       )}
