@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setUserName} from '../../store/userSlice';
 import axios from 'axios';
 
-import { _WEB_URL} from '../../GlobalConfig';
+import {_API_URL} from '../../GlobalConfig';
 
 const Login = ({navigation}) => {
   const [Email, setemail] = useState('');
@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
   let username = useSelector(state => state.user.username);
   const checkUserAPI = async (email, password) => {
     axios
-      .get(`${_WEB_URL}/isuser/${email}/${password}`)
+      .get(`${_API_URL}/isuser/${email}/${password}`)
       .then(response => {
         let userData = response.data;
         if (userData.name) {

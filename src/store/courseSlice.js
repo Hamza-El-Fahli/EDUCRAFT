@@ -1,13 +1,13 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {TempChapters} from './tmpChapters'
+import {TempChapters} from './tmpChapters';
 
-import { _WEB_URL,_MOBILE_URL } from '../GlobalConfig';
+import {_API_URL, _MOBILE_URL} from '../GlobalConfig';
 
 const initialState = {
   course: 1,
   module: [],
   chapter: TempChapters,
-  quiz:[],
+  quiz: [],
   selectedModule: 0,
 };
 
@@ -79,19 +79,7 @@ const courseReducer = createSlice({
 //   },
 // );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const {setCourse, setModules , setChapters, setSelectedModule} = courseReducer.actions;
+export const {setCourse, setModules, setChapters, setSelectedModule} =
+  courseReducer.actions;
 
 export default courseReducer.reducer;

@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import { _WEB_URL } from '../GlobalConfig';
+import {_API_URL} from '../GlobalConfig';
 const ip = '192.168.6.1';
 const port = '7676';
 
@@ -14,7 +14,7 @@ const appSlice = createSlice({
   reducers: {
     setUserName: (state, action) => {
       state.username = action.payload;
-    }
+    },
   },
   // extraReducers: builder => {
   //   builder.addCase(isUser.pending, () => {});

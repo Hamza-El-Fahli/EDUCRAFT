@@ -1,14 +1,38 @@
-import {Animated, Pressable, Text, View} from 'react-native';
-import React from 'react';
+import {Pressable, Text, View, ActivityIndicator} from 'react-native';
+import axios from 'axios';
+import React, {useState} from 'react';
 import styles from '../styles/styles';
-import { useDispatch, useSelector} from 'react-redux';
-import { setSelectedModule } from '../store/courseSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {setSelectedModule, setChapters} from '../store/courseSlice';
+import {_API_URL} from '../GlobalConfig';
+
 const Body = ({navigation}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const username = useSelector(state => state.user.username);
-  const userModules= useSelector(state=> state.course.module)
-  const selectedModule = useSelector(state => state.course.selectedModule)
-  
+  const userModules = useSelector(state => state.course.module);
+  const selectedModule = useSelector(state => state.course.selectedModule);
+
+  const [btnLoader, setbtnLoader] = useState(false);
+
+  function getChapters() {
+    setbtnLoader(true);
+    axios
+      .get(`${_API_URL}/chapters/${selectedModule + 1}`) // because stored with -1
+      .then(async result => {
+        const loadedChapters = await result.data;
+        console.log(loadedChapters);
+        dispatch(setChapters(loadedChapters));
+        setbtnLoader(false);
+        navigation.navigate('Quiz')
+      })
+      .catch(e => {
+        console.log(
+          `error in chapters ,${_API_URL}/chapters/${selectedModule}    ${e}`,
+        );
+        setbtnLoader(false);
+      });
+  }
+
   return (
     <View style={styles.body}>
       <View style={styles.welcom}>
@@ -16,12 +40,12 @@ const Body = ({navigation}) => {
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      <Slides navigation={navigation} />
+      <Slides getChapters={getChapters} btnLoader={btnLoader} />
 
       <View style={styles.nav_btns}>
         {userModules.map(oneChapter => {
           let moduleOrder = oneChapter.order;
-          if (moduleOrder == selectedModule+1)
+          if (moduleOrder == selectedModule + 1)
             return (
               <Pressable style={{padding: 10}} key={oneChapter.id}>
                 <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
@@ -30,7 +54,12 @@ const Body = ({navigation}) => {
               </Pressable>
             );
           return (
-            <Pressable style={{padding: 10}} onPress={() => {dispatch(setSelectedModule(oneChapter.order-1))}} key={oneChapter.id}>
+            <Pressable
+              style={{padding: 10}}
+              onPress={() => {
+                dispatch(setSelectedModule(oneChapter.order - 1));
+              }}
+              key={oneChapter.id}>
               <Text style={styles.nav_btn}>.</Text>
             </Pressable>
           );
@@ -40,10 +69,9 @@ const Body = ({navigation}) => {
   );
 };
 
-const Slides = ({ navigation}) => {
-
-  const userModules= useSelector(state=> state.course.module)
-  const selectedModule = useSelector(state => state.course.selectedModule)
+const Slides = ({getChapters, btnLoader}) => {
+  const userModules = useSelector(state => state.course.module);
+  const selectedModule = useSelector(state => state.course.selectedModule);
 
   ////////////////////////////////
   const progression = 100;
@@ -51,7 +79,9 @@ const Slides = ({ navigation}) => {
   return (
     <View style={{...styles.slide}}>
       <View style={{...styles.slide_item}}>
-        <Text style={styles.slide_item_title}>{selectedModule+1 + ' : '+userModules[selectedModule]?.title}</Text>
+        <Text style={styles.slide_item_title}>
+          {selectedModule + 1 + ' : ' + userModules[selectedModule]?.title}
+        </Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>
         </Pressable>
@@ -78,18 +108,21 @@ const Slides = ({ navigation}) => {
             </View>
           )
         }
-
         <Pressable
-          onPress={() => {
-            navigation.navigate('Quiz')
-          }}
+          onPress={() => getChapters()}
           style={styles.slide_item_btn_grp}>
           <Text style={styles.slide_item_btn}>
-            {
-              /*currentModule[selectedModule].*/ progression < 100
-                ? 'CONTINUE'
-                : 'REVIEW'
-            }
+            {btnLoader ? (
+              <ActivityIndicator size="small" color="#0000ff" />
+            ) : (
+              <>
+                {
+                  /*currentModule[selectedModule].*/ progression < 100
+                    ? 'CONTINUE'
+                    : 'REVIEW'
+                }
+              </>
+            )}
           </Text>
         </Pressable>
       </View>
