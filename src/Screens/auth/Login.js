@@ -3,7 +3,10 @@ import {Pressable, View, Text, TextInput, Image} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {isUser} from '../../store/userSlice';
+import {setUserName} from '../../store/userSlice';
+import axios from 'axios';
+
+import { _WEB_URL} from '../../GlobalConfig';
 
 const Login = ({navigation}) => {
   const [Email, setemail] = useState('');
@@ -12,16 +15,19 @@ const Login = ({navigation}) => {
 
   let username = useSelector(state => state.user.username);
   const checkUserAPI = async (email, password) => {
-    try {
-      await dispacth(isUser({email, password}));
-    } catch (e) {
-      console.log('problem with api');
-    }
+    axios
+      .get(`${_WEB_URL}/isuser/${email}/${password}`)
+      .then(response => {
+        let userData = response.data;
+        if (userData.name) {
+          dispacth(setUserName(userData.name));
+          navigation.navigate('Home');
+        }
+      })
+      .catch(error => {
+        console.log('api error ', error);
+      });
   };
-useEffect(()=>{
-if(username != '')  navigation.navigate('Home');
-
-},[username])
   return (
     <View>
       <View style={styles.auth_container}>
@@ -63,13 +69,8 @@ if(username != '')  navigation.navigate('Home');
         </Text>
       </Pressable>
 
-      
-      <Pressable onPress={()=>{
-          
-        }}>
-            <Text >
-                Navigate to Main
-            </Text>
+      <Pressable onPress={() => {}}>
+        <Text>Navigate to Main</Text>
       </Pressable>
     </View>
   );
