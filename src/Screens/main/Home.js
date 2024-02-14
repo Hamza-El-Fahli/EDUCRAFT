@@ -6,6 +6,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
+
+import axios from 'axios';
+
 import styles from '../../styles/styles';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -14,55 +17,50 @@ import Body from '../../components/Body';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {
-  setModulesWithApi,
+  setModules,
   setSelectedModule,
   setChapter,
 } from '../../store/courseSlice';
+import {_API_URL} from '../../GlobalConfig';
 
 const Home = ({navigation}) => {
-
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const course = useSelector(state => state.course.course);
   const selectedModule = useSelector(state => state.course.selectedModule);
-  const userModules= useSelector(state=> state.course.module)
+  const userModules = useSelector(state => state.course.module);
 
-  async function GetThoseModules() {
-    await dispatch(setModulesWithApi(course));
-    setLoading(false);
-  }
-  async function GetThoseChapters() {
-    await dispatch(setChapter(userModules[selectedModule]?.id));
-    // console.log(userModules[selectedModule])
-    setLoading(false);
-  }
+ 
 
   useEffect(() => {
-    GetThoseModules();
+    (function () {
+      axios
+        .get(`${_API_URL}/modules/${course}`)
+        .then(async result => {
+          const loadedModules = await result.data;
+          // console.log(loadedModules.course)
+          if (userModules.length < 1 || userModules[0].course !== course)
+            dispatch(setModules(loadedModules));
+          setLoading(false);
+        })
+        .catch(e => console.log(`error in modules , ${e}`));
+    })();
   }, [course]);
 
-  useEffect(() => {
-    GetThoseChapters();
-  }, [userModules]);
-
-  
   return (
     <View style={styles.container}>
       <Header styles={styles} />
-      {/* {loading ? (
+      {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <> */}
-     
-        <Body
-          styles={styles}
-          setSelectedModule={setSelectedModule}
-          navigation={navigation}
-        />
-      
-      {/* </>
-      )} */}
+        <>
+          <Body
+            styles={styles}
+            navigation={navigation}
+          />
+        </>
+      )}
       <Footer navigation={navigation} styles={styles} currentPage="Home" />
     </View>
   );

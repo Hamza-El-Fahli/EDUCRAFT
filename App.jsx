@@ -20,15 +20,14 @@ const App = () => {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{title: 'Login'}}
-          />
+            options={{headerShown: false}}          />
           {/* <Stack.Screen
             name="Register"
             component={Register}
           /> */}
-          <Stack.Screen name="Quiz" component={Quiz} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Quiz" component={Quiz} options={{headerShown: false}}/>
+          <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+          <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

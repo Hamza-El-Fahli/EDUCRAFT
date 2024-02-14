@@ -1,27 +1,45 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, View, Text, TextInput, Image} from 'react-native';
+import {Pressable, View, Text, TextInput, Image, Alert , ActivityIndicator} from 'react-native';
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {isUser} from '../../store/userSlice';
+import {setUserName} from '../../store/userSlice';
+import axios from 'axios';
+
+import {_API_URL} from '../../GlobalConfig';
 
 const Login = ({navigation}) => {
   const [Email, setemail] = useState('');
   const [Password, setpassword] = useState('');
   const dispacth = useDispatch();
+  const [btnLoader, setbtnLoader] = useState(false);
 
   let username = useSelector(state => state.user.username);
   const checkUserAPI = async (email, password) => {
-    try {
-      await dispacth(isUser({email, password}));
-    } catch (e) {
-      console.log('problem with api');
-    }
-  };
-useEffect(()=>{
-if(username != '')  navigation.navigate('Home');
+    const cancelTokenSource = axios.CancelToken.source();
+    setbtnLoader(true);
 
-},[username])
+    axios
+      .get(`${_API_URL}/isuser/${email}/${password}`, {
+        cancelToken: cancelTokenSource.token,
+      })
+      .then(response => {
+        let userData = response.data;
+        if (userData.name) {
+          console.log(userData.name)
+          dispacth(setUserName(userData.name));
+          setbtnLoader(false);
+          navigation.navigate('Home');
+        }
+      })
+      .catch(error => {
+        setbtnLoader(false);
+        Alert.alert('api error','Verify your wifi connection');
+      });
+      setTimeout(() => {
+        cancelTokenSource.cancel('Request cancelled after 2 seconds');
+      }, 2000);
+  };
   return (
     <View>
       <View style={styles.auth_container}>
@@ -51,7 +69,13 @@ if(username != '')  navigation.navigate('Home');
       <Pressable
         onPress={() => checkUserAPI(Email, Password, navigation)}
         style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
+        {btnLoader ? (
+              <ActivityIndicator size="large" color="#0000ff" />
+            ) : (
+              <>
+              <Text style={styles.loginButtonText}>LOGIN TO EDUCRAFT</Text>
+              </>
+            )}
       </Pressable>
 
       <Pressable
@@ -63,14 +87,6 @@ if(username != '')  navigation.navigate('Home');
         </Text>
       </Pressable>
 
-      
-      <Pressable onPress={()=>{
-          
-        }}>
-            <Text >
-                Navigate to Main
-            </Text>
-      </Pressable>
     </View>
   );
 };
