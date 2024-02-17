@@ -6,7 +6,7 @@ import RadioBox from '../../components/RadioBox';
 import axios from 'axios';
 import {_API_URL} from '../../GlobalConfig';
 import {useNavigation} from '@react-navigation/native';
-import styles from '../../styles/styles';
+import styles from '../../styles/quizesStyle';
 const Quizes = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -26,14 +26,17 @@ const Quizes = () => {
   ];
   useEffect(() => {
     (async function () {
-        const thisQuizIsTheFirstQuiz = 1
+      dispatch(setGivenAnswers([]));
+      const thisQuizIsTheFirstQuiz = 1;
       axios
         .get(`${_API_URL}/tests/${selectedChapter}/${thisQuizIsTheFirstQuiz}`)
         .then(async result => {
           const quizes = await result.data;
-          const firstQuiz = quizes.filter(item => item.quiz == thisQuizIsTheFirstQuiz);
-        //   console.log(firstQuiz.length);
-            setMyQuizes(firstQuiz);
+          const firstQuiz = quizes.filter(
+            item => item.quiz == thisQuizIsTheFirstQuiz,
+          );
+          //   console.log(firstQuiz.length);
+          setMyQuizes(firstQuiz);
         })
         .catch(e => console.log(e));
     })();
@@ -58,7 +61,7 @@ const Quizes = () => {
       );
       setSelected(null);
     } else {
-      setloader(true);
+      //   setloader(true);
       dispatch(
         setGivenAnswers([
           ...GivenAnswers,
@@ -84,13 +87,15 @@ const Quizes = () => {
         />
       ) : (
         <>
-          <View style={styles.header}>
-            <Text>X -------------</Text>
+          <View style={styles.quiz_header}>
+            <Text style={styles.quiz_header}>X -------------</Text>
           </View>
 
-          <View style={styles.Qestion}>
-            <Text>Question</Text>
-            <Text>{MyQuizes[quizIndex]?.question}</Text>
+          <View style={styles.Question}>
+            <Text style={styles.question_label}>Question</Text>
+            <Text style={styles.question_content}>
+              {MyQuizes[quizIndex]?.question}
+            </Text>
           </View>
 
           <View style={styles.answers}>
@@ -113,4 +118,3 @@ const Quizes = () => {
 };
 
 export default Quizes;
-

@@ -1,20 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useSelector } from 'react-redux'
-
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {useSelector} from 'react-redux';
+import styles from '../../styles/quizesStyle';
 const ShowResults = () => {
-    const GivenAnswers = useSelector(state=>state.course.GivenAnswers)
+  const GivenAnswers = useSelector(state => state.course.GivenAnswers);
   return (
-    <View>
-      {GivenAnswers.map((answer,index)=>{
+    <View style={styles.container}>
+      {GivenAnswers.map((answer, index) => {
         return (
-            <Text key={index}>Question {index+1} : {answer.question} is {answer.userAnswer == answer.correctAnswer ? 'Correct' : 'Incorrect'} </Text>
-        )
+          <Text style={styles.showResult} key={index}>
+            Question {index + 1} : {answer.question} is{' '}
+            <Text
+              style={{
+                ...styles.showResult,
+                backgroundColor: 'rgba(217, 217, 217, 0.5)',
+                color:
+                  answer.userAnswer == answer.correctAnswer
+                    ? '#00ff00'
+                    : '#ff0000',
+              }}>
+              {answer.userAnswer == answer.correctAnswer
+                ? 'Correct'
+                : 'Incorrect'}{' '}
+            </Text>
+          </Text>
+        );
       })}
     </View>
-  )
-}
+  );
+};
 
-export default ShowResults
-
-const styles = StyleSheet.create({})
+export default ShowResults;
