@@ -18,52 +18,52 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* ▼▼ Login Screen ▼▼ */}
+          {/* ▼ Login Screen ▼ */}
           <Stack.Screen
             name="Login"
             component={Login}
             options={{headerShown: false}}
           />
-          {/* ▲▲ Login Screen ▲▲  */}
+          {/* ▲ Login Screen ▲  */}
 
-          {/* ▼▼ Quizes Screen ▼▼ */}
+          {/* ▼ Quizes Screen ▼ */}
           <Stack.Screen name="Quizes" component={Quizes} />
-          {/* ▲▲ Quizes Screen ▲▲  */}
-          {/* ▼▼ Chapters Screen ▼▼ */}
+          {/* ▲ Quizes Screen ▲  */}
+          {/* ▼ Chapters Screen ▼ */}
 
           <Stack.Screen
             name="ChaptersPage"
             component={ChaptersPage}
             options={{headerShown: false}}
           />
-          {/* ▲▲ Chapters Screen ▲▲  */}
-          {/* ▼▼ Home Screen ▼▼ */}
+          {/* ▲ Chapters Screen ▲  */}
+          {/* ▼ Home Screen ▼ */}
           <Stack.Screen
             name="Home"
             component={Home}
             options={{headerShown: false}}
           />
-          {/* ▲▲ Home Screen ▲▲  */}
-          {/* ▼▼ Profile Screen ▼▼ */}
+          {/* ▲ Home Screen ▲  */}
+          {/* ▼ Profile Screen ▼ */}
           <Stack.Screen
             name="Profile"
             component={Profile}
             options={{headerShown: false}}
           />
-          {/* ▲▲ Profile Screen ▲▲  */}
-          {/* ▼▼ Quiz results Screen ▼▼ */}
+          {/* ▲ Profile Screen ▲  */}
+          {/* ▼ Quiz results Screen ▼ */}
           <Stack.Screen
             name="ShowResults"
             component={ShowResults}
             options={{headerShown: true}}
           />
-          {/* ▲▲ Quiz results Screen ▲▲  */}
-          {/* ▼▼ Register Screen ▼▼ */}
+          {/* ▲ Quiz results Screen ▲  */}
+          {/* ▼ Register Screen ▼ */}
           <Stack.Screen
         name="Register"
         component={Register}
       />
-          {/* ▲▲ Register Screen ▲▲ */}
+          {/* ▲ Register Screen ▲ */}
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
