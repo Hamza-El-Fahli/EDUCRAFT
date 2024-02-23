@@ -44,7 +44,7 @@ const Quizes = () => {
 
   function nextQuizPlease() {
     if (selected == null) {
-      console.log('Ohoooooo');
+      // console.log('Ohoooooo');
       return;
     }
     if (quizIndex < 3) {
@@ -79,14 +79,17 @@ const Quizes = () => {
 
   return (
     <View style={styles.container}>
+      {/* ▼ Show loaders untill fetch completed ▼ */}
       {loader ? (
         <ActivityIndicator
           size="x-larg"
           style={{alignSelf: 'center', marginTop: '50%'}}
           color="#0000ff"
-        />
-      ) : (
-        <>
+          />
+          ) : (
+            <>
+            {/* ▲ Show loaders untill fetch completed ▲ */}
+        {/* ▼ Show Questions when fetch completed ▼ */}
           <View style={styles.quiz_header}>
             <Text style={styles.quiz_header}>X -------------</Text>
           </View>
@@ -111,7 +114,9 @@ const Quizes = () => {
           <View style={styles.btn}>
             <Button title="Continue" onPress={() => nextQuizPlease()} />
           </View>
+          {/* ▲ Show Questions when fetch completed ▲ */}
         </>
+
       )}
     </View>
   );

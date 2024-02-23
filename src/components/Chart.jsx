@@ -4,6 +4,14 @@ const editProfile = require('./../images/svg/editProfile.png')
 
 
 const Chart = ({styles}) => {
+
+  //    LEFT              |                 RIGHT 
+  //                      |                  ______
+  //                      |                 |     |
+  // Hamza el fahli       |                 |  H  | 
+  //  2eme annee          |                 |     |
+  //  tssri               |                 -------
+  //
   return (
     <View style={styles.Chart}>
       <View style={styles.ChartLeft}>

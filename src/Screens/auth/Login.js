@@ -17,18 +17,18 @@ import axios from 'axios';
 import {_API_URL} from '../../GlobalConfig';
 
 const Login = ({navigation}) => {
-  // setup states 
+  // setup states
   const [Email, setemail] = useState('');
   const [Password, setpassword] = useState('');
   const dispacth = useDispatch();
   const [btnLoader, setbtnLoader] = useState(false);
 
-    // When user clicked the login button
+  // When user clicked the login button
   const checkUserAPI = async (email, password) => {
     // if the request took more than 2s cancel it
     const cancelTokenSource = axios.CancelToken.source();
     setbtnLoader(true);
-//  make the request
+    //  make the request
     axios
       .get(`${_API_URL}/isuser/${email}/${password}`, {
         cancelToken: cancelTokenSource.token,
@@ -49,7 +49,7 @@ const Login = ({navigation}) => {
         Alert.alert('Email/Password incorrect', `try 0 and 0`);
       });
     setTimeout(() => {
-      //  if no response cancel after 2s 
+      //  if no response cancel after 2s
       cancelTokenSource.cancel('Request cancelled after 2 seconds');
     }, 2000);
   };
@@ -86,9 +86,9 @@ const Login = ({navigation}) => {
         {/* ▼ Forgot password ▼ */}
         <Text style={styles.loginForgotPassword}>Forgot your password ? </Text>
         {/* ▲ Forgot password ▲ */}
-        </View>
-        {/* ▼ the Login button ▼ */}
-        <Pressable
+      </View>
+      {/* ▼ the Login button ▼ */}
+      <Pressable
         onPress={() => checkUserAPI(Email, Password, navigation)}
         style={styles.loginButton}>
         {btnLoader ? (
@@ -99,9 +99,9 @@ const Login = ({navigation}) => {
           </>
         )}
       </Pressable>
-        {/* ▲ the Login button ▲ */}
+      {/* ▲ the Login button ▲ */}
 
-        {/* ▼ the Register link ▼ */}
+      {/* ▼ the Register link ▼ */}
       <Pressable
         onPress={() => {
           navigation.navigate('Register');
@@ -110,8 +110,8 @@ const Login = ({navigation}) => {
           Don't have an account ? Register
         </Text>
       </Pressable>
-        {/* ▲ the Register link ▲ */}
-        </View>
+      {/* ▲ the Register link ▲ */}
+    </View>
   );
 };
 

@@ -9,11 +9,19 @@ import Footer from '../../components/Footer'
 const Profile = ({navigation }) => {
   return (
     <View style={styles.container}>
+
         <Header styles={styles} screen='Profile' navigation={navigation} />
+        {/* ▼ Show User data ▼  */}
         <Chart  styles={styles}/>
+        {/* ▲ Show User data ▲  */}
+                {/* ▼ Show A horizontal line ▼  */}
+
         <View style={styles.hr} />
-        <Statistics styles={styles} />
-        <Footer navigation={navigation} styles={styles} currentPage='Profile' />
+                {/* ▲ Show A horizontal line ▲  */}
+                {/* ▼ Show user statistics , xp and trophies ▼  */}
+                <Statistics styles={styles} />
+                {/* ▲ Show user statistics , xp and trophies ▲  */}
+                <Footer navigation={navigation} styles={styles} currentPage='Profile' />
     </View>
   )
 }

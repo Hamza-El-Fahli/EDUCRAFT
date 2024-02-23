@@ -6,6 +6,7 @@ const ShowResults = () => {
   const GivenAnswers = useSelector(state => state.course.GivenAnswers);
   return (
     <View style={styles.container}>
+      {/* Map through all the Given answers  */}
       {GivenAnswers.map((answer, index) => {
         return (
           <Text style={styles.showResult} key={index}>
