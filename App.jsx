@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from './src/Screens/main/Home';
-import Login from './src/Screens/auth/Login';
 // import Register from './src/Screens/auth/Register';
+// import Login from './src/Screens/auth/Login';
+import Login from './src/Screens/auth/Login';
 import Profile from './src/Screens/profile/Profile';
 import ChaptersPage from './src/Screens/quizes/ChaptersPage';
 import Quizes from './src/Screens/quizes/Quizes';
@@ -26,9 +27,13 @@ const App = () => {
           />
           {/* ▲ Login Screen ▲  */}
 
-          {/* ▼ Quizes Screen ▼ */}
-          <Stack.Screen name="Quizes" component={Quizes} />
-          {/* ▲ Quizes Screen ▲  */}
+          {/* ▼ Home Screen ▼ */}
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{headerShown: false}}
+          />
+          {/* ▲ Home Screen ▲  */}
           {/* ▼ Chapters Screen ▼ */}
 
           <Stack.Screen
@@ -37,13 +42,6 @@ const App = () => {
             options={{headerShown: false}}
           />
           {/* ▲ Chapters Screen ▲  */}
-          {/* ▼ Home Screen ▼ */}
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{headerShown: false}}
-          />
-          {/* ▲ Home Screen ▲  */}
           {/* ▼ Profile Screen ▼ */}
           <Stack.Screen
             name="Profile"
@@ -58,11 +56,14 @@ const App = () => {
             options={{headerShown: true}}
           />
           {/* ▲ Quiz results Screen ▲  */}
+          {/* ▼ Quizes Screen ▼ */}
+          <Stack.Screen name="Quizes" component={Quizes} />
+          {/* ▲ Quizes Screen ▲  */}
           {/* ▼ Register Screen ▼ */}
-          <Stack.Screen
+          {/* <Stack.Screen
         name="Register"
         component={Register}
-      />
+      /> */}
           {/* ▲ Register Screen ▲ */}
         </Stack.Navigator>
       </NavigationContainer>

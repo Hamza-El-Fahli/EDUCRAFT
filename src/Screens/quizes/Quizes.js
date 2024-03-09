@@ -1,4 +1,4 @@
-import {ActivityIndicator, StyleSheet, Text, View, Button} from 'react-native';
+import {ActivityIndicator,  Text, View, Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {setGivenAnswers} from '../../store/courseSlice';
@@ -6,7 +6,7 @@ import RadioBox from '../../components/RadioBox';
 import axios from 'axios';
 import {_API_URL} from '../../GlobalConfig';
 import {useNavigation} from '@react-navigation/native';
-import styles from '../../styles/quizesStyle';
+import styles from '../../styles/quizesStyle.js';
 const Quizes = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();

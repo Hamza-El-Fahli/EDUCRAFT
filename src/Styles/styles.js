@@ -3,10 +3,6 @@ import Colors from './colors'
 
 
 
-
-
-
-
 const styles = StyleSheet.create({
   auth_container:{
     paddingLeft : 30,
@@ -540,8 +536,7 @@ const styles = StyleSheet.create({
 
 })
 
-
-  export default styles
+export default styles
 
 
 
