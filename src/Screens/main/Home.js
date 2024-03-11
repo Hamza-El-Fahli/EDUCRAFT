@@ -29,6 +29,7 @@ const Home = ({navigation}) => {
   // Get Modules from server ▼
   useEffect(() => {
     (function () {
+      if(SelectedCourse == 1 ) return
       axios
         .get(`${Next_Modules}?course_id=${SelectedCourse}`)
         .then(result => {
