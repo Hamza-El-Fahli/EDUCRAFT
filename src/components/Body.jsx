@@ -47,11 +47,11 @@ const Body = ({navigation}) => {
       <Slides getChapters={getChapters} btnLoader={btnLoader} />
 
       <View style={styles.nav_btns}>
-        {userModules.map(oneChapter => {
-          let moduleOrder = oneChapter.order;
-          if (moduleOrder == selectedModule + 1)
+        {userModules.map((oneModules,index) => {
+          let moduleOrder = oneModules.order;
+          if (index == selectedModule)
             return (
-              <Pressable style={{padding: 10}} key={oneChapter.id}>
+              <Pressable style={{padding: 10}} key={oneModules.id}>
                 <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
                   .
                 </Text>
@@ -61,9 +61,9 @@ const Body = ({navigation}) => {
             <Pressable
               style={{padding: 10}}
               onPress={() => {
-                dispatch(setSelectedModule(oneChapter.order - 1));
+                dispatch(setSelectedModule(index));
               }}
-              key={oneChapter.id}>
+              key={oneModules.id}>
               <Text style={styles.nav_btn}>.</Text>
             </Pressable>
           );
@@ -76,7 +76,6 @@ const Body = ({navigation}) => {
 const Slides = ({getChapters, btnLoader}) => {
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
-
   ////////////////////////////////
   const progression = 100;
   ////////////////////////////
@@ -84,7 +83,7 @@ const Slides = ({getChapters, btnLoader}) => {
     <View style={{...styles.slide}}>
       <View style={{...styles.slide_item}}>
         <Text style={styles.slide_item_title}>
-          {selectedModule + 1 + ' : ' + userModules[selectedModule]?.title}
+          {selectedModule + 1 + ' : ' + userModules[selectedModule]?.module_name}
         </Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>

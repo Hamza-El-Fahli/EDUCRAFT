@@ -6,5 +6,6 @@ export const _MOBILE_URL = `http://${_IP}:${_PORT}/mobile`;
 
 export const Next_Users = 'http://192.168.56.1:3000/api/users'
 export const Next_Courses = 'http://192.168.56.1:3000/api/courses'
+export const Next_Modules = 'http://192.168.56.1:3000/api/modules'
 
 
