@@ -51,7 +51,7 @@ const Body = ({navigation}) => {
           let moduleOrder = oneModules.order;
           if (index == selectedModule)
             return (
-              <Pressable style={{padding: 10}} key={oneModules.id}>
+              <Pressable style={{padding: 10}} key={index}>
                 <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
                   .
                 </Text>
@@ -63,7 +63,7 @@ const Body = ({navigation}) => {
               onPress={() => {
                 dispatch(setSelectedModule(index));
               }}
-              key={oneModules.id}>
+              key={index}>
               <Text style={styles.nav_btn}>.</Text>
             </Pressable>
           );

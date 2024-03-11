@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
@@ -35,7 +36,7 @@ const Home = ({navigation}) => {
           if (userModules.length < 1 || userModules[0].course_id !== SelectedCourse)
             dispatch(setModules(loadedModules));
           setLoading(false);
-          console.log(loadedModules)
+          // console.log(loadedModules)
         })
         .catch(e => Alert.alert('Modules not found', `Check your internet connection`));
     })();
