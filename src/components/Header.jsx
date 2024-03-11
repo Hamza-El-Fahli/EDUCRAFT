@@ -1,5 +1,5 @@
 import {Pressable, Text, View, Image} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Logo from './../images/svg/Logo';
 import Flame from './../images/svg/Flame';
 import styles from '../styles/styles';
@@ -9,6 +9,8 @@ const configIcon = require('./../images/svg/configIcon.png');
 import {setCourse} from '../store/courseSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import { useRoute } from '@react-navigation/native';
+import axios from 'axios';
+import { Next_Courses } from '../GlobalConfig';
 
 let data = [
   {id: 1, title: 'CCNA 1'},
@@ -17,10 +19,25 @@ let data = [
   {id: 4, title: 'CCNA 4'},
 ];
 const Header = ({screen,   navigation}) => {
+  const [Courses, setCourses] = useState([])
   const dispatch = useDispatch();
   const currrentPage = useRoute()
-  const course = useSelector(state => state.course.course);
+  const SelectedCourse = useSelector(state => state.course.course);
   const [drop, setdrop] = useState(false);
+
+useEffect(()=>{
+    axios.get(`${Next_Courses}`)
+    .then((res)=>{
+      setCourses(res.data)
+      dispatch(setCourse(res.data[0]._id));
+
+      console.log('courses are here')
+    })
+    .catch((error)=>{
+      console.log('no courses fetched from next ',error)
+    })
+},[])
+
   return (
     <View style={styles.header}>
       <Pressable
@@ -32,7 +49,7 @@ const Header = ({screen,   navigation}) => {
             navigation.goBack()
           }
         }}>
-        <Text style={styles.course}>CCNA {course}</Text>
+        <Text style={styles.course}>{Courses.find((course)=>course._id == SelectedCourse)?.course_name}</Text>
       </Pressable>
 
       <View style={{...styles.dropDown, display: drop ? 'flex' : 'none'}}>
@@ -52,17 +69,16 @@ const Header = ({screen,   navigation}) => {
           }}
         />
 
-        {data.map(item => {
-          if (item.id === course) return;
-
+        {Courses.map((course,index) => {
+if(course._id == SelectedCourse ) return
           return (
             <Pressable
-              key={item.id}
+              key={index}
               onPress={() => {
-                dispatch(setCourse(item.id));
+                dispatch(setCourse(course._id));
                 setdrop(!drop);
               }}>
-              <Text style={styles.dropDown_item}>CCNA {item.id}</Text>
+              <Text style={styles.dropDown_item}>{course.course_name}</Text>
             </Pressable>
           );
         })}

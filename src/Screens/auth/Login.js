@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setUserName} from '../../store/userSlice';
 import axios from 'axios';
 
-import {_API_URL} from '../../GlobalConfig';
+import {Next_Users, _API_URL} from '../../GlobalConfig';
 
 const Login = ({navigation}) => {
   // setup states
@@ -30,28 +30,30 @@ const Login = ({navigation}) => {
     setbtnLoader(true);
     //  make the request
     axios
-      .get(`${_API_URL}/isuser/${email}/${password}`, {
-        cancelToken: cancelTokenSource.token,
-      })
-      .then(response => {
-        // if user found
-        let userData = response.data;
-        if (userData.name) {
-          console.log(userData.name);
-          dispacth(setUserName(userData.name));
-          setbtnLoader(false);
-          navigation.navigate('Home');
-        }
-      })
-      .catch(error => {
-        // if user not found
+    .post(`${Next_Users}`, { email, password }, {
+      cancelToken: cancelTokenSource.token,
+    })
+    .then(response => {
+      // if user found
+      let userData = response.data;
+      if (userData.name) {
+        console.log(userData.name);
+        dispacth(setUserName(userData.name));
         setbtnLoader(false);
-        Alert.alert('Email/Password incorrect', `try 0 and 0`);
-      });
-    setTimeout(() => {
-      //  if no response cancel after 2s
-      cancelTokenSource.cancel('Request cancelled after 2 seconds');
-    }, 2000);
+        navigation.navigate('Home');
+      }
+    })
+    .catch(error => {
+      // if user not found
+      setbtnLoader(false);
+      Alert.alert('Email/Password incorrect', `try 0 and 0`);
+    });
+  
+  // setTimeout inside the axios.post to cancel after 2s if no response
+  setTimeout(() => {
+    cancelTokenSource.cancel('Request cancelled after 2 seconds');
+  }, 2000);
+  
   };
   return (
     <View>

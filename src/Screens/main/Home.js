@@ -35,6 +35,7 @@ const Home = ({navigation}) => {
           if (userModules.length < 1 || userModules[0].course !== course)
             dispatch(setModules(loadedModules));
           setLoading(false);
+          console.log(loadedModules)
         })
         .catch(e => Alert.alert('Email/Password incorrect', `try 0 and 0`));
     })();
