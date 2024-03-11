@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import styles from '../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {setSelectedModule, setChapters} from '../store/courseSlice';
-import {_API_URL} from '../GlobalConfig';
+import {Next_Chapters, _API_URL} from '../GlobalConfig';
 
 const Body = ({navigation}) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Body = ({navigation}) => {
     const cancelTokenSource = axios.CancelToken.source();
     setbtnLoader(true);
     axios
-      .get(`${_API_URL}/chapters/${userModules[selectedModule].id}`, {
+      .get(`${Next_Chapters}?module_id=${userModules[selectedModule]._id}`, {
         cancelToken: cancelTokenSource.token,
       }) // because stored with -1
       .then(async result => {
@@ -28,7 +28,7 @@ const Body = ({navigation}) => {
       })
       .catch(e => {
         console.log(
-          `error in chapters ,${_API_URL}/chapters/${userModules[selectedModule].id}    ${e}`,
+          `error in chapters ,${Next_Chapters}/chapters/${userModules[selectedModule]._id}    ${e}`,
         );
         setbtnLoader(false);
       });
