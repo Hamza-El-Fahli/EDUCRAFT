@@ -19,7 +19,7 @@ const Chart = ({styles}) => {
   return (
     <View style={styles.Chart}>
       <View style={styles.ChartLeft}>
-        <Text style={styles.ChartLeft_title}>{user.name}</Text>
+        <Text style={styles.ChartLeft_title}>{capitalize(user.name)}</Text>
         <View style={styles.ChartLeft_data}>
         <Text style={styles.ChartLeft_data_year}>
           {user.annee > 1 ? user.annee+' eme Annee' : user.annee+' ere Annee'}
@@ -37,3 +37,13 @@ const Chart = ({styles}) => {
 
 export default Chart
 
+
+
+const capitalize = (str='')=>{
+  str.toLowerCase()
+  const res = []
+  str.split(' ').map((chr,index)=>{
+    res.push(`${chr.charAt(0).toUpperCase()}${chr.slice(1)} `)
+  })
+  return res.join('').trim()
+}
