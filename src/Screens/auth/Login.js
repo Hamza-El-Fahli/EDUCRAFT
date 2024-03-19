@@ -11,7 +11,7 @@ import {
 import logo from '../../images/1b.png';
 import styles from '../../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {setUserName} from '../../store/userSlice';
+import {setUserName , setUser} from '../../store/userSlice';
 import axios from 'axios';
 
 import {Next_Users, _API_URL} from '../../GlobalConfig';
@@ -39,6 +39,8 @@ const Login = ({navigation}) => {
       if (userData.name) {
         console.log(userData.name);
         dispacth(setUserName(userData.name));
+        dispacth(setUser(userData));
+        // console.log(userData)
         setbtnLoader(false);
         navigation.navigate('Home');
       }

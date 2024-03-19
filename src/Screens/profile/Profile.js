@@ -5,8 +5,8 @@ import styles from '../../styles/styles'
 import Chart from '../../components/Chart'
 import Statistics from '../../components/Statistics'
 import Footer from '../../components/Footer'
-
 const Profile = ({navigation }) => {
+
   return (
     <View style={styles.container}>
 
