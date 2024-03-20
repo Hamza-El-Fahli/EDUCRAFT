@@ -15,7 +15,7 @@ const Quizes = () => {
   return (
     <View style={styles.container}>
       <View style={styles.QuizHeader}>
-          <Text style={{position:'absolute',top:0,left:0}}>X</Text>
+          <Text style={{...styles.x,position:'absolute',left:0}}>X</Text>
           <View style={styles.QuizHeader_progressBG}>
               <View style={{...styles.QuizHeader_progressFG,width:`${(3/5)*100}%`}}></View>
           </View>
@@ -35,6 +35,11 @@ const Quizes = () => {
               <Text style={styles.FooterBTN}>
                   Continue
                   </Text>
+              <View style={styles.CommentLabel}>
+                <Text style={{...styles.x,position:'absolute',top:10,right:10}}>X</Text>
+              <Text style={{...styles.QuizText}}>Not Correct</Text>
+              <Text style={{...styles.QuizText,fontSize:styles.QuizText.fontSize-5}}>want to review the course ?</Text>
+              </View>
           </View>
     </View>
   );
@@ -53,19 +58,19 @@ const CoolRadioBox = () => {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option1" color="#AAAAAA" />
-          <Text>Option 1</Text>
+          <Text style={styles.QuizText}>Option 1</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option2" color="#AAAAAA" />
-          <Text>Option 2</Text>
+          <Text style={styles.QuizText}>Option 2</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option3" color="#AAAAAA" />
-          <Text>Option 3</Text>
+          <Text style={styles.QuizText}>Option 3</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option4" color="#AAAAAA" />
-          <Text>Option 4</Text>
+          <Text style={styles.QuizText}>Option 4</Text>
         </View>
       </RadioButton.Group>
     </View>

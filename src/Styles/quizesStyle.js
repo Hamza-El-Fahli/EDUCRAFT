@@ -15,17 +15,21 @@ const styles = StyleSheet.create({
   QuizHeader:{
     left:0,
     right:0,
-    borderWidth : 1,
     display : 'flex',
     alignItems : 'center',
+    justifyContent : 'center',
     marginBottom: 30,
 
+  },
+  x:{
+    fontSize : 30,
+    color : Colors.Dark.gray
   },
   QuizHeader_progressBG:{
     height : 20,
     width : '70%',
     margin : 'auto',
-    backgroundColor: Colors.Dark.gray,
+    backgroundColor: Colors.Dark.lightGray,
     borderRadius : 30
 
   },
@@ -45,9 +49,9 @@ const styles = StyleSheet.create({
     bottom : 0,
     left:0,
     right:0,
-    borderWidth : 2,
     height : '30%',
-    zIndex : 1
+    zIndex : 1,
+    flexDirection : 'row'
   },
   FooterBTN :{
     padding : 10,
@@ -60,7 +64,22 @@ const styles = StyleSheet.create({
     position : 'absolute',
     bottom : '20%',
     left: '10%',
-    right : '10%'
+    right : '10%',
+    zIndex:2
+  },
+  CommentLabel :{
+    borderColor : Colors.Dark.lightBlue ,
+    borderTopWidth : 3,
+    // borderLeftWidth : 1,
+    // borderRightWidth : 1,
+    borderTopLeftRadius : 20,
+    borderTopRightRadius : 20,
+    alignSelf : 'flex-end',
+    padding : 20,
+    backgroundColor : Colors.Dark.blue,
+    height:'100%',
+    width:'100%',
+    overflow : 'hidden'
   }
 });
 
