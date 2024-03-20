@@ -10,8 +10,8 @@ import {_API_URL} from '../../GlobalConfig';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../../styles/quizesStyle.js';
 const Quizes = () => {
- 
-  
+ const quizzesForPage = useSelector((state)=>state.course.quizzesForPage) 
+const [currentQuiz, setcurrentQuiz] = useState(0)
   return (
     <View style={styles.container}>
       <View style={styles.QuizHeader}>
@@ -23,12 +23,12 @@ const Quizes = () => {
       <View style={styles.Body}>
         
       <View >
-          <Text style={styles.QuizText}>Question 1:</Text>
-          <Text style={styles.QuizText}>this is the question text this is the question text this is the question text this is the question text</Text>
+          <Text style={styles.QuizText}>Question {currentQuiz+1}:</Text>
+          <Text style={styles.QuizText}>{quizzesForPage[0].question}</Text>
           </View>
           <View>
         <Text style={styles.QuizText}> Choose the best option :</Text>
-            <CoolRadioBox />
+            <CoolRadioBox Options={quizzesForPage[0]} />
           </View>
       </View>
           <View style={styles.Footer}>
@@ -47,9 +47,29 @@ const Quizes = () => {
 
 export default Quizes;
 
-const CoolRadioBox = () => {
+const CoolRadioBox = ({Options}) => {
   const [selectedOption, setSelectedOption] = useState('');
-
+  const [MyOptions, setMyOptions] = useState([])
+  const generateOptions = (choices, correctAnswer , countOfOptions)=>{
+    const result = [correctAnswer]
+    const bt = [choices.indexOf(correctAnswer)]
+  
+    while(result.length < countOfOptions){
+      const tmpIndex = Math.floor(Math.random()*choices.length)
+      if(tmpIndex in bt) continue
+      result.push(choices[tmpIndex])
+      bt.push(tmpIndex)
+    }
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+  }  return result 
+  }
+  
+  useEffect(()=>{
+    setMyOptions(generateOptions(Options.choices,Options.correctAnswer,4))
+  },[Options])
+  
   return (
     <View>
       <RadioButton.Group
@@ -58,19 +78,19 @@ const CoolRadioBox = () => {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option1" color="#AAAAAA" />
-          <Text style={styles.QuizText}>Option 1</Text>
+          <Text style={styles.QuizText}>{MyOptions[0]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option2" color="#AAAAAA" />
-          <Text style={styles.QuizText}>Option 2</Text>
+          <Text style={styles.QuizText}>{MyOptions[1]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option3" color="#AAAAAA" />
-          <Text style={styles.QuizText}>Option 3</Text>
+          <Text style={styles.QuizText}>{MyOptions[2]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <RadioButton.Android value="option4" color="#AAAAAA" />
-          <Text style={styles.QuizText}>Option 4</Text>
+          <Text style={styles.QuizText}>{MyOptions[3]}</Text>
         </View>
       </RadioButton.Group>
     </View>
