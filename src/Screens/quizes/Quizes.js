@@ -35,10 +35,10 @@ const Quizes = () => {
           const firstQuiz = quizes.filter(
             item => item.quiz == thisQuizIsTheFirstQuiz,
           );
-          //   console.log(firstQuiz.length);
+            // console.log(firstQuiz.length);
           setMyQuizes(firstQuiz);
         })
-        .catch(e => console.log(e));
+        .catch(e => console.log('hhhhhhhh ',e));
     })();
   }, []);
 

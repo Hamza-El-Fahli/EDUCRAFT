@@ -7,10 +7,14 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../styles/ChaptesStyle';
 import Header from '../../components/Header';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { Next_Quizzes } from '../../GlobalConfig';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+import { setQuizzesByModule } from '../../store/courseSlice';
 
 const upArrowIcon = require('./../../images/svg/arrow.png');
 const bookIcon = require('./../../images/svg/book.png');
@@ -18,8 +22,22 @@ const validIcoin = require('./../../images/svg/valid.png');
 const invalidIcoin = require('./../../images/svg/invalid.png');
 
 const ChaptersPage = ({navigation}) => {
+  const dispatch = useDispatch()
+  const selectedModule = useSelector(state => state.course.selectedModule);
+
   const [loader, setloader] = useState(false);
   const chapters = useSelector(state => state.course.chapter);
+  const quizzesByModule = useSelector((state)=>state.course.quizzesByModule)
+
+useEffect(()=>{
+  axios.get(`${Next_Quizzes}?module_id=${chapters[selectedModule].module_id}`)
+  .then((res)=>{
+    dispatch(setQuizzesByModule(formatQuizzes(res.data)))
+  })
+  .catch((err)=>console.log(`error happened ${err} when try ${Next_Quizzes}?module_id=${chapters[selectedModule].module_id}`))
+},[])
+
+
 
   return (
     <View style={styles.container}>
@@ -62,7 +80,7 @@ const ChaptersPage = ({navigation}) => {
                         Chapter {index + 1}
                       </Text>
                       <Text style={styles.chapter_title_left2}>
-                        {oneChapter.description}
+                      {oneChapter.description}
                       </Text>
                     </View>
 
@@ -72,48 +90,13 @@ const ChaptersPage = ({navigation}) => {
                   </View>
                   {/*///////////////  Chapter Title End ////////////////// */}
                   {/*///////////////  Chapter Quiz ////////////////// */}
-                  <View style={styles.quiz}>
-                    <Pressable onPress={()=>navigation.navigate('Quizes')}>
-                      <View
-                        style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Image source={validIcoin} style={{margin: 10}} />
-                        <Text
-                          style={{
-                            fontSize: 25,
-                            fontWeight: 'bold',
-                            color: '#E9E8F1' /*Colors.Dark.white*/,
-                          }}>
-                          Quiz 1 : 5/5
-                        </Text>
-                      </View>
-                    </Pressable>
-                  </View>
-                  <View style={styles.quiz}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                      <Image source={invalidIcoin} style={{margin: 10}} />
-                      <Text
-                        style={{
-                          fontSize: 25,
-                          fontWeight: 'bold',
-                          color: '#E9E8F1' /*Colors.Dark.white*/,
-                        }}>
-                        Quiz 2 : 2/5
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.quiz}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                      <Image source={invalidIcoin} style={{margin: 10}} />
-                      <Text
-                        style={{
-                          fontSize: 25,
-                          fontWeight: 'bold',
-                          color: '#E9E8F1' /*Colors.Dark.white*/,
-                        }}>
-                        Quiz 3 : 0/5
-                      </Text>
-                    </View>
-                  </View>
+                
+                  {/* {Quizzes[0]?.chapter_id == oneChapter._id && <Text>hahaha</Text>} */}
+                  {quizzesByModule?.filter((quiz)=>{
+                    // console.log(oneChapter._id)
+                    
+                    return quiz.chapterID == oneChapter._id})?.map((quiz2,index)=>{
+                  return (<OneQuiz quizData={quiz2.questions} />)})}
                   {/*///////////////  Chapter Quiz END ////////////////// */}
                 </View>
               );
@@ -126,3 +109,59 @@ const ChaptersPage = ({navigation}) => {
 };
 
 export default ChaptersPage;
+
+
+
+
+function OneQuiz({quizData}){
+const navigation = useNavigation()
+
+
+
+  return <View style={styles.quiz}>
+  <Pressable onPress={()=>navigation.navigate('Quizes')}>
+    <View
+      style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Image source={validIcoin} style={{margin: 10}} />
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: 'bold',
+          color: '#E9E8F1' /*Colors.Dark.white*/,
+        }}>
+        Quiz 1 : 5/5
+      </Text>
+    </View>
+  </Pressable>
+</View>
+}
+
+
+function formatQuizzes(apiResponse) {
+  const formattedQuizzes = [];
+
+  apiResponse.quizzes.forEach((quiz) => {
+    const formattedQuiz = {
+      chapterName: quiz.chapter_name,
+      chapterID: quiz.chapter_id,
+      questions: [],
+    };
+
+    Object.keys(quiz).forEach((key) => {
+      if (key !== 'chapter_name' && key !== 'chapter_id') {
+        const question = {
+          id: quiz[key]._id,
+          question: quiz[key].question,
+          correctAnswer: quiz[key].correct_answer,
+          choices: quiz[key].answers,
+        };
+
+        formattedQuiz.questions.push(question);
+      }
+    });
+
+    formattedQuizzes.push(formattedQuiz);
+  });
+
+  return formattedQuizzes;
+}

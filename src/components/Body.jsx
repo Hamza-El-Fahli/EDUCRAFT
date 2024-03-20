@@ -28,7 +28,7 @@ const Body = ({navigation}) => {
       })
       .catch(e => {
         console.log(
-          `error in chapters ,${Next_Chapters}/chapters/${userModules[selectedModule]._id}    ${e}`,
+          `error in chapters ,${Next_Chapters}?module_id=${userModules[selectedModule]._id}    ${e}`,
         );
         setbtnLoader(false);
       });

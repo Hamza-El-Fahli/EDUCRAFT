@@ -8,6 +8,7 @@ export const Next_Users = 'http://192.168.56.1:3000/api/users'
 export const Next_Courses = 'http://192.168.56.1:3000/api/courses'
 export const Next_Modules = 'http://192.168.56.1:3000/api/modules'
 export const Next_Chapters = 'http://192.168.56.1:3000/api/chapters'
+export const Next_Quizzes = 'http://192.168.56.1:3000/api/quizes'
 
 
 
