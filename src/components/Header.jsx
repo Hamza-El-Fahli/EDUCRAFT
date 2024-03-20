@@ -11,14 +11,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import { Next_Courses } from '../GlobalConfig';
+import { useNavigation } from '@react-navigation/native';
 
-let data = [
-  {id: 1, title: 'CCNA 1'},
-  {id: 2, title: 'CCNA 2'},
-  {id: 3, title: 'CCNA 3'},
-  {id: 4, title: 'CCNA 4'},
-];
-const Header = ({screen,   navigation}) => {
+const Header = ({screen}) => {
+  const navigation = useNavigation()
   const [Courses, setCourses] = useState([])
   const dispatch = useDispatch();
   const currrentPage = useRoute()
@@ -31,7 +27,7 @@ useEffect(()=>{
       setCourses(res.data)
       dispatch(setCourse(res.data[0]._id));
 
-      console.log('courses are here')
+      // console.log('courses are here')
     })
     .catch((error)=>{
       console.log('no courses fetched from next ',error)
@@ -43,12 +39,9 @@ useEffect(()=>{
       <Pressable
         style={{display: screen === 'Profile' ? 'none' : 'flex'}}
         onPress={() => {
-          if(currrentPage.name !== 'Quiz'){
-          setdrop(!drop);}
-          else {
-            navigation.goBack()
-          }
-        }}>
+          setdrop(!drop)
+        navigation.navigate('Home');
+        }}> 
         <Text style={styles.course}>{Courses.find((course)=>course._id == SelectedCourse)?.course_name}</Text>
       </Pressable>
 
