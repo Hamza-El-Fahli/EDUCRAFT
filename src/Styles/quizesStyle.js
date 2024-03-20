@@ -7,52 +7,61 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     padding: 20,
+    paddingTop: 30,
+    position : 'relative',
   },
-  quiz_header: {
-    color: Colors.Dark.white,
-    fontSize: 30,
-    textAlign: 'center',
+  Body:{}
+  ,
+  QuizHeader:{
+    left:0,
+    right:0,
+    borderWidth : 1,
+    display : 'flex',
+    alignItems : 'center',
+    marginBottom: 30,
+
   },
-  question_label: {
-    color: Colors.Dark.white,
-    fontSize: 30,
+  QuizHeader_progressBG:{
+    height : 20,
+    width : '70%',
+    margin : 'auto',
+    backgroundColor: Colors.Dark.gray,
+    borderRadius : 30
+
   },
-  question_content: {
-    color: Colors.Dark.white,
-    fontSize: 20,
+  QuizHeader_progressFG:{
+    height : '100%',
+    backgroundColor: Colors.Dark.gray,
+    borderRadius : 30,
+    
   },
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  QuizText:{
+    color:Colors.Dark.gray,
+    fontSize: 25,
     marginBottom: 10,
   },
-  radioContainer: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#ccc',
-    alignItems: 'center',
-    justifyContent: 'center',
+  Footer :{
+    position : 'absolute',
+    bottom : 0,
+    left:0,
+    right:0,
+    borderWidth : 2,
+    height : '30%',
+    zIndex : 1
   },
-  selectedDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#4CAF50',
-  },
-  radio_label: {
-    color: '#fff',
-    marginLeft: 10,
-  },
-  showResult: {
-    color: Colors.Dark.white,
-    padding: 20,
-    backgroundColor: Colors.Dark.blue,
-    margin: 5,
-    borderRadius: 10,
-    borderWidth: 2,
-  },
+  FooterBTN :{
+    padding : 10,
+    textAlign : 'center',
+    backgroundColor : Colors.Dark.lightGray,
+    color : Colors.Dark.blue ,
+    fontWeight : 'bold',
+    fontSize : 30,
+    borderRadius : 10,
+    position : 'absolute',
+    bottom : '20%',
+    left: '10%',
+    right : '10%'
+  }
 });
 
 export default styles;

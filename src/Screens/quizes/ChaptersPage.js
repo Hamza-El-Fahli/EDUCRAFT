@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { Next_Quizzes } from '../../GlobalConfig';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import { setQuizzesByModule } from '../../store/courseSlice';
+import { setQuizzesByModule, setQuizzesForPage } from '../../store/courseSlice';
 
 const upArrowIcon = require('./../../images/svg/arrow.png');
 const bookIcon = require('./../../images/svg/book.png');
@@ -96,7 +96,7 @@ useEffect(()=>{
                     // console.log(oneChapter._id)
                     
                     return quiz.chapterID == oneChapter._id})?.map((quiz2,index)=>{
-                  return (<OneQuiz quizData={quiz2.questions} />)})}
+                  return (<OneQuiz quizData={quiz2.questions} key={index} />)})}
                   {/*///////////////  Chapter Quiz END ////////////////// */}
                 </View>
               );
@@ -115,11 +115,15 @@ export default ChaptersPage;
 
 function OneQuiz({quizData}){
 const navigation = useNavigation()
-
-
+const dispatch = useDispatch()
 
   return <View style={styles.quiz}>
-  <Pressable onPress={()=>navigation.navigate('Quizes')}>
+  <Pressable onPress={()=>{
+
+    dispatch(setQuizzesForPage(quizData))
+    navigation.navigate('Quizes')
+        
+    }}>
     <View
       style={{flexDirection: 'row', alignItems: 'center'}}>
       <Image source={validIcoin} style={{margin: 10}} />
@@ -129,7 +133,7 @@ const navigation = useNavigation()
           fontWeight: 'bold',
           color: '#E9E8F1' /*Colors.Dark.white*/,
         }}>
-        Quiz 1 : 5/5
+        Quiz 1 : 5/{quizData.length}
       </Text>
     </View>
   </Pressable>
