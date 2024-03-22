@@ -54,18 +54,20 @@ const styles = StyleSheet.create({
     flexDirection : 'row'
   },
   FooterBTN :{
+    position : 'absolute',
+    bottom : '20%',
+    left: '10%',
+    right : '10%',
+    zIndex:9
+  },
+  FooterBTN_Text :{
     padding : 10,
+    borderRadius : 10,
     textAlign : 'center',
     backgroundColor : Colors.Dark.lightGray,
     color : Colors.Dark.blue ,
     fontWeight : 'bold',
     fontSize : 30,
-    borderRadius : 10,
-    position : 'absolute',
-    bottom : '20%',
-    left: '10%',
-    right : '10%',
-    zIndex:2
   },
   CommentLabel :{
     borderColor : Colors.Dark.lightBlue ,

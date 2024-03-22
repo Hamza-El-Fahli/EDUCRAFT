@@ -1,4 +1,4 @@
-import {ActivityIndicator,  Text, View, Button} from 'react-native';
+import {ActivityIndicator,  Text, View, Button , Pressable} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { RadioButton } from 'react-native-paper';
@@ -12,6 +12,9 @@ import styles from '../../styles/quizesStyle.js';
 const Quizes = () => {
  const quizzesForPage = useSelector((state)=>state.course.quizzesForPage) 
 const [currentQuiz, setcurrentQuiz] = useState(0)
+const [selectedOption, setSelectedOption] = useState('');
+
+const [btnClicked, setbtnClicked] = useState(false)
   return (
     <View style={styles.container}>
       <View style={styles.QuizHeader}>
@@ -27,18 +30,40 @@ const [currentQuiz, setcurrentQuiz] = useState(0)
           <Text style={styles.QuizText}>{quizzesForPage[0].question}</Text>
           </View>
           <View>
-        <Text style={{...styles.QuizText,fontWeight:'bold'}}> Choose the best option :</Text>
-            <CoolRadioBox Options={quizzesForPage[0]} />
+        <Text style={{...styles.QuizText,fontWeight:'bold'}}>
+           Choose the best option :
+           </Text>
+            <CoolRadioBox Options={quizzesForPage[0]} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
           </View>
       </View>
           <View style={styles.Footer}>
-              <Text style={styles.FooterBTN}>
-                  Continue
+            <Pressable 
+            
+            style={styles.FooterBTN}
+            onPress={()=>{
+              setbtnClicked(true)
+            }}
+            >
+              <Text 
+                        style={styles.FooterBTN_Text}
+                        >
+              
+                  {btnClicked ? 'Continue' : 'Submit'}
                   </Text>
-              <View style={styles.CommentLabel}>
-                <Text style={{...styles.x,position:'absolute',top:10,right:10}}>X</Text>
-              <Text style={{...styles.QuizText}}>Not Correct</Text>
-              <Text style={{...styles.QuizText,fontSize:styles.QuizText.fontSize-5}}>want to review the course ?</Text>
+            </Pressable>
+              <View style={{...styles.CommentLabel,display : btnClicked ? 'flex' : 'none'}}>
+                
+              <Text style={{...styles.QuizText}}>
+              {quizzesForPage[0].correctAnswer == selectedOption && 'Correct'}
+              {quizzesForPage[0].correctAnswer != selectedOption && 'Not Correct'}
+                
+                </Text>
+              <Text style={{...styles.QuizText,fontSize:styles.QuizText.fontSize-5}}>
+              {quizzesForPage[0].correctAnswer == selectedOption && 'Keep Going'}
+              {quizzesForPage[0].correctAnswer != selectedOption && 'want to review the course ?'}
+
+                
+                </Text>
               </View>
           </View>
     </View>
@@ -47,8 +72,7 @@ const [currentQuiz, setcurrentQuiz] = useState(0)
 
 export default Quizes;
 
-const CoolRadioBox = ({Options}) => {
-  const [selectedOption, setSelectedOption] = useState('');
+const CoolRadioBox = ({Options , selectedOption, setSelectedOption}) => {
   const [MyOptions, setMyOptions] = useState([])
   const generateOptions = (choices, correctAnswer , countOfOptions)=>{
     const result = [correctAnswer]
@@ -77,19 +101,19 @@ const CoolRadioBox = ({Options}) => {
         value={selectedOption}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <RadioButton.Android value="option1" color="#AAAAAA" />
+          <RadioButton.Android value={MyOptions[0]} color="#AAAAAA" />
           <Text style={styles.QuizText}>{MyOptions[0]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <RadioButton.Android value="option2" color="#AAAAAA" />
+          <RadioButton.Android value={MyOptions[1]} color="#AAAAAA" />
           <Text style={styles.QuizText}>{MyOptions[1]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <RadioButton.Android value="option3" color="#AAAAAA" />
+          <RadioButton.Android value={MyOptions[2]} color="#AAAAAA" />
           <Text style={styles.QuizText}>{MyOptions[2]}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <RadioButton.Android value="option4" color="#AAAAAA" />
+          <RadioButton.Android value={MyOptions[3]} color="#AAAAAA" />
           <Text style={styles.QuizText}>{MyOptions[3]}</Text>
         </View>
       </RadioButton.Group>
