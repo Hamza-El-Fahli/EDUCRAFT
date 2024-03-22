@@ -23,11 +23,11 @@ const [currentQuiz, setcurrentQuiz] = useState(0)
       <View style={styles.Body}>
         
       <View >
-          <Text style={styles.QuizText}>Question {currentQuiz+1}:</Text>
+          <Text style={{...styles.QuizText,fontWeight:'bold'}}>Question {currentQuiz+1}:</Text>
           <Text style={styles.QuizText}>{quizzesForPage[0].question}</Text>
           </View>
           <View>
-        <Text style={styles.QuizText}> Choose the best option :</Text>
+        <Text style={{...styles.QuizText,fontWeight:'bold'}}> Choose the best option :</Text>
             <CoolRadioBox Options={quizzesForPage[0]} />
           </View>
       </View>
