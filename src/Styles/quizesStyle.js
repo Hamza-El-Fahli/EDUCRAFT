@@ -64,10 +64,21 @@ const styles = StyleSheet.create({
     padding : 10,
     borderRadius : 10,
     textAlign : 'center',
-    backgroundColor : Colors.Dark.lightGray,
+    backgroundColor : Colors.Dark.gray,
     color : Colors.Dark.blue ,
     fontWeight : 'bold',
     fontSize : 30,
+  },
+  FooterBTN_Text_disabled :{
+    backgroundColor : Colors.Dark.lightGray,
+  },
+  FooterBTN_Text_enabled :{
+
+    backgroundColor : Colors.Dark.gray,
+  },
+  FooterBTN_Text_clicked :{
+
+    backgroundColor : Colors.Dark.white,
   },
   CommentLabel :{
     borderColor : Colors.Dark.lightBlue ,
