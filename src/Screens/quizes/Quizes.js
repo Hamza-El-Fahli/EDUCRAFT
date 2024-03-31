@@ -3,17 +3,17 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {CoolRadioBox} from '../../components/CoolRadioBox.jsx';
-import {setGivenAnswers} from '../../store/courseSlice';
-import RadioBox from '../../components/CoolRadioBox.jsx';
-import axios from 'axios';
 import {_API_URL} from '../../GlobalConfig';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../../styles/quizesStyle.js';
+import { setScore } from '../../store/courseSlice.js';
 const Quizes = () => {
+  const dispatch = useDispatch()
+  const navigation = useNavigation()
   const quizzesForPage = useSelector(state => state.course.quizzesForPage);
   const [currentQuiz, setcurrentQuiz] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
-  const [score, setscore] = useState(0);
+  const [score, setLocalScore] = useState(0);
   const [btnClicked, setbtnClicked] = useState(false);
   return (
     <View style={styles.container}>
@@ -57,7 +57,7 @@ const Quizes = () => {
             }
             if (!btnClicked) {
               setbtnClicked(true); // set state button to clicked to change the the UI
-              setscore(
+              setLocalScore(
                 quizzesForPage[currentQuiz].correctAnswer == selectedOption
                   ? score + 1
                   : score,
@@ -65,8 +65,8 @@ const Quizes = () => {
             } else {
               setbtnClicked(false);
               if (currentQuiz >= quizzesForPage.length - 1) {
-                // navigate
-                console.log('No more quizzes');
+                dispatch(setScore({total :quizzesForPage.length , score }))
+                navigation.navigate('ShowResults')
                 return;
               }
               setcurrentQuiz(currentQuiz + 1); // move to next quiz

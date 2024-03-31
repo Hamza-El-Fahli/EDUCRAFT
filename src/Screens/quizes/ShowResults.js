@@ -2,31 +2,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import styles from '../../styles/quizesStyle';
+import { useNavigation } from '@react-navigation/native';
 const ShowResults = () => {
-  const GivenAnswers = useSelector(state => state.course.GivenAnswers);
+  const score = useSelector(state => state.course.score);
+  const navigation = useNavigation()
+  if(score === null){
+      navigation.navigate('Home')
+  }
   return (
     <View style={styles.container}>
-      {/* Map through all the Given answers  */}
-      {GivenAnswers.map((answer, index) => {
-        return (
-          <Text style={styles.showResult} key={index}>
-            Question {index + 1} : {answer.question} is{' '}
-            <Text
-              style={{
-                ...styles.showResult,
-                backgroundColor: 'rgba(217, 217, 217, 0.5)',
-                color:
-                  answer.userAnswer == answer.correctAnswer
-                    ? '#00ff00'
-                    : '#ff0000',
-              }}>
-              {answer.userAnswer == answer.correctAnswer
-                ? 'Correct'
-                : 'Incorrect'}{' '}
-            </Text>
-          </Text>
-        );
-      })}
+      {score.total == score.score ? 
+      <Text>Good</Text>
+    :  <Text>You Answered {score.score}/{score.total} correct answers </Text>
+      
+    }
     </View>
   );
 };
