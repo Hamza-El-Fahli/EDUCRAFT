@@ -25,13 +25,13 @@ const Home = ({navigation}) => {
 
   const SelectedCourse = useSelector(state => state.course.course);
   const userModules = useSelector(state => state.course.module);
-
+  const user = useSelector(state=>state.user.user)
   // Get Modules from server ▼
   useEffect(() => {
     (function () {
       if(SelectedCourse == 1 ) return
       axios
-        .get(`${Next_Modules}?course_id=${SelectedCourse}`)
+        .get(`${Next_Modules}?course_id=${SelectedCourse}&user_id=${user._id}`)
         .then(result => {
           const loadedModules = result.data;
           if (userModules.length < 1 || userModules[0].course_id !== SelectedCourse)

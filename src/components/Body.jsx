@@ -90,7 +90,7 @@ const Slides = ({getChapters, btnLoader}) => {
         </Pressable>
 
         {
-          /*currentModule[selectedModule].*/ progression === 100 && (
+          userModules[selectedModule].progress == 100 && (
             <View>
               <Text style={styles.slide_item_progression}>
                 You Completed this Section!
@@ -100,12 +100,12 @@ const Slides = ({getChapters, btnLoader}) => {
         }
 
         {
-          /*currentModule[selectedModule].*/ progression < 100 && (
+          userModules[selectedModule].progress < 100 && (
             <View style={styles.progression_bar_bg} key="progression_bar">
               <View
                 style={{
                   ...styles.progression_bar,
-                  width: /*currentModule[selectedModule].*/ progression + '%',
+                  width: userModules[selectedModule].progress + '%',
                 }}
               />
             </View>
@@ -120,7 +120,7 @@ const Slides = ({getChapters, btnLoader}) => {
             ) : (
               <>
                 {
-                  /*currentModule[selectedModule].*/ progression < 100
+                  userModules[selectedModule].progression < 100
                     ? 'CONTINUE'
                     : 'REVIEW'
                 }
