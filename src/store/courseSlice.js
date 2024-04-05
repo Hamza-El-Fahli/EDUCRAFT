@@ -4,10 +4,11 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   course: 1,
   module: [],
-  chapter: null,
+  chapters: [],
   quizzesByModule: [],
   quizzesForPage: [],
   selectedModule: 0,
+  selectedModule_id:'',
   selectedChapter: 1,
   score : null
 };
@@ -27,10 +28,12 @@ const courseReducer = createSlice({
     // detect the current module the user sees ( usable when requesting chapters ) 
     setSelectedModule: (state, action) => {
       state.selectedModule = action.payload;
+      state.selectedModule_id = state.module[action.payload]._id
+      
     },
         // store data requested from the server 
     setChapters: (state, action) => {
-      state.chapter = action.payload;
+      state.chapters = action.payload;
     },
     // detect the current module the user Clicked ( usable when requesting Quiz questions ) 
     setSelecteChapter: (state, action) => {

@@ -1,41 +1,46 @@
 import {Pressable, Text, View, ActivityIndicator} from 'react-native';
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../styles/styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {setSelectedModule, setChapters} from '../store/courseSlice';
 import {Next_Chapters, _API_URL} from '../GlobalConfig';
 
-const Body = ({navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+
+
+const Body = () => {
   const dispatch = useDispatch();
   const username = useSelector(state => state.user.username);
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
   const [btnLoader, setbtnLoader] = useState(false);
+useEffect(()=>{
+  dispatch(setSelectedModule(selectedModule || 0));
 
-  function getChapters() {
-    const cancelTokenSource = axios.CancelToken.source();
-    setbtnLoader(true);
-    axios
-      .get(`${Next_Chapters}?module_id=${userModules[selectedModule]._id}`, {
-        cancelToken: cancelTokenSource.token,
-      }) // because stored with -1
-      .then(async result => {
-        const loadedChapters = await result.data;
-        dispatch(setChapters(loadedChapters));
-        setbtnLoader(false);
-        navigation.navigate('ChaptersPage');
-      })
-      .catch(e => {
-        console.log(
-          `error in chapters ,${Next_Chapters}?module_id=${userModules[selectedModule]._id}    ${e}`,
-        );
-        setbtnLoader(false);
-      });
-    setTimeout(() => {
-      cancelTokenSource.cancel('Request cancelled after 2 seconds');
-    }, 2000);
-  }
+},[selectedModule])
+  // function getChapters() {
+  //   const cancelTokenSource = axios.CancelToken.source();
+  //   setbtnLoader(true);
+  //   axios
+  //     .get(`${Next_Chapters}?module_id=${userModules[selectedModule]._id}`, {
+  //       cancelToken: cancelTokenSource.token,
+  //     }) // because stored with -1
+  //     .then(async result => {
+  //       const loadedChapters = await result.data;
+  //       dispatch(setChapters(loadedChapters));
+  //       setbtnLoader(false);
+  //     })
+  //     .catch(e => {
+  //       console.log(
+  //         `error in chapters ,${Next_Chapters}?module_id=${userModules[selectedModule]._id}    ${e}`,
+  //       );
+  //       setbtnLoader(false);
+  //     });
+  //   setTimeout(() => {
+  //     cancelTokenSource.cancel('Request cancelled after 2 seconds');
+  //   }, 2000);
+  // }
 
   return (
     <View style={styles.body}>
@@ -44,11 +49,10 @@ const Body = ({navigation}) => {
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      <Slides getChapters={getChapters} btnLoader={btnLoader} />
+      <Slides  btnLoader={btnLoader} />
 
       <View style={styles.nav_btns}>
         {userModules.map((oneModules,index) => {
-          let moduleOrder = oneModules.order;
           if (index == selectedModule)
             return (
               <Pressable style={{padding: 10}} key={index}>
@@ -73,12 +77,10 @@ const Body = ({navigation}) => {
   );
 };
 
-const Slides = ({getChapters, btnLoader}) => {
+const Slides = ({ btnLoader}) => {
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
-  ////////////////////////////////
-  const progression = 100;
-  ////////////////////////////
+  const navigation = useNavigation()
   return (
     <View style={{...styles.slide}}>
       <View style={{...styles.slide_item}}>
@@ -112,7 +114,7 @@ const Slides = ({getChapters, btnLoader}) => {
           )
         }
         <Pressable
-          onPress={() => getChapters()}
+  onPress={()=>navigation.navigate('Chapters')}
           style={styles.slide_item_btn_grp}>
           <Text style={styles.slide_item_btn}>
             {btnLoader ? (

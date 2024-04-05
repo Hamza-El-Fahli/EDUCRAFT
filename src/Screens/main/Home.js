@@ -1,7 +1,4 @@
 import {
-  Dimensions,
-  Pressable,
-  Text,
   View,
   ActivityIndicator,
   Alert,
@@ -26,6 +23,7 @@ const Home = ({navigation}) => {
   const SelectedCourse = useSelector(state => state.course.course);
   const userModules = useSelector(state => state.course.module);
   const user = useSelector(state=>state.user.user)
+
   // Get Modules from server ▼
   useEffect(() => {
     (function () {
@@ -37,7 +35,6 @@ const Home = ({navigation}) => {
           if (userModules.length < 1 || userModules[0].course_id !== SelectedCourse)
             dispatch(setModules(loadedModules));
           setLoading(false);
-          // console.log(loadedModules)
         })
         .catch(e => Alert.alert('Modules not found', `Check your internet connection`));
     })();

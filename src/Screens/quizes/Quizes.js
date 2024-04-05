@@ -3,19 +3,35 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {CoolRadioBox} from '../../components/CoolRadioBox.jsx';
-import {_API_URL} from '../../GlobalConfig';
+import { Next_Quizzes, _API_URL} from '../../GlobalConfig';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../../styles/quizesStyle.js';
 import { setScore } from '../../store/courseSlice.js';
+import axios from 'axios';
 const Quizes = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const quizzesForPage = useSelector(state => state.course.quizzesForPage);
+  const [loading, setloading] = useState(true)
+
+
   const [currentQuiz, setcurrentQuiz] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
-  const [score, setLocalScore] = useState(0);
   const [btnClicked, setbtnClicked] = useState(false);
-  return (
+
+
+
+useEffect(()=>{
+    axios
+    .get(`${Next_Quizzes}?module_id=`)
+},[])
+
+
+
+
+
+  return ( loading ?
+     <ActivityIndicator /> 
+     :
     <View style={styles.container}>
       <View style={styles.QuizHeader}>
         <Text style={{...styles.x, position: 'absolute', left: 0}}>X</Text>
@@ -41,7 +57,7 @@ const Quizes = () => {
             Choose the best option :
           </Text>
           <CoolRadioBox
-            Options={quizzesForPage[currentQuiz]}
+            Options={quizzesForPage[currentQuiz].choices}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
@@ -55,23 +71,23 @@ const Quizes = () => {
               console.log('Choose an option');
               return;
             }
-            if (!btnClicked) {
-              setbtnClicked(true); // set state button to clicked to change the the UI
-              setLocalScore(
-                quizzesForPage[currentQuiz].correctAnswer == selectedOption
-                  ? score + 1
-                  : score,
-              ); // if answer is correct add 1 to score
-            } else {
-              setbtnClicked(false);
-              if (currentQuiz >= quizzesForPage.length - 1) {
-                dispatch(setScore({total :quizzesForPage.length , score }))
-                navigation.navigate('ShowResults')
-                return;
-              }
+            // if (!btnClicked) {
+            //   setbtnClicked(true); // set state button to clicked to change the the UI
+            //   setLocalScore(
+            //     quizzesForPage[currentQuiz].correctAnswer == selectedOption
+            //       ? score + 1
+            //       : score,
+            //   ); // if answer is correct add 1 to score
+            // } else {
+            //   setbtnClicked(false);
+            //   if (currentQuiz >= quizzesForPage.length - 1) {
+            //     dispatch(setScore({total :quizzesForPage.length , score }))
+            //     navigation.navigate('ShowResults')
+            //     return;
+            //   }
+            // }
               setcurrentQuiz(currentQuiz + 1); // move to next quiz
               setSelectedOption('')
-            }
           }}>
           <Text
             style={

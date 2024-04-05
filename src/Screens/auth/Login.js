@@ -25,14 +25,16 @@ const Login = ({navigation}) => {
 
   // When user clicked the login button
   const checkUserAPI = async (email, password) => {
-    // if the request took more than 2s cancel it
+    // if the request took more than 10 s cancel it
     const cancelTokenSource = axios.CancelToken.source();
     setbtnLoader(true);
     //  make the request
     axios
-    .post(`${Next_Users}`, { email, password }, {
-      cancelToken: cancelTokenSource.token,
-    })
+    .post(`${Next_Users}`, { email, password },
+     {
+      cancelToken: cancelTokenSource.token
+    }
+    )
     .then(response => {
       // if user found
       let userData = response.data;
@@ -48,13 +50,16 @@ const Login = ({navigation}) => {
     .catch(error => {
       // if user not found
       setbtnLoader(false);
-      Alert.alert('Email/Password incorrect', `try 0 and 0`);
+      if (error.response && error.response.status === 404) 
+      Alert.alert('Email/Password incorrect', `${error.response.data.error}`);
+      else
+      Alert.alert('Check internet connexion', `you can't connect to the server`);
     });
   
   // setTimeout inside the axios.post to cancel after 2s if no response
   setTimeout(() => {
-    cancelTokenSource.cancel('Request cancelled after 2 seconds');
-  }, 2000);
+    cancelTokenSource.cancel('Request cancelled after 10 seconds');
+  }, 10000);
   
   };
   return (

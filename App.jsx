@@ -4,7 +4,7 @@ import Home from './src/Screens/main/Home';
 // import Login from './src/Screens/auth/Login';
 import Login from './src/Screens/auth/Login';
 import Profile from './src/Screens/profile/Profile';
-import ChaptersPage from './src/Screens/quizes/ChaptersPage';
+import Chapters from './src/Screens/chapters/Chapter';
 import Quizes from './src/Screens/quizes/Quizes';
 import ShowResults from './src/Screens/quizes/ShowResults';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -20,11 +20,15 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator>
           {/* ▼ Login Screen ▼ */}
-          <Stack.Screen
+
+
+          {/* <Stack.Screen
             name="Login"
             component={Login}
             options={{headerShown: false}}
-          />
+          /> */}
+
+
           {/* ▲ Login Screen ▲  */}
 
           {/* ▼ Home Screen ▼ */}
@@ -37,8 +41,8 @@ const App = () => {
           {/* ▼ Chapters Screen ▼ */}
 
           <Stack.Screen
-            name="ChaptersPage"
-            component={ChaptersPage}
+            name="Chapters"
+            component={Chapters}
             options={{headerShown: false}}
           />
           {/* ▲ Chapters Screen ▲  */}

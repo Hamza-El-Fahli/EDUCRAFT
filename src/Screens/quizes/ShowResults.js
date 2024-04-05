@@ -12,8 +12,8 @@ const ShowResults = () => {
   return (
     <View style={styles.container}>
       {score.total == score.score ? 
-      <Text>Good</Text>
-    :  <Text>You Answered {score.score}/{score.total} correct answers </Text>
+      <Text style={{color:'white',fontSize:30}}>Good</Text>
+    :  <Text style={{color:'white',fontSize:30}}>You Answered {score.score}/{score.total} correct answers </Text>
       
     }
     </View>
