@@ -16,8 +16,8 @@ export const CoolRadioBox = ({Options , selectedOption, setSelectedOption}) => {
         onValueChange={(value) => setSelectedOption(value)}
         value={selectedOption}
       >
-        {Options.map((option)=>{
-          return  <View style={{ flexDirection: 'row', alignItems: 'center' , width:'80%' }}>
+        {Options.map((option, index)=>{
+          return  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' , width:'80%' }}>
           <RadioButton.Android value={option} color="#AAAAAA" />
           <Text style={styles.QuizText}>{option}</Text>
         </View>

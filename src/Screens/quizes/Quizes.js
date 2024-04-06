@@ -8,21 +8,28 @@ import {useNavigation} from '@react-navigation/native';
 import styles from '../../styles/quizesStyle.js';
 import { setScore } from '../../store/courseSlice.js';
 import axios from 'axios';
+import { setAnswers, setQuizzes } from '../../store/quizzesSlice.js';
 const Quizes = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const [loading, setloading] = useState(true)
 
-
+  const [answers, setanswers] = useState([])
   const [currentQuiz, setcurrentQuiz] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [btnClicked, setbtnClicked] = useState(false);
 
-
-
+  const currentChapterId = useSelector( state =>state.quiz.chapter_id)
+  const quizGroup = useSelector(state => state.quiz.selectedGroup)
+  const quizzes = useSelector(state => state.quiz.quizzes)
 useEffect(()=>{
     axios
-    .get(`${Next_Quizzes}?module_id=`)
+    .get(`${Next_Quizzes}?chapter_id=${currentChapterId}&quiz_group=${quizGroup}`)
+    .then((res)=>{
+      dispatch(setQuizzes(res.data))
+      setloading(false)
+    })
+    .catch(console.log)
 },[])
 
 
@@ -39,7 +46,7 @@ useEffect(()=>{
           <View
             style={{
               ...styles.QuizHeader_progressFG,
-              width: `${((currentQuiz+1)/ quizzesForPage.length) * 100}%`,
+              width: `${((currentQuiz+1)/ quizzes.length) * 100}%`,
             }}></View>
         </View>
       </View>
@@ -49,7 +56,7 @@ useEffect(()=>{
             Question {currentQuiz + 1}:
           </Text>
           <Text style={styles.QuizText}>
-            {quizzesForPage[currentQuiz].question}
+            {quizzes[currentQuiz].question}
           </Text>
         </View>
         <View>
@@ -57,7 +64,7 @@ useEffect(()=>{
             Choose the best option :
           </Text>
           <CoolRadioBox
-            Options={quizzesForPage[currentQuiz].choices}
+            Options={quizzes[currentQuiz].answers}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
@@ -71,65 +78,27 @@ useEffect(()=>{
               console.log('Choose an option');
               return;
             }
-            // if (!btnClicked) {
-            //   setbtnClicked(true); // set state button to clicked to change the the UI
-            //   setLocalScore(
-            //     quizzesForPage[currentQuiz].correctAnswer == selectedOption
-            //       ? score + 1
-            //       : score,
-            //   ); // if answer is correct add 1 to score
-            // } else {
-            //   setbtnClicked(false);
-            //   if (currentQuiz >= quizzesForPage.length - 1) {
-            //     dispatch(setScore({total :quizzesForPage.length , score }))
-            //     navigation.navigate('ShowResults')
-            //     return;
-            //   }
-            // }
-              setcurrentQuiz(currentQuiz + 1); // move to next quiz
+            
+            if(currentQuiz+1  < quizzes.length){
+              setanswers([...answers, {quiz_id : quizzes[currentQuiz]._id , answer : selectedOption}])
               setSelectedOption('')
+              setcurrentQuiz(currentQuiz + 1); // move to next quiz
+            }
+              else{
+                dispatch(setAnswers([...answers, {quiz_id : quizzes[currentQuiz]._id , answer : selectedOption}]))
+                navigation.navigate('ShowResults')
+              }
           }}>
           <Text
             style={
               selectedOption == 0 // if no option selected disbale button
                 ? {...styles.FooterBTN_Text, ...styles.FooterBTN_Text_disabled}
-                : !btnClicked // if an option selected , check if button not clicked yet
-                ? {...styles.FooterBTN_Text, ...styles.FooterBTN_Text_enabled}
-                : {...styles.FooterBTN_Text, ...styles.FooterBTN_Text_clicked}
+                :  {...styles.FooterBTN_Text, ...styles.FooterBTN_Text_enabled}
             }>
-            {btnClicked ? 'Continue' : 'Submit'}
+            Continue
           </Text>
         </Pressable>
-        <View
-          style={{
-            ...styles.CommentLabel,
-            display: btnClicked ? 'flex' : 'none',
-          }}>
-          {quizzesForPage[currentQuiz].correctAnswer == selectedOption && (
-            <>
-              <Text style={{...styles.QuizText}}>Correct</Text>
-              <Text
-                style={{
-                  ...styles.QuizText,
-                  fontSize: styles.QuizText.fontSize - 5,
-                }}>
-                Keep Going
-              </Text>
-            </>
-          )}
-          {quizzesForPage[currentQuiz].correctAnswer != selectedOption && (
-            <>
-              <Text style={{...styles.QuizText}}>Not Correct</Text>
-              <Text
-                style={{
-                  ...styles.QuizText,
-                  fontSize: styles.QuizText.fontSize - 5,
-                }}>
-                want to review the course ?
-              </Text>
-            </>
-          )}
-        </View>
+        
       </View>
     </View>
   );
