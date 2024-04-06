@@ -61,7 +61,7 @@ const App = () => {
           />
           {/* ▲ Quiz results Screen ▲  */}
           {/* ▼ Quizes Screen ▼ */}
-          <Stack.Screen name="Quizes" component={Quizes} />
+          <Stack.Screen name="Quizzes" component={Quizes} />
           {/* ▲ Quizes Screen ▲  */}
           {/* ▼ Register Screen ▼ */}
           {/* <Stack.Screen

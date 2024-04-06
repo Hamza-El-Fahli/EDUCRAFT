@@ -5,6 +5,7 @@ const initialState = {
  
   quizzes: [],
   selectedGroup: '',
+  chapter_id : '',
   answers : [] // like [{ quizzID , answer }]
 };
 
@@ -16,9 +17,11 @@ const quizzesReducer = createSlice({
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
-    // store data requested from the server 
-    setSelectedGroup: (state, action) => {
+    setSelectedQuizGroup: (state, action) => {
       state.selectedGroup = action.payload;
+    },
+    setChapterId: (state, action) => {
+      state.chapter_id = action.payload;
     },
     setAnswers: (state, action) => {
       state.answers = action.payload;      
@@ -26,6 +29,6 @@ const quizzesReducer = createSlice({
   },
 });
 
-export const {setAnswers  , setSelectedGroup , setQuizzes} =  quizzesReducer.actions;
+export const {setAnswers , setSelectedQuizGroup , setQuizzes, setChapterId} =  quizzesReducer.actions;
 
 export default quizzesReducer.reducer;

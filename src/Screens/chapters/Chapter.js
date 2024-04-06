@@ -15,6 +15,7 @@ import {
   import { useNavigation } from '@react-navigation/native';
   import { setChapters, setQuizzesByModule, setQuizzesForPage } from '../../store/courseSlice';
 import { Next_Chapters } from '../../GlobalConfig';
+import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
   
   const upArrowIcon = require('./../../images/svg/arrow.png');
   const bookIcon = require('./../../images/svg/book.png');
@@ -92,7 +93,7 @@ import { Next_Chapters } from '../../GlobalConfig';
                     {/*///////////////  Chapter Quiz ////////////////// */}
                   
                     {/* {Quizzes[0]?.chapter_id == oneChapter._id && <Text>hahaha</Text>} */}
-                    {oneChapter.quizGroups && <OneQuiz quizData={oneChapter.quizGroups} />}
+                    {oneChapter.quizGroups && <OneQuiz quizData={oneChapter.quizGroups} chapterId={oneChapter._id} />}
                     {/*///////////////  Chapter Quiz END ////////////////// */}
                   </View>
                 );
@@ -109,16 +110,15 @@ import { Next_Chapters } from '../../GlobalConfig';
   
   
   
-  function OneQuiz({quizData}){
-  
-
-
+  function OneQuiz({quizData,chapterId}){
+  const navigation = useNavigation()
+    const dispatch = useDispatch()
     return Object.keys(quizData).map((quizGroup,index)=>
     <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
-        
-      console.log(quizGroup)
-          
+        dispatch(setSelectedQuizGroup(quizGroup))
+        dispatch(setChapterId(chapterId))
+        navigation.navigate("Quizzes")
       }}>
       <View
         style={{flexDirection: 'row', alignItems: 'center'}}>
