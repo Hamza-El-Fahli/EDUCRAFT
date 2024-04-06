@@ -92,7 +92,7 @@ import { Next_Chapters } from '../../GlobalConfig';
                     {/*///////////////  Chapter Quiz ////////////////// */}
                   
                     {/* {Quizzes[0]?.chapter_id == oneChapter._id && <Text>hahaha</Text>} */}
-                    
+                    {oneChapter.quizGroups && <OneQuiz quizData={oneChapter.quizGroups} />}
                     {/*///////////////  Chapter Quiz END ////////////////// */}
                   </View>
                 );
@@ -110,15 +110,12 @@ import { Next_Chapters } from '../../GlobalConfig';
   
   
   function OneQuiz({quizData}){
-  const navigation = useNavigation()
-  const dispatch = useDispatch()
   
-    return <View style={styles.quiz}>
+    return Object.keys(quizData).map((quizGroup,index)=>
+    <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
   
-      dispatch(setQuizzesForPage(quizData))
-      console.log(quizData)
-      navigation.navigate('Quizes')
+      console.log(quizGroup)
           
       }}>
       <View
@@ -130,11 +127,12 @@ import { Next_Chapters } from '../../GlobalConfig';
             fontWeight: 'bold',
             color: '#E9E8F1' /*Colors.Dark.white*/,
           }}>
-          Quiz 1 : 1/{quizData.length}
+          Quiz : {index+1}
         </Text>
       </View>
     </Pressable>
   </View>
+  )
   }
   
   
