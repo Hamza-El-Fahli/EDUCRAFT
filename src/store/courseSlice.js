@@ -5,12 +5,9 @@ const initialState = {
   course: 1,
   module: [],
   chapters: [],
-  quizzesByModule: [],
-  quizzesForPage: [],
   selectedModule: 0,
   selectedModule_id:'',
   selectedChapter: 1,
-  score : null
 };
 
 const courseReducer = createSlice({
@@ -39,20 +36,11 @@ const courseReducer = createSlice({
     setSelecteChapter: (state, action) => {
       state.selectedChapter = action.payload;
     },
-    // store user's answers 
-    setScore:(state,action)=>{
-      state.score = action.payload
-    },
-    setQuizzesByModule : (state,action)=>{
-      state.quizzesByModule = action.payload
-    },
-    setQuizzesForPage : (state,action)=>{
-      state.quizzesForPage = action.payload
-    }
+   
   },
 });
 
-export const {setCourse, setModules, setChapters, setSelectedModule,setScore , setQuizzesByModule,setQuizzesForPage} =
+export const {setCourse, setModules, setChapters, setSelectedModule} =
   courseReducer.actions;
 
 export default courseReducer.reducer;

@@ -111,10 +111,12 @@ import { Next_Chapters } from '../../GlobalConfig';
   
   function OneQuiz({quizData}){
   
+
+
     return Object.keys(quizData).map((quizGroup,index)=>
     <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
-  
+        
       console.log(quizGroup)
           
       }}>
