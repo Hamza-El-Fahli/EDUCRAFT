@@ -12,6 +12,7 @@ export const Next_Courses = `http://${Next_IP}/api/courses`
 export const Next_Modules = `http://${Next_IP}/api/modules`
 export const Next_Chapters = `http://${Next_IP}/api/chapters`
 export const Next_Quizzes = `http://${Next_IP}/api/quizes`
+export const Next_Quizzes_Check = `http://${Next_IP}/api/quizes/checkAnswers`
 
 
 

@@ -29,7 +29,7 @@ useEffect(()=>{
       dispatch(setQuizzes(res.data))
       setloading(false)
     })
-    .catch(console.log)
+    .catch(err => console.log(err))
 },[])
 
 
