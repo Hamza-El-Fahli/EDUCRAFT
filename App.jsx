@@ -22,11 +22,11 @@ const App = () => {
           {/* ▼ Login Screen ▼ */}
 
 
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Login"
             component={Login}
             options={{headerShown: false}}
-          /> */}
+          />
 
 
           {/* ▲ Login Screen ▲  */}
