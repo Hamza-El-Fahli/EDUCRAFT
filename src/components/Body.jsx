@@ -122,7 +122,7 @@ const Slides = ({ btnLoader}) => {
             ) : (
               <>
                 {
-                  userModules[selectedModule].progression < 100
+                  userModules[selectedModule].progress < 100
                     ? 'CONTINUE'
                     : 'REVIEW'
                 }
