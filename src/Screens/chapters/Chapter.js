@@ -18,6 +18,7 @@ import { Next_Chapters } from '../../GlobalConfig';
 import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
   
   const upArrowIcon = require('./../../images/svg/arrow.png');
+  const lockedIcon = require('./../../images/svg/locked.png')
   const bookIcon = require('./../../images/svg/book.png');
   const validIcoin = require('./../../images/svg/valid.png');
   const invalidIcoin = require('./../../images/svg/invalid.png');
@@ -115,17 +116,19 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
     const quizGroups = chapter.quizGroups
     const chapterId = chapter._id
   const navigation = useNavigation()
+  console.log(chapter.isDone)
     const dispatch = useDispatch()
     return Object.keys(quizGroups).map((quizGroup,index)=>
     <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
         dispatch(setSelectedQuizGroup(quizGroup))
         dispatch(setChapterId(chapterId))
-        navigation.navigate("Quizzes")
+        if(chapter.isDone >= index)
+          navigation.navigate("Quizzes")
       }}>
       <View
         style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image source={chapter.isDone <= index ? invalidIcoin : validIcoin} style={{margin: 10}} />
+        <Image source={chapter.isDone > index ? validIcoin : (chapter.isDone == index ? invalidIcoin : lockedIcon)  } style={{margin: 10}} />
         <Text
           style={{
             fontSize: 25,
