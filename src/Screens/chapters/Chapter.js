@@ -21,15 +21,17 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
   const bookIcon = require('./../../images/svg/book.png');
   const validIcoin = require('./../../images/svg/valid.png');
   const invalidIcoin = require('./../../images/svg/invalid.png');
-  
+
   const Chapters = ({navigation}) => {
     const dispatch = useDispatch()
     const selectedModule_id = useSelector(state => state.course.selectedModule_id);
     const [loader, setloader] = useState(true);
     const chapters = useSelector(state=>state.course.chapters)
+    const user = useSelector(state=>state.user.user)
+    chapters.map(console.log)
   useEffect(()=>{
     axios
-    .get(`${Next_Chapters}?module_id=${selectedModule_id}`)
+    .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
     .then((res)=>{
         dispatch(setChapters(res.data))
         setloader(false)
