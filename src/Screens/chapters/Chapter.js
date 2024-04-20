@@ -116,14 +116,13 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
     const quizGroups = chapter.quizGroups
     const chapterId = chapter._id
   const navigation = useNavigation()
-  console.log(chapter.isDone)
     const dispatch = useDispatch()
     return Object.keys(quizGroups).map((quizGroup,index)=>
     <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
         dispatch(setSelectedQuizGroup(quizGroup))
         dispatch(setChapterId(chapterId))
-        if(chapter.isDone >= index)
+        if(chapter.isDone == index)
           navigation.navigate("Quizzes")
       }}>
       <View
