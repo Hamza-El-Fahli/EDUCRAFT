@@ -42,7 +42,6 @@ const Login = ({navigation}) => {
         console.log(userData.name);
         dispacth(setUserName(userData.name));
         dispacth(setUser(userData));
-        // console.log(userData)
         setbtnLoader(false);
         navigation.navigate('Home');
       }

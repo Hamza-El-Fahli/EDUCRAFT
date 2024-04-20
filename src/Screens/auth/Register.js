@@ -6,26 +6,6 @@ const Register = ({navigation}) => {
   const [Email, setemail] = useState('');
   const [Password, setpassword] = useState('');
 
-  // const addUser = async ()=>{
-  //   try {
-  //     const response = await fetch(`http://192.168.1.9:3000/adduser/${Email}/${Password}/${UserName}`);
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-
-  //     console.log('new User added  ', data);
-  //     if(data){
-  //       navigation.navigate('Home')
-  //       }
-
-  //   } catch (error) {
-  //     console.error('Error:', error.message);
-  //   }
-  //   }
-
   return (
     <View>
       <View style={styles.auth_container}>

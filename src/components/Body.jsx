@@ -19,28 +19,6 @@ useEffect(()=>{
   dispatch(setSelectedModule(selectedModule || 0));
 
 },[selectedModule])
-  // function getChapters() {
-  //   const cancelTokenSource = axios.CancelToken.source();
-  //   setbtnLoader(true);
-  //   axios
-  //     .get(`${Next_Chapters}?module_id=${userModules[selectedModule]._id}`, {
-  //       cancelToken: cancelTokenSource.token,
-  //     }) // because stored with -1
-  //     .then(async result => {
-  //       const loadedChapters = await result.data;
-  //       dispatch(setChapters(loadedChapters));
-  //       setbtnLoader(false);
-  //     })
-  //     .catch(e => {
-  //       console.log(
-  //         `error in chapters ,${Next_Chapters}?module_id=${userModules[selectedModule]._id}    ${e}`,
-  //       );
-  //       setbtnLoader(false);
-  //     });
-  //   setTimeout(() => {
-  //     cancelTokenSource.cancel('Request cancelled after 2 seconds');
-  //   }, 2000);
-  // }
 
   return (
     <View style={styles.body}>

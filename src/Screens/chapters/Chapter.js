@@ -28,7 +28,6 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
     const [loader, setloader] = useState(true);
     const chapters = useSelector(state=>state.course.chapters)
     const user = useSelector(state=>state.user.user)
-    chapters.map(console.log)
   useEffect(()=>{
     axios
     .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
@@ -95,7 +94,7 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
                     {/*///////////////  Chapter Quiz ////////////////// */}
                   
                     {/* {Quizzes[0]?.chapter_id == oneChapter._id && <Text>hahaha</Text>} */}
-                    {oneChapter.quizGroups && <OneQuiz quizData={oneChapter.quizGroups} chapterId={oneChapter._id} />}
+                    {oneChapter.quizGroups && <OneQuiz  chapter={oneChapter} />}
                     {/*///////////////  Chapter Quiz END ////////////////// */}
                   </View>
                 );
@@ -112,10 +111,12 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
   
   
   
-  function OneQuiz({quizData,chapterId}){
+  function OneQuiz({ chapter}){
+    const quizGroups = chapter.quizGroups
+    const chapterId = chapter._id
   const navigation = useNavigation()
     const dispatch = useDispatch()
-    return Object.keys(quizData).map((quizGroup,index)=>
+    return Object.keys(quizGroups).map((quizGroup,index)=>
     <View key={index} style={styles.quiz}>
     <Pressable onPress={()=>{
         dispatch(setSelectedQuizGroup(quizGroup))
@@ -124,7 +125,7 @@ import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
       }}>
       <View
         style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image source={invalidIcoin} style={{margin: 10}} />
+        <Image source={chapter.isDone <= index ? invalidIcoin : validIcoin} style={{margin: 10}} />
         <Text
           style={{
             fontSize: 25,

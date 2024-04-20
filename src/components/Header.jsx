@@ -27,7 +27,6 @@ useEffect(()=>{
       setCourses(res.data)
       dispatch(setCourse(res.data[0]._id));
 
-      // console.log('courses are here')
     })
     .catch((error)=>{
       console.log('no courses fetched from next ',error)
