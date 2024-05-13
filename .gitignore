@@ -64,5 +64,3 @@ yarn-error.log
 
 # testing
 /coverage
-android/gradle.properties
-gradle.properties
