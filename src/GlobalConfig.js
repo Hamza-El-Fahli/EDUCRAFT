@@ -6,7 +6,7 @@ export const _API_URL = `https://healthy-slippers-lion.cyclic.app/web`;
 export const _MOBILE_URL = `http://${_IP}:${_PORT}/mobile`;
 
 
-const Next_IP = `192.168.59.1:${_PORT}`
+const Next_IP = `192.168.233.1:${_PORT}`
 export const Next_Users = `http://${Next_IP}/api/users`
 export const Next_Courses = `http://${Next_IP}/api/courses`
 export const Next_Modules = `http://${Next_IP}/api/modules`

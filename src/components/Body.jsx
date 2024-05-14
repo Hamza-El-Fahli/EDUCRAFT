@@ -1,10 +1,10 @@
-import {Pressable, Text, View, ActivityIndicator} from 'react-native';
+import { Pressable, Text, View, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/styles';
-import {useDispatch, useSelector} from 'react-redux';
-import {setSelectedModule, setChapters} from '../store/courseSlice';
-import {Next_Chapters, _API_URL} from '../GlobalConfig';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedModule, setChapters } from '../store/courseSlice';
+import { Next_Chapters, _API_URL } from '../GlobalConfig';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,10 +15,10 @@ const Body = () => {
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
   const [btnLoader, setbtnLoader] = useState(false);
-useEffect(()=>{
-  dispatch(setSelectedModule(selectedModule || 0));
+  useEffect(() => {
+    dispatch(setSelectedModule(selectedModule || 0));
 
-},[selectedModule])
+  }, [selectedModule])
 
   return (
     <View style={styles.body}>
@@ -27,21 +27,21 @@ useEffect(()=>{
         <Text style={styles.welcom2}>Welcome back to your course</Text>
       </View>
 
-      <Slides  btnLoader={btnLoader} />
+      <Slides btnLoader={btnLoader} />
 
       <View style={styles.nav_btns}>
-        {userModules.map((oneModules,index) => {
+        {userModules.map((oneModules, index) => {
           if (index == selectedModule)
             return (
-              <Pressable style={{padding: 10}} key={index}>
-                <Text style={{...styles.nav_btn, ...styles.nav_btn_selected}}>
+              <Pressable style={{ padding: 10 }} key={index}>
+                <Text style={{ ...styles.nav_btn, ...styles.nav_btn_selected }}>
                   .
                 </Text>
               </Pressable>
             );
           return (
             <Pressable
-              style={{padding: 10}}
+              style={{ padding: 10 }}
               onPress={() => {
                 dispatch(setSelectedModule(index));
               }}
@@ -55,15 +55,15 @@ useEffect(()=>{
   );
 };
 
-const Slides = ({ btnLoader}) => {
+const Slides = ({ btnLoader }) => {
   const userModules = useSelector(state => state.course.module);
   const selectedModule = useSelector(state => state.course.selectedModule);
   const navigation = useNavigation()
   return (
-    <View style={{...styles.slide}}>
-      <View style={{...styles.slide_item}}>
+    <View style={{ ...styles.slide }}>
+      <View style={{ ...styles.slide_item }}>
         <Text style={styles.slide_item_title}>
-          {selectedModule + 1 + ' : ' + userModules[selectedModule]?.module_name}
+          {selectedModule + 1 + ' : ' + userModules[selectedModule]?.title}
         </Text>
         <Pressable>
           <Text style={styles.slide_item_details}>VOIR DETAILS</Text>
@@ -92,7 +92,7 @@ const Slides = ({ btnLoader}) => {
           )
         }
         <Pressable
-  onPress={()=>navigation.navigate('Chapters')}
+          onPress={() => navigation.navigate('Chapters')}
           style={styles.slide_item_btn_grp}>
           <Text style={styles.slide_item_btn}>
             {btnLoader ? (
