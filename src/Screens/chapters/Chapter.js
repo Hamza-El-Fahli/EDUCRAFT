@@ -35,7 +35,6 @@ const Chapters = ({ navigation }) => {
       .then((res) => {
         dispatch(setChapters(res.data))
         setloader(false)
-        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -121,21 +120,20 @@ function OneQuiz({ chapter }) {
   const dispatch = useDispatch();
 
   return Array.from({ length: totalQuizGroups }, (_, index) => {
-    const isGroupFinished = index < finishedQuizGroups;
-
+    
     return (
       <View key={index} style={styles.quiz}>
         <Pressable
           onPress={() => {
             dispatch(setSelectedQuizGroup(index + 1)); // Assuming quiz groups are 1-indexed
             dispatch(setChapterId(chapterId));
-            if (isGroupFinished) {
+            if (index == finishedQuizGroups) {
               navigation.navigate("Quizzes");
             }
           }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
-              source={isGroupFinished ? validIcoin : lockedIcon}
+              source={(index < finishedQuizGroups) ? validIcoin : (index == finishedQuizGroups)? invalidIcoin: lockedIcon}
               style={{ margin: 10 }}
             />
             <Text
