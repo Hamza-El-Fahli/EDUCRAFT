@@ -2,17 +2,55 @@ import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from 're
 import React, { useState } from 'react'
 
 export default function Lesson() {
-  const imagees = [0,1,2,3,4];
+  const imagees = [0, 1, 2, 3, 4];
   return (
     <View>
 
-      <ScrollView >
-        <Text>
-          Welcome
+      <View style={{position:'absolute' ,
+       width:'100%',
+       borderWidth:2,
+       height:50,
+       padding:5,
+       flexDirection:'row',
+       gap:10,
+       backgroundColor:'#ff00ff',
+       zIndex:5
+       
+       }}>
+
+<View style={{
+       borderWidth: 1,
+          width:'20%',
+          borderRadius:10,
+          flexDirection:'row',
+          alignItems:'center',
+          justifyContent:'center'
+          }}>
+<Text >
+          Go Back
         </Text>
 
+</View>
+<View style={{
+       borderWidth: 1,
+          width:'70%',
+          borderRadius:10,
+          flexDirection:'row',
+          alignItems:'center',
+          justifyContent:'center'
+          }}>
 
-{imagees.map((item)=><ShowPic />)}
+        <Text>
+          This is Chapter title
+        </Text>
+
+            </View>
+      </View>
+
+      <ScrollView >
+
+
+        {imagees.map((item) => <ShowPic />)}
 
 
 
@@ -69,5 +107,5 @@ export function ShowPic(imgUrl) {
 
 
   )
-  
+
 }
