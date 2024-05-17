@@ -7,6 +7,7 @@ import Profile from './src/Screens/profile/Profile';
 import Chapters from './src/Screens/chapters/Chapter';
 import Quizes from './src/Screens/quizes/Quizes';
 import ShowResults from './src/Screens/quizes/ShowResults';
+import Lesson from './src/Screens/lesson/Lesson';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
@@ -19,6 +20,8 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+
+
           {/* ▼ Login Screen ▼ */}
 
 
@@ -69,6 +72,20 @@ const App = () => {
         component={Register}
       /> */}
           {/* ▲ Register Screen ▲ */}
+
+          
+          
+          {/* ▼ Lesosns Screen ▼ */}
+
+
+          <Stack.Screen
+            name="Lesosn"
+            component={Lesson}
+            options={{headerShown: false}}
+          />
+
+
+          {/* ▲ Lesosns Screen ▲  */}
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 const Chart = ({styles}) => {
 
   const user = useSelector((state)=>state.user.user)
-  console.log(user)
 // 
   //    LEFT              |                 RIGHT 
   //                      |                  ______
