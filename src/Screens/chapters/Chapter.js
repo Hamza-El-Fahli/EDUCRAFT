@@ -33,6 +33,7 @@ const Chapters = ({ navigation }) => {
     axios
       .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
       .then((res) => {
+
         dispatch(setChapters(res.data))
         setloader(false)
       })
@@ -133,7 +134,7 @@ function OneQuiz({ chapter }) {
       <View key={index} style={styles.quiz}>
         <Pressable
           onPress={() => {
-            dispatch(setSelectedQuizGroup(index + 1)); // Assuming quiz groups are 1-indexed
+            dispatch(setSelectedQuizGroup(index )); // Assuming quiz groups are 1-indexed
             dispatch(setChapterId(chapterId));
             if (index == finishedQuizGroups) {
               navigation.navigate("Quizzes");

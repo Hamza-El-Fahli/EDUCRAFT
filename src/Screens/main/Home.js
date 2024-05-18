@@ -31,7 +31,6 @@ const Home = ({ navigation }) => {
         .get(`${Next_Modules}?course_id=${SelectedCourse}&user_id=${user._id}`)
         .then(result => {
           const loadedModules = result.data;
-
           if (userModules.length < 1 || userModules[0].course_id !== SelectedCourse)
             dispatch(setModules(loadedModules));
           setLoading(false);
