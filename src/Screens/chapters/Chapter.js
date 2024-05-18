@@ -87,7 +87,15 @@ const Chapters = ({ navigation }) => {
                     </View>
 
                     <View style={styles.chapter_title_right}>
-                      <Image source={bookIcon} />
+                      <Pressable
+                        onPress={() => {
+                          dispatch(setChapterId(oneChapter._id));
+                          navigation.navigate("Lessons");
+                        }}
+                      >
+
+                        <Image source={bookIcon} />
+                      </Pressable>
                     </View>
                   </View>
                   {/*///////////////  Chapter Title End ////////////////// */}
@@ -120,7 +128,7 @@ function OneQuiz({ chapter }) {
   const dispatch = useDispatch();
 
   return Array.from({ length: totalQuizGroups }, (_, index) => {
-    
+
     return (
       <View key={index} style={styles.quiz}>
         <Pressable
@@ -133,7 +141,7 @@ function OneQuiz({ chapter }) {
           }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
-              source={(index < finishedQuizGroups) ? validIcoin : (index == finishedQuizGroups)? invalidIcoin: lockedIcon}
+              source={(index < finishedQuizGroups) ? validIcoin : (index == finishedQuizGroups) ? invalidIcoin : lockedIcon}
               style={{ margin: 10 }}
             />
             <Text
