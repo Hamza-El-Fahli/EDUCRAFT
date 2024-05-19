@@ -33,8 +33,8 @@ const Chapters = ({ navigation }) => {
     axios
       .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
       .then((res) => {
-
         dispatch(setChapters(res.data))
+
         setloader(false)
       })
       .catch((err) => {
@@ -127,7 +127,6 @@ function OneQuiz({ chapter }) {
   const chapterId = chapter._id;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
   return Array.from({ length: totalQuizGroups }, (_, index) => {
 
     return (

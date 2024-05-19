@@ -93,7 +93,72 @@ const styles = StyleSheet.create({
     height:'100%',
     width:'100%',
     overflow : 'hidden'
-  }
+  },
+
+
+
+
+
+
+
+
+
+
+  ////////////////////////// lessons
+  Lessons_Header:{
+      // position: 'absolute',
+      width: '100%',
+      borderWidth: 2,
+      height: 50,
+      padding: 5,
+      flexDirection: 'row',
+      gap: 10,
+      backgroundColor: Colors.Dark.bg,
+      // zIndex: 5
+
+    
+  },
+  Lessons_Header_goBack : {
+    borderWidth: 1,
+    width: '20%',
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.Dark.blue
+  },
+  Lessons_Header_goBack_text : {
+    color: Colors.Dark.lightGray
+  },
+  Lessons_Header_Title :{
+    borderWidth: 1,
+    width: '70%',
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  Lessons_images :{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'center'
+  },
+  Lessons_pic_container :{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+    borderWidth: 1
+  },
+  Lessons_pagination :{
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    padding: 3,
+    paddingLeft: 5,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    zIndex: 6,
+    borderBottomLeftRadius: 8,
+  },
 });
 
 export default styles;
