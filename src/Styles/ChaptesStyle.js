@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   module_title: {
-    fontSize: 30,
+    fontSize: 25,
     color: Colors.Dark.white,
     fontWeight: 'bold',
+    textAlign:'center'
   },
   scroll: {
     backgroundColor: Colors.Dark.bg,

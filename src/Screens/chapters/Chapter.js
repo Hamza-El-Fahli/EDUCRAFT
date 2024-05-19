@@ -29,6 +29,8 @@ const Chapters = ({ navigation }) => {
   const [loader, setloader] = useState(true);
   const chapters = useSelector(state => state.course.chapters)
   const user = useSelector(state => state.user.user)
+  const modules = useSelector(state => state.course.module)
+  const currentModule = modules.find((module) => module._id == selectedModule_id)
   useEffect(() => {
     axios
       .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
@@ -58,7 +60,7 @@ const Chapters = ({ navigation }) => {
 
           {/*/////////////// Module Title ////////////////// */}
           <View style={styles.module}>
-            <Text style={styles.module_title}>Modele 1 : Modèle OSI</Text>
+            <Text style={styles.module_title}>Module {currentModule?.order_num}: {currentModule?.title}</Text>
           </View>
           {/*/////////////// Module Title END ////////////////// */}
 
@@ -133,7 +135,7 @@ function OneQuiz({ chapter }) {
       <View key={index} style={styles.quiz}>
         <Pressable
           onPress={() => {
-            dispatch(setSelectedQuizGroup(index )); // Assuming quiz groups are 1-indexed
+            dispatch(setSelectedQuizGroup(index)); // Assuming quiz groups are 1-indexed
             dispatch(setChapterId(chapterId));
             if (index == finishedQuizGroups) {
               navigation.navigate("Quizzes");
