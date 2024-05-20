@@ -1,7 +1,7 @@
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { setChapters } from '../../store/courseSlice';
+import { setChapters, setModules } from '../../store/courseSlice';
 import styles from '../../styles/quizesStyle';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
@@ -14,7 +14,7 @@ const dispatch = useDispatch()
   const module_id = useSelector(state => state.course.selectedModule_id);
   const user_id = useSelector(state => state.user.user._id);
   const chapters = useSelector(state=>state.course.chapters)
-
+  const modules = useSelector(state => state.course.module)
 
   const navigation = useNavigation();
   const [testedAnswers, setTestedAnswers] = useState([]);
@@ -37,7 +37,12 @@ const dispatch = useDispatch()
             if(chapter._id == chapter_id) return {...chapter , isDone : chapter.isDone+1}
             return chapter
           })
+          const newModulesState = modules.map((_module)=>{
+            if(_module._id == module_id) return {..._module , done : _module.done+1 , progress : (_module.done+1)*100 / _module.chapter_count}
+            return _module
+          })
           dispatch(setChapters(newChaptersState))
+          dispatch(setModules(newModulesState))
         }
         setloading(false);
       })

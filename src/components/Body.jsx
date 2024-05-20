@@ -19,7 +19,6 @@ const Body = () => {
     dispatch(setSelectedModule(selectedModule || 0));
 
   }, [selectedModule])
-
   return (
     <View style={styles.body}>
       <View style={styles.welcom}>
