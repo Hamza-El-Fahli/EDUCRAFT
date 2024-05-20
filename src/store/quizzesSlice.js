@@ -13,6 +13,10 @@ const quizzesReducer = createSlice({
   name: 'quizzes',
   initialState,
   reducers: {
+     // reset to default
+     resetQuizzes : (state)=>{
+      state = initialState
+    },
     //  set courses (ccna 1 or ccna 2 ....)
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
@@ -29,6 +33,6 @@ const quizzesReducer = createSlice({
   },
 });
 
-export const {setAnswers , setSelectedQuizGroup , setQuizzes, setChapterId} =  quizzesReducer.actions;
+export const {setAnswers , setSelectedQuizGroup , setQuizzes, setChapterId  , resetQuizzes} =  quizzesReducer.actions;
 
 export default quizzesReducer.reducer;

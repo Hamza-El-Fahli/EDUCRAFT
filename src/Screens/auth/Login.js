@@ -15,6 +15,8 @@ import {setUserName , setUser} from '../../store/userSlice';
 import axios from 'axios';
 
 import {Next_Users, _API_URL} from '../../GlobalConfig';
+import { resetCourse } from '../../store/courseSlice';
+import { resetQuizzes } from '../../store/quizzesSlice';
 
 const Login = ({navigation}) => {
   // setup states
@@ -22,7 +24,8 @@ const Login = ({navigation}) => {
   const [Password, setpassword] = useState('');
   const dispacth = useDispatch();
   const [btnLoader, setbtnLoader] = useState(false);
-
+  dispacth(resetCourse())
+  dispacth(resetQuizzes())
   // When user clicked the login button
   const checkUserAPI = async (email, password) => {
     // if the request took more than 10 s cancel it

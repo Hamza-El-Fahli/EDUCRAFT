@@ -12,6 +12,10 @@ const appSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+     // reset to default
+     resetUser : (state)=>{
+      state = initialState
+    },
     // Set User name to show on main and profile screen
     setUserName: (state, action) => {
       state.username = action.payload;
@@ -26,5 +30,5 @@ const appSlice = createSlice({
   }
 });
 
-export const {setUserName , setUser} = appSlice.actions;
+export const {setUserName , setUser , resetUser} = appSlice.actions;
 export default appSlice.reducer;

@@ -14,6 +14,10 @@ const courseReducer = createSlice({
   name: 'course',
   initialState,
   reducers: {
+    // reset to default
+    resetCourse : (state)=>{
+      state = initialState
+    },
     //  set courses (ccna 1 or ccna 2 ....)
     setCourse: (state, action) => {
       state.course = action.payload;
@@ -40,7 +44,7 @@ const courseReducer = createSlice({
   },
 });
 
-export const {setCourse, setModules, setChapters, setSelectedModule} =
+export const {setCourse, setModules, setChapters, setSelectedModule, resetCourse} =
   courseReducer.actions;
 
 export default courseReducer.reducer;
