@@ -36,7 +36,6 @@ const Chapters = ({ navigation }) => {
       .get(`${Next_Chapters}?module_id=${selectedModule_id}&user_id=${user._id}`)
       .then((res) => {
         dispatch(setChapters(res.data))
-
         setloader(false)
       })
       .catch((err) => {
@@ -55,7 +54,14 @@ const Chapters = ({ navigation }) => {
       ) : (
         <>
           {/*/////////////// Header ////////////////// */}
-          <Header navigation={navigation} />
+          {/* <Header navigation={navigation} /> */}
+          <View style={styles.header}>
+            <Pressable
+              style={{ position: 'absolute', top: 0, lef: 0, zIndex: 10, padding: 10, backgroundColor: 'rgba(100,100,100,.5)', borderBottomEndRadius: 100 }}
+              onPress={() => navigation.goBack()}>
+              <Text style={{ ...styles.dropDown_item, color: 'white' }}>{'<'}</Text>
+            </Pressable>
+          </View>
           {/*/////////////// Header ////////////////// */}
 
           {/*/////////////// Module Title ////////////////// */}
