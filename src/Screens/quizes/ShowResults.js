@@ -52,19 +52,14 @@ const ShowResults = () => {
       });
   }, []);
 
-  return loading ? (
+  return     <View style={styles.container}>
+
+{loading ? (
     <ActivityIndicator />
   ) : (
-    <View style={styles.container}>
+<View>
 
-      <Pressable onPress={() => navigation.navigate("Chapters")}
-        style={{
-          position: 'absolute', bottom: 0, height: 50, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center',
-          backgroundColor: Colors.Dark.lightBlue, borderTopLeftRadius: 15, borderTopRightRadius: 15
-        }}
-      >
-        <Text style={{ color: Colors.Dark.white, fontSize: 20, fontWeight: 'bold' }}>Go Back</Text>
-      </Pressable>
+      
 
       {testedAnswers.map((answer, index) => {
         return (
@@ -73,8 +68,17 @@ const ShowResults = () => {
           </Text>
         );
       })}
+      </View>)}
+{!loading && <Pressable onPress={() => navigation.navigate("Chapters")}
+        style={{
+          position: 'absolute', bottom: 0, height: 50, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center',
+          backgroundColor: Colors.Dark.lightBlue, borderTopLeftRadius: 15, borderTopRightRadius: 15
+        }}
+        >
+        <Text style={{ color: Colors.Dark.white, fontSize: 20, fontWeight: 'bold' }}>Go Back</Text>
+      </Pressable>}
     </View>
-  );
+  
 };
 
 export default ShowResults;
