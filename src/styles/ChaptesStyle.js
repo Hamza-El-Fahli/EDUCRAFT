@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     
   },
   chapter_title: {
-    height: Dimensions.get('window').height * 0.2,
+    // height: Dimensions.get('window').height * 0.2,
     flexDirection: 'row',
     padding: 20,
   },

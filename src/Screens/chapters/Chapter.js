@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/ChaptesStyle';
-import Header from '../../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { setChapters, setQuizzesByModule, setQuizzesForPage } from '../../store/courseSlice';
 import { Next_Chapters } from '../../GlobalConfig';
 import { setChapterId, setSelectedQuizGroup } from '../../store/quizzesSlice';
+import Colors from '../../styles/colors';
 
 const upArrowIcon = require('./../../images/svg/arrow.png');
 const lockedIcon = require('./../../images/svg/locked.png')
@@ -54,19 +54,24 @@ const Chapters = ({ navigation }) => {
       ) : (
         <>
           {/*/////////////// Header ////////////////// */}
-          {/* <Header navigation={navigation} /> */}
-          <View style={styles.header}>
+          <View style={{zIndex:10,overflow:'visible',flexDirection:'row'}}>
             <Pressable
-              style={{ position: 'absolute', top: 0, lef: 0, zIndex: 10, padding: 10, backgroundColor: 'rgba(100,100,100,.5)', borderBottomEndRadius: 100 }}
+              style={{  height:50,backgroundColor: Colors.Dark.blue ,borderTopRightRadius:100,width:"20%",borderWidth:1,borderLeftWidth:0,borderColor:Colors.Dark.lightBlue }}
               onPress={() => navigation.goBack()}>
-              <Text style={{ ...styles.dropDown_item, color: 'white' }}>{'<'}</Text>
+              <Text style={{ marginLeft:15,color: 'white',fontSize:40 }}>{'<'}</Text>
             </Pressable>
+            <View
+                                      style={{  height:50,backgroundColor: Colors.Dark.blue ,borderTopLeftRadius:100,width:"80%",flexDirection:'column',justifyContent:'center',alignItems:'center' ,borderLeftWidth:5,borderBottomWidth:1,borderLeftColor:Colors.Dark.lightBlue,borderBottomColor:Colors.Dark.bg}}
+
+            >
+                        <Text style={styles.module_title}>Module {currentModule?.order_num}</Text>
+            </View>
           </View>
           {/*/////////////// Header ////////////////// */}
 
           {/*/////////////// Module Title ////////////////// */}
-          <View style={styles.module}>
-            <Text style={styles.module_title}>Module {currentModule?.order_num}: {currentModule?.title}</Text>
+          <View style={{...styles.module}}>
+            <Text style={styles.module_title}> {currentModule?.title}</Text>
           </View>
           {/*/////////////// Module Title END ////////////////// */}
 
