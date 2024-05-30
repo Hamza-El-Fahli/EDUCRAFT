@@ -17,12 +17,11 @@ const Quizes = () => {
   const [answers, setanswers] = useState([])
   const [currentQuiz, setcurrentQuiz] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
-  const [btnClicked, setbtnClicked] = useState(false);
 
   const currentChapterId = useSelector( state =>state.quiz.chapter_id)
   const quizGroup = useSelector(state => state.quiz.selectedGroup)
   const quizzes = useSelector(state => state.quiz.quizzes)
-useEffect(()=>{
+  useEffect(()=>{
     axios
     .get(`${Next_Quizzes}?chapter_id=${currentChapterId}&quiz_group=${quizGroup}`)
     .then((res)=>{
@@ -36,10 +35,15 @@ useEffect(()=>{
 
 
 
-  return ( loading ?
-     <ActivityIndicator /> 
-     :
+
+  return ( 
     <View style={styles.container}>
+              { loading ?
+             <ActivityIndicator size={"large"} style={{position:'absolute',top:"50%",margin:'auto',alignSelf:'center'}} /> 
+             :
+             <View>
+              <Pressable onPress={()=>navigation.goBack()}>
+
       <View style={styles.QuizHeader}>
         <Text style={{...styles.x, position: 'absolute', left: 0}}>X</Text>
         <View style={styles.QuizHeader_progressBG}>
@@ -50,6 +54,7 @@ useEffect(()=>{
             }}></View>
         </View>
       </View>
+            </Pressable>
       <View style={styles.Body}>
         <View>
           <Text style={{...styles.QuizText, fontWeight: 'bold'}}>
@@ -70,7 +75,9 @@ useEffect(()=>{
           />
         </View>
       </View>
-      <View style={styles.Footer}>
+      
+      </View>}
+{!loading && <View style={styles.Footer}>
         <Pressable
           style={styles.FooterBTN}
           onPress={() => {
@@ -99,9 +106,10 @@ useEffect(()=>{
           </Text>
         </Pressable>
         
-      </View>
+      </View>  }
+
     </View>
-  );
+          )
 };
 
 export default Quizes;
