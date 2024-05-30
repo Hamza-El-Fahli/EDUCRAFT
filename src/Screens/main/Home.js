@@ -13,7 +13,7 @@ import Body from '../../components/Body';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setModules } from '../../store/courseSlice';
+import { setModules, setSelectedModule } from '../../store/courseSlice';
 import { Next_Modules, _API_URL } from '../../GlobalConfig';
 
 const Home = ({ navigation }) => {
@@ -33,6 +33,7 @@ const Home = ({ navigation }) => {
           const loadedModules = result.data;
           if (userModules.length < 1 || userModules[0].course_id !== SelectedCourse)
             dispatch(setModules(loadedModules));
+          dispatch(setSelectedModule(0))
           setLoading(false);
         })
         .catch(e => console.log('Modules not found Check your internet connection'));

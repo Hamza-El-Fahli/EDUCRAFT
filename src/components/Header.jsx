@@ -26,12 +26,11 @@ useEffect(()=>{
     .then((res)=>{
       setCourses(res.data)
       dispatch(setCourse(res.data[0]._id));
-
     })
     .catch((error)=>{
       console.log('no courses fetched from next ',error)
     })
-},[])
+  },[])
 
   return (
     <View style={styles.header}>
