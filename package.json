@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@dudigital/react-native-zoomable-view": "^1.1.4",
     "@react-navigation/native": "^6.1.15",
     "@react-navigation/native-stack": "^6.9.23",
     "@reduxjs/toolkit": "^2.2.1",

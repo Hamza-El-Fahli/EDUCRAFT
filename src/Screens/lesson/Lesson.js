@@ -1,4 +1,6 @@
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Next_Lessons } from '../../GlobalConfig';
@@ -87,6 +89,16 @@ export function ShowPic({ imgUrl, page }) {
   const [resolution, setresolution] = useState({ height: 0, width: 0 })
   Image.getSize(imgUrl, (width, height) => { setresolution({ height, width }) },);
   return (
+    <ReactNativeZoomableView
+          maxZoom={2}
+          minZoom={1}
+          zoomStep={0.5}
+          initialZoom={1}
+          bindToBorders={true}
+          onZoomAfter={this.logOutZoomState}
+          
+        >
+
     <View style={styles.Lessons_pic_container}>
       <View style={styles.Lessons_pagination}>
         <Text style={{ color: 'white' }}>
@@ -112,7 +124,7 @@ export function ShowPic({ imgUrl, page }) {
         <ActivityIndicator size="large" color="#0000ff" />}
     </View>
 
-
+</ReactNativeZoomableView>
   )
 
 }
