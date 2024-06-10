@@ -9,7 +9,7 @@ import axios from 'axios';
 import styles from '../../styles/styles';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Body from '../../components/Body';
+import Body from './components/Body';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -47,7 +47,9 @@ const Home = ({ navigation }) => {
       <Header styles={styles} />
       {/* ▼ Show Loading indicator until fetching Data ▼ */}
       {loading ? (
+        <View style={{height:"80%" , display:"flex" , flexDirection:'column' , justifyContent:'center' ,alignItems:'center'}} >
         <ActivityIndicator size="large" color="#0000ff" />
+          </View>
       ) : (
         <>
           <Body navigation={navigation} />
