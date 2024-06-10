@@ -39,7 +39,8 @@ const Quizes = () => {
   return ( 
     <View style={styles.container}>
               { loading ?
-             <ActivityIndicator size={"large"} style={{position:'absolute',top:"50%",margin:'auto',alignSelf:'center'}} /> 
+
+             <ActivityIndicator color="#0000ff" size="large" style={{position:'absolute',top:"50%",margin:'auto',alignSelf:'center'}} /> 
              :
              <View>
               <Pressable onPress={()=>navigation.goBack()}>
