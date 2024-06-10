@@ -1,10 +1,10 @@
 import { Pressable, Text, View, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import styles from '../styles/styles';
+import styles from '../../../styles/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedModule, setChapters } from '../store/courseSlice';
-import { Next_Chapters, _API_URL } from '../GlobalConfig';
+import { setSelectedModule, setChapters } from '../../../store/courseSlice';
+import { Next_Chapters, _API_URL } from '../../../GlobalConfig';
 
 import { useNavigation } from '@react-navigation/native';
 
