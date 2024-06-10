@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../styles/quizesStyle';
 export default function Lesson() {
+  const [onError, setonError] = useState(false)
   const navigation = useNavigation()
   const [images, setImages] = useState([])
   const chapter_id = useSelector(state => state.quiz.chapter_id);
@@ -20,6 +21,7 @@ export default function Lesson() {
         setImages(res.data)
       })
       .catch((err) => {
+        setonError(true)
         console.log(chapter_id)
         console.log(err)
       })
@@ -50,7 +52,7 @@ export default function Lesson() {
 
         </View>
       </View>
-      {images.length <= 0 ? <View
+      {!onError ? images.length <= 0 ? <View
         style={styles.Lessons_images}
       >
         <ActivityIndicator size='large' color='#000000' />
@@ -59,6 +61,11 @@ export default function Lesson() {
         <ScrollView >
           {images?.map((item, index) => <ShowPic key={item} page={index + 1} imgUrl={item} />)}
         </ScrollView>
+      :
+      <View style={{flex: 1,justifyContent:'center'}}>
+        <Text style={{alignSelf:'center',fontSize:30,textAlign:'center' , fontWeight:'700'}}>There No Lessons for this chapter yet</Text>
+
+        </View>
       }
     </View>
   )
