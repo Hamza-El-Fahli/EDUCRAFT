@@ -22,7 +22,6 @@ export default function Lesson() {
       })
       .catch((err) => {
         setonError(true)
-        console.log(chapter_id)
         console.log(err)
       })
   }, [])
