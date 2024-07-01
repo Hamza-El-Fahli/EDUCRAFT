@@ -42,7 +42,8 @@ const Login = ({navigation}) => {
       // if user found
       let userData = response.data;
       if (userData.name) {
-        console.log(userData.name);
+        if(userData.profile != "user") throw Error('Not user')
+        console.log(userData);
         dispacth(setUserName(userData.name));
         dispacth(setUser(userData));
         setbtnLoader(false);
